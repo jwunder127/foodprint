@@ -1,4 +1,4 @@
-'use strict'
+'use strict'; // eslint-disable-line semi
 
 const debug = require('debug')('oauth')
 const Sequelize = require('sequelize')
@@ -23,7 +23,7 @@ const OAuth = db.define('oauths', {
   // Further reading on indexes:
   // 1. Sequelize and indexes: http://docs.sequelizejs.com/en/2.0/docs/models-definition/#indexes
   // 2. Postgres documentation: https://www.postgresql.org/docs/9.1/static/indexes.html
-	indexes: [{fields: ['uid'], unique: true,}],
+	indexes: [{fields: ['uid'], unique: true}],
 })
 
 // OAuth.V2 is a default argument for the OAuth.setupStrategy method - it's our callback function that will execute when the user has successfully logged in
@@ -52,7 +52,7 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>
     .then(({ oauth, user }) => user ||
       User.create({
         name: profile.displayName,
-      }).then(user => db.Promise.props({
+      }).then(user => db.Promise.props({ // eslint-disable-line no-shadow
         user,
         _setOauthUser: oauth.setUser(user)
       }))
@@ -66,7 +66,7 @@ OAuth.setupStrategy =
   provider,
   strategy,
   config,
-  oauth=OAuth.V2,
+  oauth = OAuth.V2,
   passport
 }) => {
   const undefinedKeys = Object.keys(config)
@@ -81,7 +81,7 @@ OAuth.setupStrategy =
 
   debug('initializing provider:%s', provider)
 
-  passport.use(new strategy(config, oauth))
+  passport.use(new strategy(config, oauth)) // eslint-disable-line new-cap
 }
 
 module.exports = OAuth

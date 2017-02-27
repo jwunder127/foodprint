@@ -1,10 +1,13 @@
-const app = require('APP'), {env} = app
+'use strict'; // eslint-disable-line semi
+
+const app = require('APP')
+const {env} = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
 const User = require('APP/db/models/user')
 const OAuth = require('APP/db/models/oauth')
-const auth = require('express').Router()
+const auth = require('express').Router() // eslint-disable-line new-cap
 
 
 /*************************
@@ -95,7 +98,7 @@ passport.deserializeUser(
 )
 
 // require.('passport-local').Strategy => a function we can use as a constructor, that takes in a callback
-passport.use(new (require('passport-local').Strategy) (
+passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
     User.findOne({where: {email}})
