@@ -1,4 +1,4 @@
-# Ignore all node_modules & bower_components
+cd# Ignore all node_modules & bower_components
 node_modules/*
 bower_components
 
@@ -27,3 +27,57 @@ Thumbs.db
 # IDE files
 .idea
 .vscode
+
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+foodprintReactNative/build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+foodprintReactNative/xcuserdata
+*.xccheckout
+*.moved-aside
+foodprintReactNative/DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+foodprintReactNative/project.xcworkspace
+
+# Android/IntelliJ
+#
+foodprintReactNative/build/
+.idea
+.gradle
+foodprintReactNative/local.properties
+*.iml
+
+# node.js
+#
+foodprintReactNative/node_modules/
+foodprintReactNative/npm-debug.log
+foodprintReactNative/yarn-error.log
+
+# BUCK
+foodprintReactNative/buck-out/
+\.buckd/
+*.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+
+foodprintReactNative/fastlane/report.xml
+foodprintReactNative/fastlane/Preview.html
+foodprintReactNative/fastlane/screenshots
