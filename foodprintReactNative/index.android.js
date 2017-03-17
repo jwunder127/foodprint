@@ -5,6 +5,14 @@
  */
 
 import React, { Component } from 'react';
+import { Router, Scene } from 'react-native-router-flux';
+import Home from './android/components/Home'
+import Login from './android/components/Login'
+import Calendar from './android/components/Calendar'
+import Day from './android/components/Day'
+import Meal from './android/components/Meal'
+
+
 import {
   AppRegistry,
   StyleSheet,
@@ -24,39 +32,17 @@ export default class foodprintReactNative extends Component {
   render() {
     welcome();
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+      <Router>
+        <Scene key="root">
+          <Scene key="login" component={Login} title="Login" initial = {true}/>
+          <Scene key="home" component={Home} title="Home"/>
+          <Scene key="calendar" component={Calendar} title= "Calendar View"/>
+          <Scene key="day" component={Day} title= "Day View"/>
+          <Scene key="meal" component={Meal} title= "Meal View"/>
+       </Scene>
+      </Router>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('foodprintReactNative', () => foodprintReactNative);
