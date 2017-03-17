@@ -14,7 +14,7 @@ export default class Day extends Component {
         <Text style={{margin: 100}}>
           Day Page!
         </Text>
-        <Button onPress={Actions.meal} title="Go To Meal Page"/>
+        <Button onPress={Actions.meal} title="Go To Meal Page" />
       </View>
     );
   }
