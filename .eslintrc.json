@@ -3,7 +3,7 @@
   "parser": "babel-eslint",
   "root": true,
   "rules": {
-    "semi": [1, "never"],
+    "semi": [0, "never"],
     "react/prop-types": 0
   }
 }
