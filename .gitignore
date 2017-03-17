@@ -43,21 +43,21 @@ foodprintReactNative/build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-foodprintReactNative/xcuserdata
+xcuserdata
 *.xccheckout
 *.moved-aside
-foodprintReactNative/DerivedData
+DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-foodprintReactNative/project.xcworkspace
+project.xcworkspace
 
 # Android/IntelliJ
 #
 foodprintReactNative/build/
 .idea
 .gradle
-foodprintReactNative/local.properties
+local.properties
 *.iml
 
 # node.js
