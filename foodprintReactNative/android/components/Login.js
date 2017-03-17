@@ -15,7 +15,7 @@ export default class Login extends Component {
         <Text style={{margin: 100}}>
           Login Page!
         </Text>
-        <Button onPress={Actions.home} title="Go To Home page"/>
+        <Button onPress={Actions.home} title="Go To Home page" />
       </View>
     );
   }
