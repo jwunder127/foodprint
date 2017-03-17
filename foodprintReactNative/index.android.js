@@ -12,8 +12,17 @@ import {
   View
 } from 'react-native';
 
+import store from './store';
+import { welcomeScreen } from './reducers/default';
+
+function welcome () {
+  store.dispatch(welcomeScreen());
+}
+
+
 export default class foodprintReactNative extends Component {
   render() {
+    welcome();
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
