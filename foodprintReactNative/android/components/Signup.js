@@ -15,7 +15,7 @@ import {
   Text
 } from 'native-base'
 
-export default class Login extends Component {
+export default class Signup extends Component {
 
   render() {
     return (
@@ -30,10 +30,14 @@ export default class Login extends Component {
                   <Label>Password</Label>
                   <Input/>
               </Item>
-              <Button style={{margin: 25}} full light onPress={Actions.home}><Label>Login</Label></Button>
+              <Item floatingLabel>
+                  <Label>Confirm Password</Label>
+                  <Input/>
+              </Item>
+              <Button style={{margin: 25}} full light onPress={Actions.home}><Label>Sign Up</Label></Button>
               <Grid style={{margin: 15}}>
                 <Col style={{ backgroundColor: 'white', height: 100 }}>
-                  <Label style={{margin: 10}}>Login with:</Label>
+                  <Label style={{margin: 10}}>Sign Up with:</Label>
                   <Row style={{flexWrap:'wrap'}}>
                     <Button style={{margin: 2, borderColor: 'grey'}} iconLeft bordered>
                         <Icon name='logo-facebook' />
@@ -43,11 +47,13 @@ export default class Login extends Component {
                         <Icon name='logo-google' style={{color: 'red'}}/>
                         <Text style={{color: "grey"}}>Google</Text>
                     </Button>
+
                   </Row>
                 </Col>
               </Grid>
-              <Button style={{margin: 40}} full light onPress={Actions.signup}><Label>Sign Up</Label></Button>
+              <Button style={{margin: 40}} full light onPress={Actions.login}><Label>Login</Label></Button>
           </Form>
+
         </Content>
       </Container>
     );
