@@ -8,16 +8,61 @@ import {
 } from 'react-native';
 import Calendar from 'react-native-calendar-datepicker';
 import Moment from 'moment';
-import { Container, Content, Button, Icon, Text } from 'native-base';
+import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
 
 export default class CalendarPage extends Component {
 
 //  state: State
 
+
   constructor(props) {
     super(props);
-    this.state = {date: Moment().format()}
+    this.state = {
+      date: Moment().format(),
+      tab1: false,
+      tab2: false,
+      tab3: true,
+      tab4: false,
+    };
   }
+
+  toggleTab1() {
+    this.setState({
+      tab1: true,
+      tab2: false,
+      tab3: false,
+      tab4: false,
+    });
+  }
+
+  toggleTab2() {
+    this.setState({
+      tab1: false,
+      tab2: true,
+      tab3: false,
+      tab4: false,
+    });
+  }
+
+  toggleTab3() {
+    this.setState({
+      tab1: false,
+      tab2: false,
+      tab3: true,
+      tab4: false,
+    });
+  }
+
+  toggleTab4() {
+    this.setState({
+      tab1: false,
+      tab2: false,
+      tab3: false,
+      tab4: true,
+    });
+  }
+
+
 
   render() {
     const BLUE = '#2196F3';
@@ -26,7 +71,8 @@ export default class CalendarPage extends Component {
     const BLACK = '#424242';
     const LIGHT_GREY = '#F5F5F5';
     const goToDay = () => Actions.day({date: Moment(this.state.date).format('MMMM DD YYYY')})
-
+    const goToCalendar = () => Actions.calendar
+    const goToToday = () => Actions.day({date: Moment().format('MMMM DD YYYY')})
 
     return (
       <Container style={{marginTop: 80}}>
@@ -112,6 +158,8 @@ export default class CalendarPage extends Component {
             <Text>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
         </Content>
+
+
       </Container>
     );
   }
@@ -132,3 +180,25 @@ const styles = StyleSheet.create({
     margin: 60
   }
 });
+
+
+//  <Footer >
+//           <FooterTab>
+//             <Button active={this.state.tab1} onPress={() => {this.toggleTab1(); goToCalendar()}} badgeValue={2} badgeValueStyle={{ color: '#FFF' }}>
+//               <Icon active={this.state.tab1} name="calendar" />
+//               <Text>Calendar</Text>
+//             </Button>
+//             <Button active={this.state.tab2} onPress={() => this.toggleTab2()} >
+//               <Icon active={this.state.tab2} name="camera" />
+//               <Text>Camera</Text>
+//             </Button>
+//             <Button active={this.state.tab3} onPress={() => {this.toggleTab3(); goToToday()}} badgeValue={51} badgeColor="blue">
+//               <Icon active={this.state.tab3} name="nutrition" />
+//               <Text>Today</Text>
+//             </Button>
+//             <Button active={this.state.tab4} onPress={() => this.toggleTab4()} >
+//               <Icon active={this.state.tab4} name="calculator" />
+//               <Text>Info</Text>
+//             </Button>
+//           </FooterTab>
+//         </Footer>
