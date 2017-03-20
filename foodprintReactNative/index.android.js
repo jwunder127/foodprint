@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
-import Calendar from './components/Calendar'
+import CalendarPage from './components/Calendar'
 import Day from './components/Day'
 import Meal from './components/Meal'
 
@@ -40,9 +40,9 @@ export default class foodprintReactNative extends Component {
           <Scene key="login" component={Login} title="Login" initial = {true}/>
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" />
-          <Scene key="calendar" component={Calendar} title= "Calendar View" />
-          <Scene key="day" component={Day} title= "Day View"/>
-          <Scene key="meal" component={Meal} title= "Meal View"/>
+          <Scene key="calendar" component={CalendarPage} title= "Calendar View" />
+          <Scene key="day" component={Day} title= "Day View" />
+          <Scene key="meal" component={Meal} title= "Meal View" />
        </Scene>
       </Router>
     </Provider>

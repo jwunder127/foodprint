@@ -20,6 +20,7 @@ import { Actions } from 'react-native-router-flux';
 export default class DayView extends Component {
   render() {
     return (
+
       <Container style={{marginTop: 70, marginBottom: 10}}>
         <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>March 20th 2017</RNText>
         <ScrollView>
