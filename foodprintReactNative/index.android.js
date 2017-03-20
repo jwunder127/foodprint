@@ -37,12 +37,12 @@ export default class foodprintReactNative extends Component {
     <Provider store={store}>
       <Router>
         <Scene key="root">
-          <Scene key="login" component={Login} title="Login" initial = {true} />
+          <Scene key="login" component={Login} title="Login" initial = {true}/>
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" />
           <Scene key="calendar" component={Calendar} title= "Calendar View" />
-          <Scene key="day" component={Day} title= "Day View" />
-          <Scene key="meal" component={Meal} title= "Meal View" />
+          <Scene key="day" component={Day} title= "Day View"/>
+          <Scene key="meal" component={Meal} title= "Meal View"/>
        </Scene>
       </Router>
     </Provider>
