@@ -15,11 +15,11 @@ export default class Signup extends Component {
               </Item>
               <Item floatingLabel>
                   <Label>Password</Label>
-                  <Input/>
+                  <Input secureTextEntry={true}/>
               </Item>
               <Item floatingLabel>
                   <Label>Confirm Password</Label>
-                  <Input/>
+                  <Input secureTextEntry={true}/>
               </Item>
               <Button style={styles.mainActionBtn} full light onPress={Actions.home}><Label>Sign Up</Label></Button>
               <Grid style={styles.mainGrid}>

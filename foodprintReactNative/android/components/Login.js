@@ -15,7 +15,7 @@ export default class Login extends Component {
               </Item>
               <Item floatingLabel>
                   <Label>Password</Label>
-                  <Input/>
+                  <Input secureTextEntry={true}/>
               </Item>
               <Button style={styles.mainActionBtn} full light onPress={Actions.home}><Label>Login</Label></Button>
               <Grid style={styles.mainGrid}>
