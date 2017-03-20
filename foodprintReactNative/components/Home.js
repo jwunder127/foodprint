@@ -15,6 +15,7 @@ export default class Home extends Component {
           Home Page!
         </Text>
         <Button onPress={Actions.calendar} title="Go To Calendar page"/>
+        <Button onPress={Actions.camera} title="Go To Camera page"/>
       </View>
     );
   }
