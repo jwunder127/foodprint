@@ -12,7 +12,7 @@ export default class Day extends Component {
     return (
       <View>
         <Text style={{margin: 100}}>
-          Day Page!
+          {this.props.date}
         </Text>
         <Button onPress={Actions.meal} title="Go To Meal Page" />
       </View>
