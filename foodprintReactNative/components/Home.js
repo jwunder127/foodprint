@@ -8,7 +8,9 @@ import {
 
 export default class Home extends Component {
 
+
   render() {
+    console.log("Home Screen")
     return (
       <View>
         <Text style={{margin: 100}}>
