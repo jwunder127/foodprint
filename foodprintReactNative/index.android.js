@@ -13,13 +13,11 @@ import Signup from './components/Signup'
 import CalendarPage from './components/Calendar'
 import Day from './components/Day'
 import Meal from './components/Meal'
-import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
+import { Container, Button, Icon, Text, Footer, FooterTab } from 'native-base';
 import Moment from 'moment';
 
 import {
   AppRegistry,
-  StyleSheet,
-  View
 } from 'react-native';
 
 import store from './store';
@@ -32,16 +30,9 @@ function welcome () {
 
 export default class foodprintReactNative extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: Moment().format(),
 
-    };
-  }
 
   render() {
-
     const goToToday = () => Actions.day({date: Moment().format('MMMM DD YYYY')})
     const backColor = '#006b76'
     const iconColor =  '#c4def6'
@@ -52,18 +43,17 @@ export default class foodprintReactNative extends Component {
 
     <Container>
     <Provider store={store}>
-
       <Router>
         <Scene key="root">
           <Scene key="login" component={Login} title="Login"  />
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" initial = {true}/>
-          <Scene key="calendar" component={CalendarPage} title= "Calendar View"  />
+          <Scene key="calendar" component={CalendarPage} title= "Calendar View" hideNavBar={false} />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" />
        </Scene>
       </Router>
-       </Provider>
+    </Provider>
       <Footer >
           <FooterTab>
             <Button  onPress={() => {Actions.calendar()}} style={{backgroundColor: backColor}} >
@@ -85,7 +75,6 @@ export default class foodprintReactNative extends Component {
           </FooterTab>
         </Footer>
     </Container>
-
     )
   }
 }
