@@ -7,10 +7,12 @@
 import React, { Component } from 'react';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
+
 import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import CalendarPage from './components/Calendar'
+import CameraView from './components/Camera';
 import Day from './components/Day'
 import Meal from './components/Meal'
 import { Container, Button, Icon, Text, Footer, FooterTab } from 'native-base';
@@ -51,6 +53,7 @@ export default class foodprintReactNative extends Component {
           <Scene key="calendar" component={CalendarPage} title= "Calendar View" hideNavBar={false} />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" />
+          <Scene key="camera" component={CameraView} title= "Camera View" />
        </Scene>
       </Router>
     </Provider>
