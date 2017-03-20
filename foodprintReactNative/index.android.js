@@ -9,6 +9,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import Home from './android/components/Home'
 import Login from './android/components/Login'
+import Signup from './android/components/Signup'
 import Calendar from './android/components/Calendar'
 import Day from './android/components/Day'
 import Meal from './android/components/Meal'
@@ -37,6 +38,7 @@ export default class foodprintReactNative extends Component {
       <Router>
         <Scene key="root">
           <Scene key="login" component={Login} title="Login" initial = {true} />
+          <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" />
           <Scene key="calendar" component={Calendar} title= "Calendar View" />
           <Scene key="day" component={Day} title= "Day View" />

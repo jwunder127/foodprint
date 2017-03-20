@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Button, Form, Item, Input, Icon, Label, Grid, Col, Row, Text } from 'native-base'
 
-export default class Login extends Component {
+export default class Signup extends Component {
 
   render() {
     return (
@@ -17,23 +17,28 @@ export default class Login extends Component {
                   <Label>Password</Label>
                   <Input secureTextEntry={true}/>
               </Item>
-              <Button style={styles.mainActionBtn} full light onPress={Actions.home}><Label>Login</Label></Button>
+              <Item floatingLabel>
+                  <Label>Confirm Password</Label>
+                  <Input secureTextEntry={true}/>
+              </Item>
+              <Button style={styles.mainActionBtn} full light onPress={Actions.home}><Label>Sign Up</Label></Button>
               <Grid style={styles.mainGrid}>
                 <Col style={styles.mainGridCol}>
-                  <Label style={styles.mainGridLabel}>Login with:</Label>
-                  <Row style={styles.mainGridRow}>
+                  <Label style={styles.mainGridLabel}>Sign Up with:</Label>
+                  <Row style={styles.mainGridrow}>
                     <Button style={styles.socialBtn} iconLeft bordered>
                         <Icon name='logo-facebook' />
                         <Text style={styles.text}>Facebook</Text>
                     </Button>
                     <Button style={styles.socialBtn} iconLeft bordered>
-                        <Icon name='logo-google' style={styles.google}/>
+                        <Icon name='logo-google' style={{color: 'red'}}/>
                         <Text style={styles.text}>Google</Text>
                     </Button>
+
                   </Row>
                 </Col>
               </Grid>
-              <Button style={styles.secondActionBtn} full light onPress={Actions.signup}><Label>Sign Up</Label></Button>
+              <Button style={styles.secondActionBtn} full light onPress={Actions.login}><Label>Login</Label></Button>
           </Form>
         </Content>
       </Container>
