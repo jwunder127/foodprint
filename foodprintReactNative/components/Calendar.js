@@ -15,6 +15,7 @@ export default class Calendar extends Component {
           Calendar Page!
         </Text>
         <Button onPress={Actions.day} title="Go To Day Page"/>
+        <Button onPress={Actions.camera} title="Go To Camera Page"/>
       </View>
     );
   }

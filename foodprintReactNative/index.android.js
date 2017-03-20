@@ -7,12 +7,13 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
-import Home from './components/Home'
-import Login from './components/Login'
-import Signup from './components/Signup'
-import Calendar from './components/Calendar'
-import Day from './components/Day'
-import Meal from './components/Meal'
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Calendar from './components/Calendar';
+import Day from './components/Day';
+import Meal from './components/Meal';
+import CameraView from './components/Camera';
 
 
 import {
@@ -43,6 +44,7 @@ export default class foodprintReactNative extends Component {
           <Scene key="calendar" component={Calendar} title= "Calendar View" />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" />
+          <Scene key="camera" component={CameraView} title= "Camera View" />
        </Scene>
       </Router>
     </Provider>
