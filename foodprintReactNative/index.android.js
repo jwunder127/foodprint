@@ -7,12 +7,12 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
-import Home from './android/components/Home'
-import Login from './android/components/Login'
-import Signup from './android/components/Signup'
-import Calendar from './android/components/Calendar'
-import Day from './android/components/Day'
-import Meal from './android/components/Meal'
+import Home from './components/Home'
+import Login from './components/Login'
+import Signup from './components/Signup'
+import Calendar from './components/Calendar'
+import Day from './components/Day'
+import Meal from './components/Meal'
 
 
 import {
