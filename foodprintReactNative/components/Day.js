@@ -18,8 +18,16 @@ import {Text, ScrollView, StyleSheet, View, Button, Text as RNText} from 'react-
 import { Actions } from 'react-native-router-flux';
 
 export default class DayView extends Component {
+
   render() {
+
+    const goToDay = () => Actions.day({date: Moment(this.state.date).format('MMMM DD YYYY')})
+    const goToCalendar = () => Actions.calendar
+    const goToToday = () => Actions.day({date: Moment().format('MMMM DD YYYY')})
+
     return (
+
+
 
       <Container style={{marginTop: 70, marginBottom: 10}}>
         <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>March 20th 2017</RNText>
