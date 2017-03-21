@@ -3087,6 +3087,10 @@ react-native-camera@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.6.0.tgz#dd2760b7857d660761c78f2da575b494fdc8dcb5"
 
+react-native-check-box@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-check-box/-/react-native-check-box-1.0.4.tgz#228507af6df59fa07b334dfd569aeb709e9ca1e6"
+
 react-native-drawer@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.3.0.tgz#a0369ec80ff0b61c9f152dbdea91fe76c843113a"

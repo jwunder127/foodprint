@@ -9,7 +9,8 @@ import {
   View
 } from 'react-native';
 import Camera from 'react-native-camera';
-import {Container, Header, Button, Icon} from 'native-base';
+import {Body, Container, Content, Header, ListItem, Button, Icon} from 'native-base';
+import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
 
@@ -25,17 +26,22 @@ const CLIENT_ID = 'aFsZB-C68P7TC7W4h_jZQdM0FfzR808XlNWqbNLC';
 const CLIENT_SECRET = 'zPrPS52OW56M5hi6JHuOR9QcVkvynNocgiXF56rW';
 const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
 
+
+const dummyTags = [{id: 1, name: 'fish'}, {id: 2, name: 'sandwich'}, {id: 3, name: 'pizza'}, {id: 4, name: 'cheeseburger'}]
+
 export default class CameraView extends Component {
   constructor(props){
     super(props);
     this.selectImage = this.selectImage.bind(this);
     this.state = {
-      imageSource:'https://community.clarifai.com/uploads/default/_emoji/clarifai.png',
+      // imageSource:'https://community.clarifai.com/uploads/default/_emoji/clarifai.png',
       tagText: ''
     };
   }
 
+  chkbox_check(){
 
+  }
   selectImage() {
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
@@ -74,6 +80,15 @@ export default class CameraView extends Component {
                 </TouchableHighlight>
                 <Image source={{uri: this.state.imageSource}} style={styles.image} />
                 <Text>{this.state.tagText}</Text>
+                <Text>
+                  This is the Content body
+                </Text>
+                {dummyTags.map(tag => (
+                  <ListItem key={tag.id}>
+                    <CheckBox onClick={()=> console.log(`you clicked ${tag.name}`)} />
+                    <Text>{tag.name}</Text>
+                  </ListItem>
+                  ))}
               </View>
             </Container>)
   }
