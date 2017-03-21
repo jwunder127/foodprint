@@ -47,7 +47,7 @@ export default class foodprintReactNative extends Component {
     <Provider store={store}>
       <Router>
         <Scene key="root">
-          <Scene key="login" component={Login} title="Login" initial = {true}/>
+          <Scene key="login" component={Login} title="Login" initial = {false}/>
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" initial = {true}/>
           <Scene key="calendar" component={CalendarPage} title= "Calendar View" hideNavBar={false} />
@@ -63,7 +63,7 @@ export default class foodprintReactNative extends Component {
               <Icon style={{color: iconColor}} name="calendar" />
               <Text style={{color: iconColor}}>Calendar</Text>
             </Button>
-            <Button  onPress={() => Actions.meal()} style={{backgroundColor: backColor}} >
+            <Button  onPress={() => Actions.camera()} style={{backgroundColor: backColor}} >
               <Icon name="camera" style={{color: iconColor}} />
               <Text style={{color: iconColor}}>Camera</Text>
             </Button>

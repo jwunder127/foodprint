@@ -16,10 +16,11 @@ export default class Home extends Component {
         <Text style={{margin: 100}}>
           Home Page!
         </Text>
-        <Button onPress={Actions.calendar} title="Go To Calendar page"/>
-        <Button onPress={Actions.camera} title="Go To Camera page"/>
+
       </View>
     );
   }
 }
 
+// <Button onPress={Actions.calendar} title="Go To Calendar page"/>
+// <Button onPress={Actions.camera} title="Go To Camera page"/>
