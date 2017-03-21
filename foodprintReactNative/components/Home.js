@@ -8,15 +8,19 @@ import {
 
 export default class Home extends Component {
 
+
   render() {
+    console.log("Home Screen")
     return (
       <View>
         <Text style={{margin: 100}}>
           Home Page!
         </Text>
-        <Button onPress={Actions.calendar} title="Go To Calendar page"/>
+
       </View>
     );
   }
 }
 
+// <Button onPress={Actions.calendar} title="Go To Calendar page"/>
+// <Button onPress={Actions.camera} title="Go To Camera page"/>
