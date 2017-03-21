@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {
   Dimensions,
+  Image,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -26,8 +27,12 @@ const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
 
 export default class CameraView extends Component {
   constructor(props){
-    super(props)
-    this.selectImage = this.selectImage.bind(this)
+    super(props);
+    this.selectImage = this.selectImage.bind(this);
+    this.state = {
+      imageSource:'https://community.clarifai.com/uploads/default/_emoji/clarifai.png',
+      tagText: ''
+    };
   }
 
 
@@ -41,9 +46,23 @@ export default class CameraView extends Component {
       }
       else {
         console.log('Image selected')
-      }
-    })
-  }
+        this.setState({imageSource: response.uri.replace('file://', '')});
+        app.models.predict(Clarifai.FOOD_MODEL, {base64:response.data}).then(
+        (res) => {
+          console.log('Clarifai response = ', res);
+          let tags = '';
+          for (let i = 0; i<res.data.outputs[0].data.concepts.length; i++) {
+            tags += res.data.outputs[0].data.concepts[i].name + ' ';
+          }
+          this.setState({tagText:tags});
+
+          },
+          (error)=>{
+            console.log(error);
+          });
+                }
+              })
+            }
 
   render() {
     return (
@@ -53,6 +72,8 @@ export default class CameraView extends Component {
                 <TouchableHighlight onPress={this.selectImage}>
                   <Text>Select an image</Text>
                 </TouchableHighlight>
+                <Image source={{uri: this.state.imageSource}} style={styles.image} />
+                <Text>{this.state.tagText}</Text>
               </View>
             </Container>)
   }
@@ -93,22 +114,26 @@ export default class CameraView extends Component {
 //   }
 // }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     flexDirection: 'row',
-//   },
-//   preview: {
-//     flex: 1,
-//     justifyContent: 'flex-end',
-//     alignItems: 'center'
-//   },
-//   capture: {
-//     flex: 0,
-//     backgroundColor: '#fff',
-//     borderRadius: 5,
-//     color: '#000',
-//     padding: 10,
-//     margin: 40
-//   }
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  image: {
+    width: 200,
+    height:200
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
+  }
+});
