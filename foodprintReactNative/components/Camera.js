@@ -10,7 +10,7 @@ import {
 import Camera from 'react-native-camera';
 import {Container, Header, Button, Icon} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
-
+import Clarifai from 'clarifai';
 
 const options = {
   title: 'Select an Image',
@@ -19,6 +19,10 @@ const options = {
   },
   maxWidth: 480
 }
+
+const CLIENT_ID = 'aFsZB-C68P7TC7W4h_jZQdM0FfzR808XlNWqbNLC';
+const CLIENT_SECRET = 'zPrPS52OW56M5hi6JHuOR9QcVkvynNocgiXF56rW';
+const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
 
 export default class CameraView extends Component {
   constructor(props){
