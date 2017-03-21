@@ -12,14 +12,14 @@ const seedMeals = () => db.Promise.map([
   {photoUrl: 'http://yahoo.com', tags: ['some other', 'another other', 'and other one other'], user_id: 2}
   ], meal => db.model('meals').create(meal))
 
-const seedIngridients = () => db.Promise.map([
+const seedIngredients = () => db.Promise.map([
   {name: 'portobello', meal_id: 1},
   {name: 'onios', meal_id: 1},
   {name: 'cheese', meal_id: 1},
   {name: 'salmon', meal_id: 2},
   {name: 'lettuce', meal_id: 2},
   {name: 'tomato', meal_id: 2},
-], ingridient => db.model('ingridients').create(ingridient))
+], ingredient => db.model('ingredients').create(ingredient))
 
 db.didSync
   .then(() => db.sync({force: true}))
@@ -27,7 +27,7 @@ db.didSync
   .then(users => console.log(`Seeded ${users.length} users OK`))
   .then(seedMeals)
   .then(meals => console.log(`Seeded ${meals.length} meals OK`))
-  .then(seedIngridients)
-  .then(ingridients => console.log(`Seeded ${ingridients.length} ingridients OK`))
+  .then(seedIngredients)
+  .then(ingredients => console.log(`Seeded ${ingredients.length} ingredients OK`))
   .catch(error => console.error(error))
   .finally(() => db.close())

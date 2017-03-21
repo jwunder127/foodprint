@@ -4,9 +4,9 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const Ingridient = db.define('ingridients', {
+const Ingredient = db.define('ingredients', {
   name: Sequelize.STRING,
   }
 )
 
-module.exports = Ingridient
+module.exports = Ingredient
