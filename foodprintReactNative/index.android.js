@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import Home from './components/Home'
-import Login from './components/Login'
+import LoginContainer from './containers/LoginContainer'
 import Signup from './components/Signup'
 import Calendar from './components/Calendar'
 import Day from './components/Day'
@@ -37,7 +37,7 @@ export default class foodprintReactNative extends Component {
     <Provider store={store}>
       <Router>
         <Scene key="root">
-          <Scene key="login" component={Login} title="Login" initial = {true} />
+          <Scene key="login" component={LoginContainer} title="Login" initial = {true} />
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" />
           <Scene key="calendar" component={Calendar} title= "Calendar View" />
