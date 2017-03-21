@@ -35,9 +35,6 @@ export default function LoginComponent (props) {
             </Grid>
             <Button style={styles.secondActionBtn} full light onPress={Actions.signup}><Label>Sign Up</Label></Button>
           </Form>
-          <Button style={styles.socialBtn} bordered onPress={() => props.doLogout()}>
-            <Text style={styles.text}>Non-Permanent Logout</Text>
-          </Button>
         </Content>
       </Container>
   )

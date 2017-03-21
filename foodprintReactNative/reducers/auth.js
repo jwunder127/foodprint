@@ -2,10 +2,15 @@ import axios from 'axios';
 
 const AUTHENTICATED = 'AUTHENTICATED';
 
-const reducer = (state = null, action) => {
+const initialState = {
+  user: undefined,
+  errorMessage: undefined
+}
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTHENTICATED:
-      return action.user
+      return Object.assign({}, state, {user: action.user})
 
     default:
       return state
@@ -24,7 +29,7 @@ export const whoami = () =>
         const user = response.data
         dispatch(authenticated(user))
       })
-      .catch(() => dispatch(authenticated(null)))
+      .catch(() => dispatch(authenticated(undefined)))
 
 export const login = (username, password) =>
   dispatch =>

@@ -7,7 +7,7 @@ export default class DayView extends Component {
     return (
       <View style={{marginTop: 70, marginBottom: 10}}>
         <ScrollView>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap', }}>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
             <Image style={{width: 100, height: 100, borderWidth: 4}} square source={require('../img/salad.png')}/>
             <Image style={{width: 100, height: 100, borderWidth: 4}} square source={require('../img/salad.png')}/>
             <Image style={{width: 100, height: 100, borderWidth: 4}} square source={require('../img/salad.png')}/>

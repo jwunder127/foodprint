@@ -36,7 +36,7 @@ export class LoginContainer extends Component {
   }
 
   render() {
-    if (!this.props.user){
+    if (!this.props.auth.user){
       return (
         <LoginComponent updateEmail={this.updateEmail} updatePassword={this.updatePassword} doLogin={this.doLogin} doLogout={this.doLogout} />
       );
@@ -49,6 +49,6 @@ export class LoginContainer extends Component {
 }
 
 export default connect(
-  ({ auth }) => ({ user: auth }),
+  ({ auth }) => ({ auth }),
   { login, logout }
 )(LoginContainer)
