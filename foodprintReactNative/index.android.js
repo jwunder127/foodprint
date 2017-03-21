@@ -15,6 +15,7 @@ import CalendarPage from './components/Calendar'
 import CameraView from './components/Camera';
 import Day from './components/Day'
 import Meal from './components/Meal'
+import Tiled from './components/Tiled'
 import { Container, Button, Icon, Text, Footer, FooterTab } from 'native-base';
 import Moment from 'moment';
 
@@ -50,7 +51,7 @@ export default class foodprintReactNative extends Component {
         <Scene key="root">
           <Scene key="login" component={Login} title="Login" />
           <Scene key="signup" component={Signup} title="Sign up"/>
-          <Scene key="home" component={Home} title="Home" initial = {true}/>
+          <Scene key="home" component={Tiled} title="Home" initial = {true}/>
           <Scene key="calendar" component={CalendarPage} title= "Calendar View" hideNavBar={false} />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" />
