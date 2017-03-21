@@ -6,7 +6,11 @@
 
 const User = require('./user')
 const OAuth = require('./oauth')
+const Meal = require('./meal')
+const Ingredient = require('./ingredient')
 
 OAuth.belongsTo(User)
 User.hasOne(OAuth)
+User.hasMany(Meal)
+Meal.hasMany(Ingredient)
 module.exports = {User}
