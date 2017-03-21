@@ -31,6 +31,10 @@ export class LoginContainer extends Component {
     this.props.login(this.state.email, this.state.password);
   }
 
+  doLogout() {
+    this.props.logout();
+  }
+
   render() {
     if (!this.props.user){
       return (
