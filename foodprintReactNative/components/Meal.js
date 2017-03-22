@@ -5,7 +5,7 @@ import {Container, Content, Card, CardItem, Body, Text, Badge} from 'native-base
 export default class FooterTabsExample extends Component {
   render() {
     return (
-      <Container style={{marginTop: 70, marginBottom: 10}}>
+      <Container style={{marginTop: 10, marginBottom: 10}}>
         <Content>
           <Card>
             <CardItem>

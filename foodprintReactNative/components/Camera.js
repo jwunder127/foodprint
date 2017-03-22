@@ -10,10 +10,13 @@ import {
   View
 } from 'react-native';
 
-import {Container, Header, ListItem, Button} from 'native-base';
+import Camera from 'react-native-camera';
+import {Container, Header, ListItem, Button, Icon, Content} from 'native-base';
+import FooterComponent from './Footer'
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
+
 
 const options = {
   title: 'Select an Image',
@@ -101,7 +104,9 @@ export default class CameraView extends Component {
             }
 
   render() {
+    this.selectImage()
     return (
+
             <Container>
               <Header />
               <View>
@@ -113,6 +118,7 @@ export default class CameraView extends Component {
                 </ScrollView>
               </View>
             </Container>)
+
   }
 }
 

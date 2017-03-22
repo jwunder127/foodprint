@@ -13,7 +13,7 @@ export default class Home extends Component {
     console.log("Home Screen")
     return (
       <View>
-        <Text style={{margin: 100}}>
+        <Text style={{margin: 10}}>
           Home Page!
         </Text>
 
