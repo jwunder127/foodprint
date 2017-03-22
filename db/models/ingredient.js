@@ -5,8 +5,20 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Ingredient = db.define('ingredients', {
-  name: Sequelize.STRING,
-  nutritionJSON: Sequelize.JSON
+  food_name: Sequelize.STRING,
+  serving_qty: Sequelize.FLOAT,
+  serving_unit: Sequelize.FLOAT,
+  serving_weight_grams: Sequelize.FLOAT,
+  calories: Sequelize.FLOAT,
+  total_fat: Sequelize.FLOAT,
+  saturated_fat: Sequelize.FLOAT,
+  cholesterol: Sequelize.FLOAT,
+  sodium: Sequelize.FLOAT,
+  total_carbohydrate: Sequelize.FLOAT,
+  dietary_fiber: Sequelize.FLOAT,
+  sugars: Sequelize.FLOAT,
+  protein: Sequelize.FLOAT,
+  potassium: Sequelize.FLOAT
   }
 )
 
