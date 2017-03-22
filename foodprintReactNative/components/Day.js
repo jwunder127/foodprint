@@ -17,7 +17,7 @@ import {
 } from 'native-base';
 import {Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Text as RNText} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import FooterComponent from './Footer'
+
 
 export default class DayView extends Component {
 

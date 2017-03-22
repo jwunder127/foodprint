@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React, { Component } from 'react';
 import { Container, Content, Thumbnail } from 'native-base';
 import { Actions } from 'react-native-router-flux';
