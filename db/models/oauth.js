@@ -58,10 +58,10 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>
       name: profile.displayName,
     })
     .then(createdUser => db.Promise.props({
-      user,
-      _setOauthUser: oauth.setUser(createdUser)
+      _setOauthUser: oauth.setUser(createdUser),
+      createdUser
     }))
-    .then(({user}) => user) // eslint-disable-line no-shadow
+    .then(({createdUser}) => createdUser) // eslint-disable-line no-shadow
   )
   .then(user => done(null, user))
   .catch(done)
