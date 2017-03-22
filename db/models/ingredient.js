@@ -6,6 +6,7 @@ const db = require('APP/db')
 
 const Ingredient = db.define('ingredients', {
   name: Sequelize.STRING,
+  nutritionJSON: Sequelize.JSON
   }
 )
 

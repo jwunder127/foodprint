@@ -12,5 +12,7 @@ const Ingredient = require('./ingredient')
 OAuth.belongsTo(User)
 User.hasOne(OAuth)
 User.hasMany(Meal)
-Meal.hasMany(Ingredient)
+Meal.belongsToMany(Ingredient, {through: 'mealIngredient'})
+Ingredient.belongsToMany(Meal, {through: 'mealIngredient'})
+
 module.exports = {User}
