@@ -8,7 +8,9 @@ import {
 } from 'react-native';
 import Calendar from 'react-native-calendar-datepicker';
 import Moment from 'moment';
+import FooterComponent from './Footer'
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
+import CalendarComponent from '../constants/Calendar'
 
 export default class CalendarPage extends Component {
 
@@ -20,13 +22,15 @@ export default class CalendarPage extends Component {
     };
   }
 
+  goToDay = () => Actions.day({date: Moment(this.state.date).format('MMMM DD YYYY')})
+
   render() {
     const BLUE = '#2196F3';
     const WHITE = '#FFFFFF';
     const GREY = '#BDBDBD';
     const BLACK = '#424242';
     const LIGHT_GREY = '#F5F5F5';
-    const goToDay = () => Actions.day({date: Moment(this.state.date).format('MMMM DD YYYY')})
+
 
 
     return (
@@ -106,13 +110,14 @@ export default class CalendarPage extends Component {
               color: BLACK,
             }}
             />
-        <Button block onPress={goToDay} style={{marginTop: 10, backgroundColor: '#f6b19c'}}>
+        <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#f6b19c'}}>
             <Icon name='pizza' />
             <Icon name='nutrition'  />
             <Icon name='restaurant' />
             <Text>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
         </Content>
+
 
 
       </Container>

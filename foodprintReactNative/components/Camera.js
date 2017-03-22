@@ -8,9 +8,9 @@ import {
   View
 } from 'react-native';
 import Camera from 'react-native-camera';
-import {Container, Header, Button, Icon} from 'native-base';
+import {Container, Header, Button, Icon, Content} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
-
+import FooterComponent from './Footer'
 
 const options = {
   title: 'Select an Image',
@@ -42,15 +42,16 @@ export default class CameraView extends Component {
   }
 
   render() {
+    this.selectImage()
     return (
-            <Container>
-              <Header />
-              <View>
-                <TouchableHighlight onPress={this.selectImage}>
-                  <Text>Select an image</Text>
-                </TouchableHighlight>
-              </View>
-            </Container>)
+            <Container style={{margin: 100}}>
+                <Content>
+                    <Button success onPress={this.selectImage}>
+                        <Text>Select an Image! </Text>
+                    </Button>
+                </Content>
+            </Container>
+            )
   }
 }
 
