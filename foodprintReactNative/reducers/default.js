@@ -30,5 +30,4 @@ export const welcomeScreen = () => (dispatch) => {
   dispatch(welcome())
 }
 
-
 export default reducer

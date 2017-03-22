@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import {
   Container,
   Header,
@@ -19,13 +20,34 @@ import { Actions } from 'react-native-router-flux';
 
 export default class DayView extends Component {
 
-  render() {
 
+
+
+    render() {
+        const tags = ['pastry', 'grilled cheese sandwich'].join(" ");
+        const config = {
+            headers: {
+                'X-app-id': '055c399f',
+                'X-app-key': '022909ef0393813c2e882aff59765a3b',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        const data = {
+                "query": tags,
+        }
+
+        const url = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
+
+        getNutrientsValue = () => {
+            axios.post(url, data, config)
+                .then(response => console.log(response.data))
+                .catch(console.error)
+        };
+
+        getNutrientsValue();
 
     return (
-
-
-
       <Container style={{marginTop: 70, marginBottom: 10}}>
         <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>{this.props.date}</RNText>
         <ScrollView>
