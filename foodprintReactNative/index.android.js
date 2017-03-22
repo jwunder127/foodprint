@@ -12,7 +12,7 @@ import Home from './components/Home'
 import LoginContainer from './containers/LoginContainer'
 import Signup from './components/Signup'
 import CalendarPage from './components/Calendar'
-import CameraView from './components/Camera';
+import CameraContainer from './containers/CameraContainer';
 import Day from './components/Day'
 import Meal from './components/Meal'
 import Tiled from './components/Tiled'
@@ -46,17 +46,14 @@ export default class foodprintReactNative extends Component {
     <Container>
     <Provider store={store}>
       <Router>
-
-        <Scene key="root" hideNavBar = {true} >
-          <Scene key="login" component={LoginContainer} title="Login" initial = {false} />
+        <Scene key="root" hideNavBar={true}>
+          <Scene key="login" component={LoginContainer} title="Login" initial = {true} />
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Tiled} title="Home" initial = {false}/>
           <Scene key="calendar" component={CalendarPage} title= "Calendar View" hideNavBar={false} />
           <Scene key="day" component={Day} title= "Day View" initial = {true} />
           <Scene key="meal" component={Meal} title= "Meal View" />
-          <Scene key="camera" component={CameraView} title= "Camera View" />
-
-
+          <Scene key="camera" component={CameraContainer} title= "Camera View" />
        </Scene>
       </Router>
     </Provider>

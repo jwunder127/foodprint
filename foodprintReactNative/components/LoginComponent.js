@@ -26,7 +26,7 @@ export default function LoginComponent (props) {
                       <Icon name='logo-facebook' />
                       <Text style={styles.text}>Facebook</Text>
                   </Button>
-                  <Button style={styles.socialBtn} iconLeft bordered>
+                  <Button style={styles.socialBtn} iconLeft bordered onPress={() => props.doLogout()} >
                       <Icon name='logo-google' style={styles.google}/>
                       <Text style={styles.text}>Google</Text>
                   </Button>
