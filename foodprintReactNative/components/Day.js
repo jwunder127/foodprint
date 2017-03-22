@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {
   Container,
+  Content,
   Header,
   Title,
   ListItem,
@@ -17,6 +18,7 @@ import {
 } from 'native-base';
 import {Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Text as RNText} from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import FooterComponent from './Footer'
 
 export default class DayView extends Component {
 
@@ -48,9 +50,9 @@ export default class DayView extends Component {
         getNutrientsValue();
 
     return (
-      <Container style={{marginTop: 70, marginBottom: 10}}>
+      <Container style={{marginTop: 10, marginBottom: 10}}>
         <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>{this.props.date}</RNText>
-        <ScrollView>
+        <Content>
           <List>
             <ListItem>
             <TouchableOpacity onPress={Actions.meal}>
@@ -143,7 +145,8 @@ export default class DayView extends Component {
               </View>
             </ListItem>
           </List>
-        </ScrollView>
+        </Content>
+
       </Container>
     );
   }
