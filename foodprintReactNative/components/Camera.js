@@ -12,7 +12,7 @@ import {
 
 import Camera from 'react-native-camera';
 import {Container, Header, ListItem, Button, Icon, Content} from 'native-base';
-
+import {Actions} from 'react-native-router-flux';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
@@ -54,8 +54,8 @@ export default class CameraView extends Component {
   }
 
   handleSubmitFood(){
-    //dispatch action to send food to nutrition api
-    //use this.tagsToSend as the argument
+    Actions.meal({tags: this.tagsToSend, uri: "http://foxeslovelemons.com/wp-content/uploads/2015/11/Slow-Cooker-Chicken-Burrito-Bowls-3.jpg"})
+    //dispatch action to send food to nutrition ap
   }
 
   renderClarifaiResponse(tagText){
@@ -104,7 +104,7 @@ export default class CameraView extends Component {
             }
 
   render() {
-    this.selectImage()
+    // this.selectImage()
     return (
 
             <Container>

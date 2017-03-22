@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 import { Image, Text as RNText, View } from 'react-native';
 import {Container, Content, Card, CardItem, Body, Text, Badge} from 'native-base';
+import axios from 'axios';
 
 export default class FooterTabsExample extends Component {
+
+
+  constructor(props){
+    super(props)
+    this.state = {
+      tagArray: []
+    }
+  }
+
+
+
   render() {
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>
         <Content>
           <Card>
-            <CardItem>
-              <Body>
-              <Image source={require('../img/salad.png')} style={{width: 320, height: 200, marginBottom: 10}}/>
-              <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                <Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>Green Peppers</RNText></Badge>
-                <Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>Chicken</RNText></Badge>
-                <Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>Onion</RNText></Badge>
-                <Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>Chicken</RNText></Badge>
-                <Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>Green Peppers</RNText></Badge>
-                <Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>Spinach</RNText></Badge>
-              </View>
-              </Body>
-            </CardItem>
+            {/*<CardItem>*/}
+              {/*<Body>*/}
+              {/*<Image source={{uri: this.props.uri}} style={{width: 320, height: 200, marginBottom: 10}}/>*/}
+              {/*<View style={{flexDirection: 'row', flexWrap: 'wrap'}}>*/}
+                {/*{(this.state.tagArray.length > 0) && this.state.tagArray.map(foodTag => {*/}
+                  {/*<Badge style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{}</RNText></Badge>*/}
+                {/*})}*/}
+              {/*</View>*/}
+              {/*</Body>*/}
+            {/*</CardItem>*/}
           </Card>
           <Card>
             <CardItem>
