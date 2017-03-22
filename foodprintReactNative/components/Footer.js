@@ -64,23 +64,3 @@ render() {
 
 
 
-//  <Footer >
-//           <FooterTab>
-//             <Button  onPress={() => {Actions.calendar()}} style={{backgroundColor: backColor}} >
-//               <Icon style={{color: iconColor}} name="calendar" />
-//               <Text style={{color: iconColor}}>Calendar</Text>
-//             </Button>
-//             <Button  onPress={() => Actions.camera()} style={{backgroundColor: backColor}} >
-//               <Icon name="camera" style={{color: iconColor}} />
-//               <Text style={{color: iconColor}}>Camera</Text>
-//             </Button>
-//             <Button  onPress={() => { goToToday()}} style={{backgroundColor: backColor}} >
-//               <Icon  name="nutrition" style={{color: iconColor}}/>
-//               <Text style={{color: iconColor}}>Today</Text>
-//             </Button>
-//             <Button  onPress={() => {Actions.home()}} style={{backgroundColor: backColor}}>
-//               <Icon  name="home" style={{color: iconColor}}/>
-//               <Text style={{color: iconColor}}>Home</Text>
-//             </Button>
-//           </FooterTab>
-//         </Footer>
