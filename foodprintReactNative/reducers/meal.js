@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { nutritionixConfig, nutritionixURL} from '../secrets';
 
 
 /* -----------------    ACTIONS     ------------------ */
@@ -35,24 +36,13 @@ const mealreducer = (state = initialMealState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-const config = {
-  headers: {
-    'X-app-id': '055c399f',
-    'X-app-key': '022909ef0393813c2e882aff59765a3b',
-    'Content-Type': 'application/json'
-  }
-};
-
-const url = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
-
-
 getNutrientsValue = () => {
   return (dispatch, getState) => {
     let allMeal = [];
     const data = {
       "query": getState().cameraTags.join(" ")
     };
-    axios.post(url, data, config)
+    axios.post(nutritionixURL, data, nutritionixConfig)
       .then(response => {
         response.data.foods.forEach(eachFoodObject => {
           let foodObject = {
