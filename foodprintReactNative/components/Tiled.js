@@ -50,6 +50,7 @@ export default class DayView extends Component {
       </Grid>
         </Content>
       </Container>
+
     );
   }
 }
