@@ -12,7 +12,7 @@ import {
 
 import Camera from 'react-native-camera';
 import {Container, Header, ListItem, Button, Icon, Content} from 'native-base';
-import FooterComponent from './Footer'
+
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';

@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import Calendar from 'react-native-calendar-datepicker';
 import Moment from 'moment';
-import FooterComponent from './Footer'
+
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
-import CalendarComponent from '../constants/Calendar'
+
 
 export default class CalendarPage extends Component {
 
