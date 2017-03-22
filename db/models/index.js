@@ -15,4 +15,4 @@ User.hasMany(Meal)
 Meal.belongsToMany(Ingredient, {through: 'mealIngredient'})
 Ingredient.belongsToMany(Meal, {through: 'mealIngredient'})
 
-module.exports = {User}
+module.exports = { User, Meal, Ingredient }

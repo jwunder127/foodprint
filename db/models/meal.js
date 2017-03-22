@@ -6,7 +6,8 @@ const db = require('APP/db')
 
 const Meal = db.define('meals', {
   photoUrl: Sequelize.STRING,
-  tags: Sequelize.ARRAY(Sequelize.STRING)
+  tags: Sequelize.ARRAY(Sequelize.STRING),
+  nutritionalTable: Sequelize.JSON
   }
 )
 
