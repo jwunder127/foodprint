@@ -25,6 +25,7 @@ const camera = (state = initialState, action) => {
 
     case ADD_MEAL_URL:
       newState.mealImageUrl = action.mealImageUrl
+      return newState
 
     default:
       return newState
