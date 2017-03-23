@@ -16,7 +16,7 @@ export class MealContainer extends Component {
     super(props)
   }
 
-
+//WHen it mounts, set meal to be the one passed in
 
     render() {
       console.log("Meal container props:", this.props)
