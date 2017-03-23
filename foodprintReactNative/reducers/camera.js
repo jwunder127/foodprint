@@ -48,7 +48,6 @@ const camera = (state = initialState, action) => {
       newState.selectedMeal.foodTags = action.foodTags
       newState.selectedMeal.nutritionInfo = action.nutritionInfo
       newState.selectedMeal.url = action.url
-      console.log("NEWSTATE", newState)
       return newState
 
     default:
@@ -69,7 +68,7 @@ export const mealImageUrlAdd = (mealImageUrl) => (dispatch) => {
 export const getNutrientsValue = (tags, url) => {
 
   return (dispatch) => {
-   // console.log("Inside dispatch", tags, url )
+
     let allMeal = [];
     const data = {
       "query": tags.join(" ")
@@ -124,7 +123,7 @@ export const getNutrientsValue = (tags, url) => {
 
   }
   )
-.then(()=>Actions.meal())
+.then(() => Actions.meal())
 .catch(console.error)
 }
 };

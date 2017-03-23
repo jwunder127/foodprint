@@ -49,10 +49,8 @@ class CameraContainer extends Component {
     if (this.state.mealPhotoUrl){
       //this.props.sendToNutrition(this.tagsToSend)
       this.props.loadMeal(this.tagsToSend, this.state.mealPhotoUrl)
-    //  console.log("TAGS", this.tagsToSend)
-      //Actions.meal();
     } else {
-   //   console.log('aws not ready yet')
+    console.log('aws not ready yet')
     }
   }
 
@@ -167,7 +165,6 @@ const mapDispatchToProps = dispatch => {
     loadMeal(tags, url) {
       dispatch(getNutrientsValue(tags, url))
     }
-
   }
 }
 
