@@ -3,16 +3,25 @@ import { nutritionixConfig, nutritionixURL} from '../secrets';
 import { Actions } from 'react-native-router-flux'
 /* -----------------    ACTIONS     ------------------ */
 
-const SELECT_MEAL = 'SELECT_MEAL';
+const SET_MEAL = 'SET_MEAL';
+const SET_MEALS = 'SET_MEALS'
+const SET_ALL_MEALS = 'SET_ALL_MEALS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const loadSelectedMeal = (foodTagArray, nutritionalTable, photoUrl) => {
+export const setMeal = (foodTagArray, nutritionalTable, photoUrl) => {
   return {
-    type: SELECT_MEAL,
+    type: SET_MEAL,
     foodTags: foodTagArray,
     nutritionInfo: nutritionalTable,
     photoUrl: photoUrl
+  }
+};
+
+export const setAllMeals = (allMeals) => {
+  return {
+    type: SET_ALL_MEALS,
+    allMeals: allMeals
   }
 };
 
@@ -22,17 +31,22 @@ const initialState = {
     foodTags: [],
     nutritionInfo: {},
     photoUrl: ""
-  }
+  },
+  allMeals: []
 };
 
-const camera = (state = initialState, action) => {
+const mealReducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-    case SELECT_MEAL:
+    case SET_MEAL:
       newState.selectedMeal.foodTags = action.foodTags
       newState.selectedMeal.nutritionInfo = action.nutritionInfo
       newState.selectedMeal.photoUrl = action.photoUrl
+      return newState
+
+    case SET_ALL_MEALS:
+      newState.allMeals = action.allMeals
       return newState
 
     default:
@@ -41,6 +55,22 @@ const camera = (state = initialState, action) => {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
+
+export const getAllMealsFromDB = () => {
+
+  return (dispatch, getState) => {
+
+        axios.get('http://192.168.4.165:1337/api/meals/2')
+        .then(response => {
+           console.log("Saved Data:", response.data)
+           dispatch(setAllMeals(response.data))
+        })
+        .catch(console.error)
+
+        //Sets this uploaded meal as the Selected Meal
+
+    }
+}
 
 export const getNutrientsValue = (tags, photoUrl) => {
 
@@ -120,7 +150,10 @@ export const getNutrientsValue = (tags, photoUrl) => {
         .catch(console.error)
 
         //Sets this uploaded meal as the Selected Meal
-        return dispatch(loadSelectedMeal(foodTagArray, nutritionalTable, photoUrl))
+
+        //add a section to append this to the end of the ALL meals state
+
+        dispatch(setMeal(foodTagArray, nutritionalTable, photoUrl))
     }
   )
 .then(
@@ -130,4 +163,4 @@ export const getNutrientsValue = (tags, photoUrl) => {
 }
 };
 
-export default camera
+export default mealReducer

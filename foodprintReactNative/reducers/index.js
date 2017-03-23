@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
   welcome: require('./default').default,
-  cameraResults: require('./camera').default,
-  meal: require('./meal').default,
+  //cameraResults: require('./camera').default,
+  meal: require('./camera').default,
   auth: require('./auth').default
 });
 

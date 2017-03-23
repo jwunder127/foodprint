@@ -153,7 +153,7 @@ class CameraContainer extends Component {
 }
 const mapStateToProps = state => {
   return {
-    camera: state.camera
+    camera: state.meal
   }
 }
 const mapDispatchToProps = dispatch => {

@@ -33,9 +33,9 @@ export default function Meal (props) {
                 <RNText style={{fontSize: 15, color:'#000'}}>Trans Fat
                  {" " + props.meal.nutritionInfo.total_fat.toFixed(2)}g</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Cholesterol
-                 {" " + props.meal.nutritionInfo.cholesterol.toFixed(2)}g</RNText>
+                 {" " + props.meal.nutritionInfo.cholesterol.toFixed(2)}mg</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Sodium
-                 {" " + props.meal.nutritionInfo.sodium.toFixed(2)}g</RNText>
+                 {" " + props.meal.nutritionInfo.sodium.toFixed(2)}mg</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Protein
                  {" " + props.meal.nutritionInfo.protein.toFixed(2)}g</RNText>
               </Body>

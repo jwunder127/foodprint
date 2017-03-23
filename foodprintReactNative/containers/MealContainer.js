@@ -6,7 +6,7 @@ import Meal from '../components/Meal';
 const mapStateToProps = state => {
   console.log('Meal state', state)
   return {
-    selectedMeal: state.cameraResults.selectedMeal
+    selectedMeal: state.meal.selectedMeal
   }
 }
 

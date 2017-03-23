@@ -19,10 +19,12 @@ export class MealContainer extends Component {
 
 
 
+
     render() {
-      console.log("Day container props:", this.props)
+      const date = this.props.date.slice(0,10)
+      console.log("Day container props:", date)
     return (
-      <Day meals={this.props.meals} date={this.props.date} />
+      <Day meals={this.props.meals} date={date} />
     )
   }
 }
