@@ -3,15 +3,9 @@ import { nutritionixConfig, nutritionixURL} from '../secrets';
 import { Actions } from 'react-native-router-flux'
 /* -----------------    ACTIONS     ------------------ */
 
-const SEND_NUTRITION_TAGS = 'SEND_NUTRITION_TAGS';
-const ADD_MEAL_URL = 'ADD_MEAL_URL';
 const SELECT_MEAL = 'SELECT_MEAL';
 
 /* ------------   ACTION CREATORS     ------------------ */
-
-const sendToNutrition = (foodTags) => ({type: SEND_NUTRITION_TAGS, foodTags: foodTags});
-
-const addMealImageUrl = (mealImageUrl) => ({type: ADD_MEAL_URL, mealImageUrl: mealImageUrl})
 
 export const loadSelectedMeal = (foodTagArray, finalNutritionObject, url) => {
   return {
@@ -35,15 +29,6 @@ const camera = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-
-    case SEND_NUTRITION_TAGS:
-      newState.foodTags = action.foodTags
-      return newState
-
-    case ADD_MEAL_URL:
-      newState.mealImageUrl = action.mealImageUrl
-      return newState
-
     case SELECT_MEAL:
       newState.selectedMeal.foodTags = action.foodTags
       newState.selectedMeal.nutritionInfo = action.nutritionInfo
@@ -56,14 +41,6 @@ const camera = (state = initialState, action) => {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-
-export const getNutrition = (tags) => (dispatch) => {
-  dispatch(sendToNutrition(tags))
-}
-
-export const mealImageUrlAdd = (mealImageUrl) => (dispatch) => {
-  dispatch(addMealImageUrl(mealImageUrl))
-}
 
 export const getNutrientsValue = (tags, url) => {
 
@@ -117,11 +94,9 @@ export const getNutrientsValue = (tags, url) => {
           finalNutritionObject.sugars += nutrients.sugars;
           finalNutritionObject.protein += nutrients.protein;
         });
-        //console.log("Get Nutrients", foodTagArray, finalNutritionObject, url)
         return dispatch(loadSelectedMeal(foodTagArray, finalNutritionObject, url))
         //Add to state of all meals
-
-  }
+    }
   )
 .then(() => Actions.meal())
 .catch(console.error)
