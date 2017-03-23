@@ -7,6 +7,8 @@ import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
+import { Actions } from 'react-native-router-flux';
+import { getNutrientsValue } from '../reducers/camera'
 
 import { AWSOptions, clarifaiKeys } from '../secrets';
 import CameraView from '../components/Camera';
@@ -34,20 +36,23 @@ class CameraContainer extends Component {
   }
 
   handleCheckedBox(tagName){
-    console.log('before tagsToSend is:', this.tagsToSend)
+   // console.log('before tagsToSend is:', this.tagsToSend)
     const tagIndex = this.tagsToSend.indexOf(tagName)
     const pushOrRemove = (tagIndex === -1) ?
       this.tagsToSend.push(tagName) :
       this.tagsToSend.splice(tagIndex, 1)
-    console.log('after tagsToSend is:', this.tagsToSend)
+   // console.log('after tagsToSend is:', this.tagsToSend)
   }
 
   handleSubmitFood(){
     //make sure the photo is loaded (necessary for later)
     if (this.state.mealPhotoUrl){
-      this.props.sendToNutrition(this.tagsToSend)
+      //this.props.sendToNutrition(this.tagsToSend)
+      this.props.loadMeal(this.tagsToSend, this.state.mealPhotoUrl)
+    //  console.log("TAGS", this.tagsToSend)
+      //Actions.meal();
     } else {
-      console.log('aws not ready yet')
+   //   console.log('aws not ready yet')
     }
   }
 
@@ -86,19 +91,19 @@ class CameraContainer extends Component {
       const photoUri = response.uri;
       const fileName = response.fileName;
       const fileType = response.type;
-      console.log('Response = ', response);
+     // console.log('Response = ', response);
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+     //   console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+     //   console.log('ImagePicker Error: ', response.error);
       }
       else {
-        console.log('Image selected')
+    //    console.log('Image selected')
         this.setState({imageSource: response.uri.replace('file://', '')});
         app.models.predict(Clarifai.FOOD_MODEL, {base64: response.data}).then(
         (res) => {
-          console.log('Clarifai response = ', res);
+       //   console.log('Clarifai response = ', res);
           let tags = [];
           for (let i = 0; i < res.data.outputs[0].data.concepts.length; i++) {
             tags.push({id: i + 1, name: res.data.outputs[0].data.concepts[i].name});
@@ -128,7 +133,7 @@ class CameraContainer extends Component {
       if (response.status !== 201) {
         throw new Error('Failed to upload image to S3');
       }
-      console.log('aws response:', response)
+    //  console.log('aws response:', response)
       this.setState({mealPhotoUrl: response.headers.Location})
       this.props.addMealImageUrl(response.headers.Location)
     })
@@ -136,7 +141,7 @@ class CameraContainer extends Component {
   }
 
   render() {
-    console.log('rendered, state is:', this.state)
+  //  console.log('rendered, state is:', this.state)
     return (
       <CameraView
         renderClarifaiResponse = {this.renderClarifaiResponse}
@@ -146,7 +151,7 @@ class CameraContainer extends Component {
     )}
 }
 const mapStateToProps = state => {
-  console.log('state is', state)
+ // console.log('state is', state)
   return {
     camera: state.camera
   }
@@ -158,7 +163,12 @@ const mapDispatchToProps = dispatch => {
     },
     sendToNutrition(tags) {
       dispatch(getNutrition(tags))
+    },
+    loadMeal(tags, url) {
+      dispatch(getNutrientsValue(tags, url))
     }
+
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(CameraContainer)
