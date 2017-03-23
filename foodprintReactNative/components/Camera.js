@@ -7,8 +7,8 @@ const CameraView = (props) => {
     return (
       <Container>
         {
-          props.tagText.length ?
-          props.renderClarifaiResponse(props.tagText) :
+          props.foodTags.length ?
+          props.renderClarifaiResponse(props.foodTags) :
           <Button block info onPress={props.selectImage}>
             <Text>
               Select an image

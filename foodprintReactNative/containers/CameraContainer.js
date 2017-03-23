@@ -1,8 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button, Content } from 'native-base';
+import { ListItem, Button, Container, Content } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -20,10 +20,10 @@ const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
 class CameraContainer extends Component {
   constructor(props){
     super(props)
-    this.tagsToSend = []
     this.state = {
-      tagText: [],
-      mealPhotoUrl: ''
+      foodTags: [],
+      mealPhotoUrl: '',
+      tagsToSend: []
     };
 
     this.handleCheckedBox = this.handleCheckedBox.bind(this);
@@ -34,45 +34,54 @@ class CameraContainer extends Component {
   }
 
   handleCheckedBox(tagName){
-    console.log('before tagsToSend is:', this.tagsToSend)
-    const tagIndex = this.tagsToSend.indexOf(tagName)
+    const tagsToSend = this.state.tagsToSend;
+    const tagIndex = tagsToSend.indexOf(tagName)
     const pushOrRemove = (tagIndex === -1) ?
-      this.tagsToSend.push(tagName) :
-      this.tagsToSend.splice(tagIndex, 1)
-    console.log('after tagsToSend is:', this.tagsToSend)
+      tagsToSend.push(tagName) :
+      tagsToSend.splice(tagIndex, 1)
+    this.setState({tagsToSend: tagsToSend})
   }
 
   handleSubmitFood(){
-    //make sure the photo is loaded (necessary for later)
-    if (this.state.mealPhotoUrl){
-      this.props.sendToNutrition(this.tagsToSend)
-    } else {
-      console.log('aws not ready yet')
-    }
+      this.props.sendToNutrition(this.state.tagsToSend)
   }
 
-  renderClarifaiResponse(tagText){
+  renderClarifaiResponse(foodTags){
+
     return (
       <Content>
         <Text>Select the foods that best match your meal</Text>
         <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
-      {tagText.map(tag => (
-                <ListItem key={tag.id}>
-                  <CheckBox onClick={() => this.handleCheckedBox(tag.name)} />
-                  <Text>{tag.name}</Text>
-                </ListItem>
-                ))}
-        <Button block success onPress={this.handleSubmitFood}><Text>Submit for nutrition info</Text></Button>
+        <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
+          {foodTags.map(tag => (
+              <ListItem key={tag.id}>
+                <CheckBox
+                  onClick={() => this.handleCheckedBox(tag.name)}
+                />
+                <Text>{tag.name}</Text>
+              </ListItem>
+              ))}
+          {this.renderSubmitButton()}
       </Content>
     )
   }
 
-  selectImage() {
-    if (this.state.tagText.length) {
-      this.setState({
-        tagText: []
-      })
+  renderSubmitButton(){
+    if (this.state.mealPhotoUrl !== '' && this.state.tagsToSend.length){
+      return (
+        <Button block success onPress={this.handleSubmitFood}><Text>Submit for nutrition info</Text></Button>)
+    } else {
+      return (
+        <Button block disabled><Text>Select foods to submit</Text></Button>)
     }
+  }
+
+  selectImage() {
+    this.setState({
+      foodTags: [],
+      mealPhotoUrl: '',
+      tagsToSend: []
+    })
 
     const options = {
         title: 'Select an Image',
@@ -103,7 +112,7 @@ class CameraContainer extends Component {
           for (let i = 0; i < res.data.outputs[0].data.concepts.length; i++) {
             tags.push({id: i + 1, name: res.data.outputs[0].data.concepts[i].name});
           }
-          this.setState({tagText: tags});
+          this.setState({foodTags: tags});
           this.sendToAWS(photoUri, fileName, fileType)
           },
           (error) => {
@@ -128,7 +137,6 @@ class CameraContainer extends Component {
       if (response.status !== 201) {
         throw new Error('Failed to upload image to S3');
       }
-      console.log('aws response:', response)
       this.setState({mealPhotoUrl: response.headers.Location})
       this.props.addMealImageUrl(response.headers.Location)
     })
@@ -136,17 +144,16 @@ class CameraContainer extends Component {
   }
 
   render() {
-    console.log('rendered, state is:', this.state)
+
     return (
       <CameraView
         renderClarifaiResponse = {this.renderClarifaiResponse}
         selectImage = {this.selectImage}
-        tagText = {this.state.tagText}
+        foodTags = {this.state.foodTags}
       />
     )}
 }
 const mapStateToProps = state => {
-  console.log('state is', state)
   return {
     camera: state.camera
   }
