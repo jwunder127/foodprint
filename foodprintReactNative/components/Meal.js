@@ -13,7 +13,7 @@ export default function Meal (props) {
           <Card>
             <CardItem>
               <Body>
-              <Image source={{uri: props.meal.url}} style={{width: 320, height: 200, marginBottom: 10}} />
+              <Image source={{uri: props.meal.photoUrl}} style={{width: 320, height: 200, marginBottom: 10}} />
               <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                 {props.meal.foodTags.map((foodTag, i) =>{
                   return (

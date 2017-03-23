@@ -7,12 +7,12 @@ const SELECT_MEAL = 'SELECT_MEAL';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const loadSelectedMeal = (foodTagArray, nutritionalTable, url) => {
+export const loadSelectedMeal = (foodTagArray, nutritionalTable, photoUrl) => {
   return {
     type: SELECT_MEAL,
     foodTags: foodTagArray,
     nutritionInfo: nutritionalTable,
-    url: url
+    photoUrl: photoUrl
   }
 };
 
@@ -21,7 +21,7 @@ const initialState = {
   selectedMeal: {
     foodTags: [],
     nutritionInfo: {},
-    url: ""
+    photoUrl: ""
   }
 };
 
@@ -32,7 +32,7 @@ const camera = (state = initialState, action) => {
     case SELECT_MEAL:
       newState.selectedMeal.foodTags = action.foodTags
       newState.selectedMeal.nutritionInfo = action.nutritionInfo
-      newState.selectedMeal.url = action.url
+      newState.selectedMeal.photoUrl = action.photoUrl
       return newState
 
     default:
@@ -42,7 +42,7 @@ const camera = (state = initialState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const getNutrientsValue = (tags, url) => {
+export const getNutrientsValue = (tags, photoUrl) => {
 
   return (dispatch) => {
 
@@ -50,6 +50,7 @@ export const getNutrientsValue = (tags, url) => {
     const data = {
       "query": tags.join(" ")
     };
+    //Make call to Nutritionix API
     axios.post(nutritionixURL, data, nutritionixConfig)
       .then(response => {
         //Take each food result from the Nutritionx API and add it to an array of ingredients
@@ -84,7 +85,7 @@ export const getNutrientsValue = (tags, url) => {
           sugars: 0.0,
           protein: 0.0,
         };
-        // This variable will contain just the name of all ingredients
+        // This variable will contain just the string name of all ingredients
         let foodTagArray = [];
         //combine the nutrition value for all of the ingredients
         ingredients.forEach(nutrients => {
@@ -99,31 +100,32 @@ export const getNutrientsValue = (tags, url) => {
           nutritionalTable.protein += nutrients.protein;
         });
 
-        console.log("INGREDIENTS", ingredients)
+       // Create the object to be saved in the Database
+
 
         let mealToSave = {
-          photoUrl: url,
+          photoUrl: photoUrl,
           tags: foodTagArray,
           nutritionalTable: nutritionalTable
         }
-        //SAVE TO DATABASE THIS MEAL:
-        //IT WILL RECEIEVE as body - Meal and Ingredients
-        //Meal contains: PHOTOURL, FOODTAGARRAY, nutritionalTable
-        //Ingredients contains: Array of food objects
 
+        //SAVE to database this current meal:
+        //The DB will receive as a body: a Meal object and an Ingredients array
+        //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
+        //Ingredients contains: Array of food objects (received from nutrition API)
         axios.post('http://192.168.4.165:1337/api/meals/2', {meal: mealToSave, ingredients: ingredients})
         .then(response => {
-           //const user = response.data
            console.log("Saved Data:", response.data)
         })
         .catch(console.error)
 
-
-        return dispatch(loadSelectedMeal(foodTagArray, nutritionalTable, url))
-        //Add to state of all meals
+        //Sets this uploaded meal as the Selected Meal
+        return dispatch(loadSelectedMeal(foodTagArray, nutritionalTable, photoUrl))
     }
   )
-.then(() => Actions.meal())
+.then(
+  //Send the user to the Meal view displaying this uploaded meal
+  () => Actions.meal())
 .catch(console.error)
 }
 };

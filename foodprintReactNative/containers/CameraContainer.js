@@ -158,8 +158,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    loadMeal(tags, url) {
-      dispatch(getNutrientsValue(tags, url))
+    loadMeal(tags, photoUrl) {
+      dispatch(getNutrientsValue(tags, photoUrl))
     }
   }
 }
