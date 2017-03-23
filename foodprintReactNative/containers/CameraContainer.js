@@ -8,9 +8,11 @@ import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
 
+import { getNutrientsValue } from '../reducers/camera'
+
 import { AWSOptions, clarifaiKeys } from '../secrets';
 import CameraView from '../components/Camera';
-import { getNutrition, mealImageUrlAdd } from '../reducers/camera';
+
 
 
 const CLIENT_ID = clarifaiKeys.CLIENT_ID;
@@ -43,7 +45,7 @@ class CameraContainer extends Component {
   }
 
   handleSubmitFood(){
-      this.props.sendToNutrition(this.state.tagsToSend)
+      this.props.loadMeal(this.state.tagsToSend, this.state.mealPhotoUrl)
   }
 
   renderClarifaiResponse(foodTags){
@@ -95,19 +97,17 @@ class CameraContainer extends Component {
       const photoUri = response.uri;
       const fileName = response.fileName;
       const fileType = response.type;
-      console.log('Response = ', response);
+
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+          console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+          console.log('ImagePicker Error: ', response.error);
       }
       else {
-        console.log('Image selected')
         this.setState({imageSource: response.uri.replace('file://', '')});
         app.models.predict(Clarifai.FOOD_MODEL, {base64: response.data}).then(
         (res) => {
-          console.log('Clarifai response = ', res);
           let tags = [];
           for (let i = 0; i < res.data.outputs[0].data.concepts.length; i++) {
             tags.push({id: i + 1, name: res.data.outputs[0].data.concepts[i].name});
@@ -138,13 +138,11 @@ class CameraContainer extends Component {
         throw new Error('Failed to upload image to S3');
       }
       this.setState({mealPhotoUrl: response.headers.Location})
-      this.props.addMealImageUrl(response.headers.Location)
     })
     .catch((e) => {console.error('error on component',e)});
   }
 
   render() {
-
     return (
       <CameraView
         renderClarifaiResponse = {this.renderClarifaiResponse}
@@ -160,12 +158,10 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    addMealImageUrl(mealImageUrl) {
-      dispatch(mealImageUrlAdd(mealImageUrl))
-    },
-    sendToNutrition(tags) {
-      dispatch(getNutrition(tags))
+    loadMeal(tags, url) {
+      dispatch(getNutrientsValue(tags, url))
     }
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(CameraContainer)
