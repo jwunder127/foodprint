@@ -18,10 +18,11 @@ export default class FooterComponent extends Component {
 render() {
 
     const goToToday = () => {
-     let formattedDate = Moment().format().slice(0,10)
+      //Select current meals by date
+      let formattedDate = Moment().format().slice(0,10)
       store.dispatch(setMealsByDate(formattedDate))
-
-    Actions.day({date: Moment().format('MMMM DD YYYY')})
+      // Send user to day page for selcted date
+      Actions.day({date: Moment().format('MMMM DD YYYY')})
     }
     const backColor = '#006b76'
     const iconColor =  '#c4def6'

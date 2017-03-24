@@ -78,13 +78,14 @@ const mealReducer = (state = initialState, action) => {
 export const setMealsByDate = (date) => {
 
   return (dispatch, getState) => {
-    let allMeals = getState().meal.allMeals;
 
+    let allMeals = getState().meal.allMeals;
+    //Filter allMeals for just the ones created on a given date
     let selectedMeals = allMeals.filter( (meal) => {
       return meal.created_at.slice(0,10) === date
     })
 
-
+    //Dispatch selected meals to the store
     dispatch(setMeals(selectedMeals))
   }
 
