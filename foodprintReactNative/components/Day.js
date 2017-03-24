@@ -17,6 +17,8 @@ import {
 } from 'native-base';
 import {Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Text as RNText} from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import store from '../store';
+import { setMeal } from '../reducers/camera'
 
 
 
@@ -28,6 +30,14 @@ export default function Meal (props) {
 
     console.log("Meals Array", mealsArray)
 
+    //const goToDay = (meal) => {Actions.day({meal: meal})}
+
+    const handle = (meal) => {
+      store.dispatch(setMeal(meal));
+      console.log(meal)
+      Actions.meal();
+    }
+
 
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>
@@ -36,7 +46,7 @@ export default function Meal (props) {
           <List>
              { (mealsArray.length > 0) && mealsArray.map((meal, i) => { return (
                <ListItem key={i}>
-                  <TouchableOpacity onPress={Actions.meal} photoUrl={meal.photoUrl}>
+                  <TouchableOpacity onPress={()=> handle(meal)}>
                   <Thumbnail style={{width: 120, height: 120}} square source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
                   <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>

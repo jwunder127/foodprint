@@ -9,14 +9,22 @@ const SET_ALL_MEALS = 'SET_ALL_MEALS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const setMeal = (foodTagArray, nutritionalTable, photoUrl) => {
+// export const setMeal = (foodTagArray, nutritionalTable, photoUrl) => {
+//   return {
+//     type: SET_MEAL,
+//     foodTags: foodTagArray,
+//     nutritionInfo: nutritionalTable,
+//     photoUrl: photoUrl
+//   }
+// };
+
+export const setMeal = (meal) => {
   return {
     type: SET_MEAL,
-    foodTags: foodTagArray,
-    nutritionInfo: nutritionalTable,
-    photoUrl: photoUrl
+    selectedMeal: meal
   }
-};
+}
+
 
 export const setAllMeals = (allMeals) => {
   return {
@@ -28,9 +36,9 @@ export const setAllMeals = (allMeals) => {
 /* ------------       REDUCERS     ------------------ */
 const initialState = {
   selectedMeal: {
-    foodTags: [],
-    nutritionInfo: {},
-    photoUrl: ""
+   // foodTags: [],
+   // nutritionInfo: {},
+   // photoUrl: ""
   },
   allMeals: []
 };
@@ -40,9 +48,7 @@ const mealReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_MEAL:
-      newState.selectedMeal.foodTags = action.foodTags
-      newState.selectedMeal.nutritionInfo = action.nutritionInfo
-      newState.selectedMeal.photoUrl = action.photoUrl
+      newState.selectedMeal = action.selectedMeal
       return newState
 
     case SET_ALL_MEALS:
@@ -62,7 +68,7 @@ export const getAllMealsFromDB = () => {
 
         axios.get('http://192.168.4.165:1337/api/meals/2')
         .then(response => {
-           console.log("Saved Data:", response.data)
+           console.log("Loaded Meals:", response.data)
            dispatch(setAllMeals(response.data))
         })
         .catch(console.error)
@@ -144,21 +150,23 @@ export const getNutrientsValue = (tags, photoUrl) => {
         //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
         //Ingredients contains: Array of food objects (received from nutrition API)
         axios.post('http://192.168.4.165:1337/api/meals/2', {meal: mealToSave, ingredients: ingredients})
-        .then(response => {
-           console.log("Saved Data:", response.data)
+        .then(savedMeal => {
+           console.log("Saved Meal:", savedMeal.data[0])
+           return dispatch(setMeal(savedMeal.data[0]))
         })
+        .then(
+            //Send the user to the Meal view displaying this uploaded meal
+          () => Actions.meal()
+        )
         .catch(console.error)
 
         //Sets this uploaded meal as the Selected Meal
 
         //add a section to append this to the end of the ALL meals state
 
-        dispatch(setMeal(foodTagArray, nutritionalTable, photoUrl))
+        //dispatch(setMeal(foodTagArray, nutritionalTable, photoUrl))
     }
   )
-.then(
-  //Send the user to the Meal view displaying this uploaded meal
-  () => Actions.meal())
 .catch(console.error)
 }
 };

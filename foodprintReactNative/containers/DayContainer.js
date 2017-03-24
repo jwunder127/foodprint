@@ -10,6 +10,18 @@ const mapStateToProps = state => {
   }
 }
 
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     loadSelectedMeal(meal) {
+//       let foodTags =  meal.foodTagArray,
+//     nutritionInfo: nutritionalTable,
+//     photoUrl: photoUrl
+//       dispatch(getNutrientsValue(tags, photoUrl))
+//     }
+//   }
+// }
+
 export class MealContainer extends Component {
 
   constructor(props){
