@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button, Content, Input, Item } from 'native-base';
+import { ListItem, Button, Content, Item } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -25,34 +25,53 @@ class CameraContainer extends Component {
     this.state = {
       foodTags: [],
       mealPhotoUrl: '',
-      tagsToSend: [],
-      additionalTags: []
+      checkBoxTags: [],
+      additionalTags: [],
+      tagsToSend: []
     };
 
     this.handleCheckedBox = this.handleCheckedBox.bind(this);
     this.handleSubmitFood = this.handleSubmitFood.bind(this);
+    this.handleAdditionalTags = this.handleAdditionalTags.bind(this);
     this.renderClarifaiResponse = this.renderClarifaiResponse.bind(this);
     this.selectImage = this.selectImage.bind(this);
     this.sendToAWS = this.sendToAWS.bind(this);
   }
 
   handleCheckedBox(tagName){
-    const tagsToSend = this.state.tagsToSend;
-    const tagIndex = tagsToSend.indexOf(tagName)
+    const checkBoxTags = this.state.checkBoxTags;
+    const tagIndex = checkBoxTags.indexOf(tagName)
     const pushOrRemove = (tagIndex === -1) ?
-      tagsToSend.push(tagName) :
-      tagsToSend.splice(tagIndex, 1)
-    this.setState({tagsToSend: tagsToSend})
+      checkBoxTags.push(tagName) :
+      checkBoxTags.splice(tagIndex, 1)
+    this.setState({
+      checkBoxTags: checkBoxTags,
+      tagsToSend: checkBoxTags.concat(this.state.additionalTags)
+    })
   }
 
   handleSubmitFood(){
-      this.props.loadMeal(this.state.tagsToSend.concat(this.state.additionalTags), this.state.mealPhotoUrl)
+      this.props.loadMeal(this.state.tagsToSend, this.state.mealPhotoUrl)
+  }
+
+  handleAdditionalTags(text){
+    if (text === ''){
+      this.setState({additionalTags: []})
+
+    } else {
+      const additionalTags = text.split(',');
+      this.setState({
+        additionalTags: additionalTags,
+        tagsToSend: this.state.checkBoxTags.concat(additionalTags)
+      });
+    }
+
   }
 
   renderClarifaiResponse(foodTags){
-    console.log('additionalTags:', this.state.additionalTags)
 
     return (
+    <Content>
       <Content>
         <Text>Select the foods that best match your meal</Text>
         <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
@@ -67,12 +86,16 @@ class CameraContainer extends Component {
                 />
             </ListItem>
               ))}
+        </Content>
+        <Content style={{position: 'relative', bottom: 0}}>
           <TextInput
             placeholder="Don't see your food? Add it here! Separate by commas."
-            onChangeText={(text) => this.setState({additionalTags: text.split(',')})}
+            style={{ backgroundColor: '#ccced1', borderWidth: 1}}
+            onChangeText={(text) => this.handleAdditionalTags(text)}
             />
           {this.renderSubmitButton()}
       </Content>
+    </Content>
     )
   }
 
