@@ -8,14 +8,14 @@ import React, { Component } from 'react';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 
-import Home from './components/Home'
+
 import LoginContainer from './containers/LoginContainer'
 import Signup from './components/Signup'
 import CalendarPage from './components/Calendar'
 import CameraContainer from './containers/CameraContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'
-import Tiled from './components/Tiled'
+import Home from './containers/HomeContainer'
 import { Container, Button, Icon, Text, Footer, FooterTab } from 'native-base';
 import Moment from 'moment';
 import FooterComponent from './components/Footer'
@@ -50,7 +50,7 @@ export default class foodprintReactNative extends Component {
         <Scene key="root" hideNavBar={true}>
           <Scene key="login" component={LoginContainer} title="Login" initial = {false} />
           <Scene key="signup" component={Signup} title="Sign up"/>
-          <Scene key="home" component={Tiled} title="Home" initial = {true}/>
+          <Scene key="home" component={Home} title="Home" initial = {true}/>
           <Scene key="calendar" component={CalendarPage} title= "Calendar View"  />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" />

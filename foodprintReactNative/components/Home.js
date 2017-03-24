@@ -5,21 +5,42 @@ import {
   View,
   Button
 } from 'react-native';
+import { Container, Content, Thumbnail } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
-export default class Home extends Component {
+
+export default function Meal (props) {
+
+    console.log("Home component", props)
+     const meals = props.meals
+
+    const printImages = () =>{
+        let rows = [];
+        let count = 0;
+        meals.forEach((meal)=> {
+        let element =  0
+         rows.push(
+
+           <Row key={count}><Thumbnail key={count} style={{width: 300, height: 300, margin: 30}}  source={{uri: meal.photoUrl}} /></Row>
+           )
+         count += 1
+        })
+        return rows
+      }
 
 
-  render() {
     console.log("Home Screen")
     return (
-      <View>
-        <Text style={{margin: 10}}>
-          Home Page!
-        </Text>
-
-      </View>
-    );
+     <Container>
+      <Content>
+      <Grid>
+        {printImages()}
+      </Grid>
+      </Content>
+      </Container>
+    )
   }
-}
+
+
 
 
