@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Image, Text as RNText, View } from 'react-native';
-import {Container, Content, Card, CardItem, Body, Text, Badge} from 'native-base';
+import {Container, Content, Card, CardItem, Body, Text, Badge, Thumbnail} from 'native-base';
 import axios from 'axios';
+
+
 
 export default function Meal (props) {
 
@@ -13,7 +15,7 @@ export default function Meal (props) {
           <Card>
             <CardItem>
               <Body>
-              <Image source={{uri: props.meal.photoUrl}} style={{width: 320, height: 200, marginBottom: 10}} />
+                <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
               <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                 {props.meal.tags.map((foodTag, i) =>{
                   return (

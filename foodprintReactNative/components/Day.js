@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import {
   Container,
   Content,
-  Header,
-  Title,
   ListItem,
-  Footer,
-  FooterTab,
-  Left,
-  Right,
-  Body,
-  Icon,
   Thumbnail,
   List,
   Badge
@@ -25,19 +17,18 @@ import { setMeal } from '../reducers/camera'
 export default function Meal (props) {
 
     console.log('DAY', props)
-    //putting into an array for testing purposes until the store has all the users meals on it
+
     const mealsArray = props.meals
 
     console.log("Meals Array", mealsArray)
 
     //const goToDay = (meal) => {Actions.day({meal: meal})}
 
-    const handle = (meal) => {
+    const goToDay = (meal) => {
+      // Update the state to reflect the currently selected meal and send user to the Meal view
       store.dispatch(setMeal(meal));
-      console.log(meal)
       Actions.meal();
     }
-
 
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>
@@ -46,7 +37,7 @@ export default function Meal (props) {
           <List>
              { (mealsArray.length > 0) && mealsArray.map((meal, i) => { return (
                <ListItem key={i}>
-                  <TouchableOpacity onPress={()=> handle(meal)}>
+                  <TouchableOpacity onPress={()=> goToDay(meal)}>
                   <Thumbnail style={{width: 120, height: 120}} square source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
                   <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>

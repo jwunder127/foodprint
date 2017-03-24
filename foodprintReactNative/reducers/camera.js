@@ -6,17 +6,11 @@ import { Actions } from 'react-native-router-flux'
 const SET_MEAL = 'SET_MEAL';
 const SET_MEALS = 'SET_MEALS'
 const SET_ALL_MEALS = 'SET_ALL_MEALS';
+const ADD_MEAL = 'ADD_MEAL'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-// export const setMeal = (foodTagArray, nutritionalTable, photoUrl) => {
-//   return {
-//     type: SET_MEAL,
-//     foodTags: foodTagArray,
-//     nutritionInfo: nutritionalTable,
-//     photoUrl: photoUrl
-//   }
-// };
+
 
 export const setMeal = (meal) => {
   return {
@@ -25,6 +19,12 @@ export const setMeal = (meal) => {
   }
 }
 
+export const addMeal = (meal) => {
+  return {
+    type: ADD_MEAL,
+    newMeal: meal
+  }
+}
 
 export const setAllMeals = (allMeals) => {
   return {
@@ -35,11 +35,7 @@ export const setAllMeals = (allMeals) => {
 
 /* ------------       REDUCERS     ------------------ */
 const initialState = {
-  selectedMeal: {
-   // foodTags: [],
-   // nutritionInfo: {},
-   // photoUrl: ""
-  },
+  selectedMeal: {},
   allMeals: []
 };
 
@@ -55,6 +51,10 @@ const mealReducer = (state = initialState, action) => {
       newState.allMeals = action.allMeals
       return newState
 
+    case ADD_MEAL:
+      newState.allMeals.push(action.newMeal)
+      return newState
+
     default:
       return newState
   }
@@ -65,16 +65,14 @@ const mealReducer = (state = initialState, action) => {
 export const getAllMealsFromDB = () => {
 
   return (dispatch, getState) => {
-
-        axios.get('http://192.168.4.165:1337/api/meals/2')
+// Retrieve all meals from user upon login, and keep them in the store
+        let userId = 2 //getState(id)
+        axios.get(`http://192.168.4.165:1337/api/meals/${userId}`)
         .then(response => {
            console.log("Loaded Meals:", response.data)
            dispatch(setAllMeals(response.data))
         })
         .catch(console.error)
-
-        //Sets this uploaded meal as the Selected Meal
-
     }
 }
 
@@ -152,6 +150,11 @@ export const getNutrientsValue = (tags, photoUrl) => {
         axios.post('http://192.168.4.165:1337/api/meals/2', {meal: mealToSave, ingredients: ingredients})
         .then(savedMeal => {
            console.log("Saved Meal:", savedMeal.data[0])
+
+           //Add meal to the all meals state saved in the store
+           dispatch(addMeal(savedMeal.data[0]))
+
+           // Add this meal to the store as the currently selected meal
            return dispatch(setMeal(savedMeal.data[0]))
         })
         .then(
@@ -159,12 +162,6 @@ export const getNutrientsValue = (tags, photoUrl) => {
           () => Actions.meal()
         )
         .catch(console.error)
-
-        //Sets this uploaded meal as the Selected Meal
-
-        //add a section to append this to the end of the ALL meals state
-
-        //dispatch(setMeal(foodTagArray, nutritionalTable, photoUrl))
     }
   )
 .catch(console.error)
