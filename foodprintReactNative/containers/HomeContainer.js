@@ -16,16 +16,11 @@ export class HomeContainer extends Component {
     super(props)
   }
 
-//WHen it mounts, set meal to be the one passed in
-
     render() {
-      //console.log("Home container props:", this.props.allMeals)
-    return (
-      <Home meals={this.props.allMeals} />
-    )
-  }
+      return (
+        <Home meals={this.props.allMeals} />
+      )
+    }
 }
-
-
 export default connect(mapStateToProps)(HomeContainer)
 

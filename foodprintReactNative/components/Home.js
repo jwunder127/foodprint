@@ -1,46 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
-  Text,
-  View,
-  Button
+  TouchableOpacity
 } from 'react-native';
-import { Container, Content, Thumbnail } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
-
+import { Container, Content, Thumbnail, List, ListItem } from 'native-base';
+import store from '../store';
+import { setMeal } from '../reducers/camera'
 
 export default function Meal (props) {
 
-    console.log("Home component", props)
-     const meals = props.meals
 
-    const printImages = () =>{
-        let rows = [];
-        let count = 0;
-        meals.forEach((meal)=> {
-        let element =  0
-         rows.push(
-
-           <Row key={count}><Thumbnail key={count} style={{width: 300, height: 300, margin: 30}}  source={{uri: meal.photoUrl}} /></Row>
-           )
-         count += 1
-        })
-        return rows
-      }
+    //Sort all meals by most recent first
+     const meals = props.meals.sort((a, b) => b.id - a.id)
 
 
-    console.log("Home Screen")
+      const goToDay = (meal) => {
+      // Update the state to reflect the currently selected meal and send user to the Meal view
+        store.dispatch(setMeal(meal));
+        Actions.meal();
+    }
+
+
     return (
      <Container>
       <Content>
-      <Grid>
-        {printImages()}
-      </Grid>
+      <List>
+        {
+          meals.map((meal, i) => {
+            return (
+              <ListItem key={i}>
+               <TouchableOpacity onPress={()=> goToDay(meal)}>
+                  <Thumbnail style={{width: 300, height: 300, margin: 10}}  source={{uri: meal.photoUrl}} />
+              </TouchableOpacity>
+              </ListItem>)
+          })}
+      </List>
       </Content>
       </Container>
     )
   }
-
-
 
 
