@@ -30,18 +30,12 @@ import store from './store';
 import { welcomeScreen } from './reducers/default';
 import { getAllMealsFromDB } from './reducers/meal'
 
-function welcome () {
-  store.dispatch(welcomeScreen());
-  //store.dispatch(getAllMealsFromDB());
-}
-
 export default class foodprintReactNative extends Component {
 
 
 
   render() {
 
-    welcome();
     return (
 
     <Container>
@@ -51,7 +45,7 @@ export default class foodprintReactNative extends Component {
           <Scene key="login" component={LoginContainer} title="Login" initial = {true} />
           <Scene key="signup" component={Signup} title="Sign up"/>
           <Scene key="home" component={Home} title="Home" initial = {false}/>
-          <Scene key="calendar" component={CalendarPage} title= "Calendar View" initial = {false}  />
+          <Scene key="calendar" component={CalendarPage} title= "Calendar View"  />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" />
           <Scene key="camera" component={CameraContainer} title= "Camera View" />

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button, Content, Item } from 'native-base';
+import { ListItem, Button, Content, Thumbnail, Spinner } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -34,6 +34,7 @@ class CameraContainer extends Component {
     this.handleSubmitFood = this.handleSubmitFood.bind(this);
     this.handleAdditionalTags = this.handleAdditionalTags.bind(this);
     this.renderClarifaiResponse = this.renderClarifaiResponse.bind(this);
+    this.renderMealImage = this.renderMealImage.bind(this);
     this.selectImage = this.selectImage.bind(this);
     this.sendToAWS = this.sendToAWS.bind(this);
   }
@@ -76,6 +77,7 @@ class CameraContainer extends Component {
     <Content>
       <Content>
         <Text>Select the foods that best match your meal</Text>
+        {this.renderMealImage()}
         <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
         <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
           {foodTags.map(tag => (
@@ -99,6 +101,14 @@ class CameraContainer extends Component {
       </Content>
     </Content>
     )
+  }
+    renderMealImage(){
+    if (this.state.mealPhotoUrl) {
+      return (
+       <Thumbnail style={{width: 300, height: 300, margin: 10}} source={{uri: this.state.mealPhotoUrl}} />)
+    } else {
+       return <Spinner />
+    }
   }
 
   renderSubmitButton(){
