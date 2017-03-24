@@ -91,6 +91,20 @@ export const setMealsByDate = (date) => {
 
 }
 
+export const setMealsByTag = (tag) => {
+
+  return (dispatch, getState) => {
+
+    let allMeals = getState().meal.allMeals;
+    //Filter allMeals for tags
+    let selectedMeals = allMeals.filter( (meal) => {
+      return meal.tags.includes(tag)
+    })
+    //Dispatch selected meals to the store
+    dispatch(setMeals(selectedMeals))
+  }
+
+}
 
 export const getAllMealsFromDB = () => {
 

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import { Image, Text as RNText, View } from 'react-native';
-import {Container, Content, Card, CardItem, Body, Text, Badge, Thumbnail} from 'native-base';
+import { Image, Text as RNText, View, TouchableOpacity } from 'react-native';
+import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail} from 'native-base';
 import axios from 'axios';
-
-
+import store from '../store';
+import { setMealsByTag } from '../reducers/meal'
+import { Actions } from 'react-native-router-flux'
 
 export default function Meal (props) {
 
    // console.log("MEAL component", props)
+   const setTag = (foodTag) => {
+     console.log(foodTag)
+     store.dispatch(setMealsByTag(foodTag))
+     Actions.day({date: foodTag})
+   }
 
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>
@@ -19,8 +25,11 @@ export default function Meal (props) {
               <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                 {props.meal.tags.map((foodTag, i) =>{
                   return (
-                  <Badge key={i} style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{foodTag}</RNText></Badge>)}
-                )}
+                  <TouchableOpacity key={i} onPress={()=>setTag(foodTag)}>
+                    <Badge   style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{foodTag}</RNText></Badge>
+                  </TouchableOpacity>
+                )})
+                }
               </View>
               </Body>
             </CardItem>
