@@ -36,7 +36,7 @@ export class LoginContainer extends Component {
   }
 
   render() {
-    if (!this.props.auth.user){
+    if (this.props.auth === null){
       return (
         <LoginComponent updateEmail={this.updateEmail} updatePassword={this.updatePassword} doLogin={this.doLogin} doLogout={this.doLogout} />
       );
