@@ -29,15 +29,20 @@ export default function Meal (props) {
             <CardItem>
               <Body>
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Calories  {" " + props.meal.nutritionalTable.calories.toFixed(2)}</RNText>
+                <RNText style={{fontSize: 15, color:'#000'}}>Calories
+                {" " + props.meal.nutritionalTable.calories.toFixed(2)}</RNText>
+                <RNText style={{fontSize: 15, color:'#000'}}>Total fat
+                {" " + props.meal.nutritionalTable.total_fat.toFixed(2)}g</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Saturated Fat
                 {" " + props.meal.nutritionalTable.saturated_fat.toFixed(2)}g</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Trans Fat
-                 {" " + props.meal.nutritionalTable.total_fat.toFixed(2)}g</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Cholesterol
                  {" " + props.meal.nutritionalTable.cholesterol.toFixed(2)}mg</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Sodium
                  {" " + props.meal.nutritionalTable.sodium.toFixed(2)}mg</RNText>
+                 <RNText style={{fontSize: 15, color:'#000'}}>Total Carbohydrate
+                 {" " + props.meal.nutritionalTable.total_carbohydrate.toFixed(2)}g</RNText>
+                 <RNText style={{fontSize: 15, color:'#000'}}>Sugars
+                 {" " + props.meal.nutritionalTable.sugars.toFixed(2)}g</RNText>
                 <RNText style={{fontSize: 15, color:'#000'}}>Protein
                  {" " + props.meal.nutritionalTable.protein.toFixed(2)}g</RNText>
               </Body>

@@ -177,6 +177,7 @@ class CameraContainer extends Component {
 
   render() {
 
+
     return (
       <CameraView
         renderClarifaiResponse = {this.renderClarifaiResponse}

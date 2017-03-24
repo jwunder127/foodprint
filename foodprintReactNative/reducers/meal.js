@@ -19,6 +19,14 @@ export const setMeal = (meal) => {
   }
 }
 
+export const setMeals = (meals) => {
+  return {
+    type: SET_MEALS,
+    selectedMeals: meals
+  }
+
+}
+
 export const addMeal = (meal) => {
   return {
     type: ADD_MEAL,
@@ -36,6 +44,7 @@ export const setAllMeals = (allMeals) => {
 /* ------------       REDUCERS     ------------------ */
 const initialState = {
   selectedMeal: {},
+  selectedMeals: [],
   allMeals: []
 };
 
@@ -55,12 +64,32 @@ const mealReducer = (state = initialState, action) => {
       newState.allMeals.unshift(action.newMeal)
       return newState
 
+    case SET_MEALS:
+      newState.selectedMeals = action.selectedMeals
+      return newState
+
     default:
       return newState
   }
 }
 
 /* ------------       DISPATCHERS     ------------------ */
+
+export const setMealsByDate = (date) => {
+
+  return (dispatch, getState) => {
+    let allMeals = getState().meal.allMeals;
+
+    let selectedMeals = allMeals.filter( (meal) => {
+      return meal.created_at.slice(0,10) === date
+    })
+
+
+    dispatch(setMeals(selectedMeals))
+  }
+
+}
+
 
 export const getAllMealsFromDB = () => {
 
@@ -88,6 +117,9 @@ export const getNutrientsValue = (tags, photoUrl) => {
     axios.post(nutritionixURL, data, nutritionixConfig)
       .then(response => {
         //Take each food result from the Nutritionx API and add it to an array of ingredients
+
+        //console.log("Nutrition response", response.data.food)
+
         response.data.foods.forEach(eachFoodObject => {
           let foodObject = {
             food_name: eachFoodObject.food_name,
@@ -160,9 +192,13 @@ export const getNutrientsValue = (tags, photoUrl) => {
           () => Actions.meal()
         )
         .catch(console.error)
-    }
+      }
+    )
+  .catch( (error) => {
+    console.log(error, "Tag not found");
+    Actions.camera({reset: true})
+  }
   )
-.catch(console.error)
 }
 };
 

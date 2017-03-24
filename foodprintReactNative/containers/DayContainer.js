@@ -6,7 +6,7 @@ import Day from '../components/Day';
 const mapStateToProps = state => {
 
   return {
-    meals: state.meal.allMeals
+    meals: state.meal.selectedMeals
   }
 }
 
@@ -19,7 +19,7 @@ export class MealContainer extends Component {
 
     render() {
       let date = 'No Date'
-      if (date) date = this.props.date.slice(0,10)
+      if (date) date = this.props.date
 
       //console.log("Day container props:", date)
     return (
