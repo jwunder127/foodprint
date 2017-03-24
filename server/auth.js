@@ -142,5 +142,13 @@ auth.post('/logout', (req, res, next) => {
   res.redirect('/api/auth/whoami')
 })
 
+auth.post('/signup/local', (req, res, next) => {
+  User.create(req.body)
+    .then((createdUser) => {
+        res.status(202).json(createdUser);
+      })
+    .catch(next)
+});
+
 module.exports = auth
 

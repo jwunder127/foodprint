@@ -42,4 +42,16 @@ export const logout = () =>
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 
+export const signup = (credentials) => {
+  return dispatch => {
+    axios.post('http://192.168.5.51:1337/api/auth/signup/local', credentials)
+      .then(res => res.data)
+      .then(() => {
+        const username = credentials.email;
+        const password = credentials.password;
+        dispatch(login({username, password}))
+      })
+      .catch(() => dispatch(whoami()))
+  }
+};
 export default reducer;
