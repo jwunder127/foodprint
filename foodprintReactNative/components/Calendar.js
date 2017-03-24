@@ -22,7 +22,7 @@ export default class CalendarPage extends Component {
     };
   }
 
-  goToDay = () => Actions.day({date: Moment(this.state.date).format('MMMM DD YYYY')})
+  goToDay = () => Actions.day({date: Moment(this.state.date).format()})
 
   render() {
     const BLUE = '#2196F3';

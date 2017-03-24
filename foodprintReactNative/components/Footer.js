@@ -15,7 +15,7 @@ export default class FooterComponent extends Component {
 
 render() {
 
-    const goToToday = () => Actions.day({date: Moment().format('MMMM DD YYYY')})
+    const goToToday = () => Actions.day({date: Moment().format()})
     const backColor = '#006b76'
     const iconColor =  '#c4def6'
 
