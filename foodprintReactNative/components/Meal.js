@@ -8,11 +8,11 @@ import { Actions } from 'react-native-router-flux'
 
 export default function Meal (props) {
 
-   // console.log("MEAL component", props)
+
    const setTag = (foodTag) => {
-     console.log(foodTag)
+     //Set the selected meals to be all those that contain the clicked food tag
      store.dispatch(setMealsByTag(foodTag))
-     Actions.day({date: foodTag})
+     Actions.day({label: foodTag})
    }
 
     return (

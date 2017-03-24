@@ -28,7 +28,7 @@ export default class CalendarPage extends Component {
     let formattedDate = Moment(this.state.date).format().slice(0,10)
     store.dispatch(setMealsByDate(formattedDate))
     // Send user to day page for selcted date
-    Actions.day({date: Moment(this.state.date).format('MMMM DD YYYY')})
+    Actions.day({label: Moment(this.state.date).format('MMMM DD YYYY')})
   }
 
   render() {

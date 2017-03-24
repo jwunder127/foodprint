@@ -18,12 +18,12 @@ export class MealContainer extends Component {
   }
 
     render() {
-      let date = 'No Date'
-      if (date) date = this.props.date
 
-      //console.log("Day container props:", date)
+     let label = this.props.label
+
+    console.log("Day container props:", label)
     return (
-      <Day meals={this.props.meals} date={date} />
+      <Day meals={this.props.meals} label={label} />
     )
   }
 }

@@ -22,7 +22,7 @@ render() {
       let formattedDate = Moment().format().slice(0,10)
       store.dispatch(setMealsByDate(formattedDate))
       // Send user to day page for selcted date
-      Actions.day({date: Moment().format('MMMM DD YYYY')})
+      Actions.day({label: Moment().format('MMMM DD YYYY')})
     }
     const backColor = '#006b76'
     const iconColor =  '#c4def6'
