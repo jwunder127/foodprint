@@ -40,10 +40,12 @@ class CameraContainer extends Component {
 
   handleCheckedBox(tagName){
     const checkBoxTags = this.state.checkBoxTags;
-    const tagIndex = checkBoxTags.indexOf(tagName)
-    const pushOrRemove = (tagIndex === -1) ?
-      checkBoxTags.push(tagName) :
+    const tagIndex = checkBoxTags.indexOf(tagName);
+    if (tagIndex === -1) {
+      checkBoxTags.push(tagName)
+    } else {
       checkBoxTags.splice(tagIndex, 1)
+    }
     this.setState({
       checkBoxTags: checkBoxTags,
       tagsToSend: checkBoxTags.concat(this.state.additionalTags)
