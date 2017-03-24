@@ -1,8 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, StyleSheet} from 'react-native';
+import { Text, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button, Container, Content } from 'native-base';
+import { ListItem, Button, Content, Input, Item } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -14,10 +14,10 @@ import { AWSOptions, clarifaiKeys } from '../secrets';
 import CameraView from '../components/Camera';
 
 
-
 const CLIENT_ID = clarifaiKeys.CLIENT_ID;
 const CLIENT_SECRET = clarifaiKeys.CLIENT_SECRET;
 const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
+
 
 class CameraContainer extends Component {
   constructor(props){
@@ -25,7 +25,8 @@ class CameraContainer extends Component {
     this.state = {
       foodTags: [],
       mealPhotoUrl: '',
-      tagsToSend: []
+      tagsToSend: [],
+      additionalTags: []
     };
 
     this.handleCheckedBox = this.handleCheckedBox.bind(this);
@@ -45,10 +46,11 @@ class CameraContainer extends Component {
   }
 
   handleSubmitFood(){
-      this.props.loadMeal(this.state.tagsToSend, this.state.mealPhotoUrl)
+      this.props.loadMeal(this.state.tagsToSend.concat(this.state.additionalTags), this.state.mealPhotoUrl)
   }
 
   renderClarifaiResponse(foodTags){
+    console.log('additionalTags:', this.state.additionalTags)
 
     return (
       <Content>
@@ -56,20 +58,26 @@ class CameraContainer extends Component {
         <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
         <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
           {foodTags.map(tag => (
-              <ListItem key={tag.id}>
-                <CheckBox
-                  onClick={() => this.handleCheckedBox(tag.name)}
+            <ListItem key={tag.id}>
+              <CheckBox
+                onClick={() => this.handleCheckedBox(tag.name)}
+                rightText={tag.name}
+                rightTextStyle={{textAlign: 'left'}}
+                style={{flex: 1}}
                 />
-                <Text>{tag.name}</Text>
-              </ListItem>
+            </ListItem>
               ))}
+          <TextInput
+            placeholder="Don't see your food? Add it here! Separate by commas."
+            onChangeText={(text) => this.setState({additionalTags: text.split(',')})}
+            />
           {this.renderSubmitButton()}
       </Content>
     )
   }
 
   renderSubmitButton(){
-    if (this.state.mealPhotoUrl !== '' && this.state.tagsToSend.length){
+    if (this.state.mealPhotoUrl !== '' && (this.state.tagsToSend.length || this.state.additionalTags.length)){
       return (
         <Button block success onPress={this.handleSubmitFood}><Text>Submit for nutrition info</Text></Button>)
     } else {
@@ -143,6 +151,7 @@ class CameraContainer extends Component {
   }
 
   render() {
+
     return (
       <CameraView
         renderClarifaiResponse = {this.renderClarifaiResponse}
