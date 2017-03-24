@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function Meal (props) {
 
-    console.log("MEAL component", props)
+   // console.log("MEAL component", props)
 
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>

@@ -16,11 +16,11 @@ import { setMeal } from '../reducers/meal'
 
 export default function Meal (props) {
 
-    console.log('DAY', props)
+    //console.log('DAY', props)
 
     const mealsArray = props.meals
 
-    console.log("Meals Array", mealsArray)
+   // console.log("Meals Array", mealsArray)
 
     //const goToDay = (meal) => {Actions.day({meal: meal})}
 

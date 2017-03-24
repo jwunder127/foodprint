@@ -69,7 +69,7 @@ export const getAllMealsFromDB = () => {
         let userId = 2 //getState(id)
         axios.get(`http://192.168.4.165:1337/api/meals/${userId}`)
         .then(response => {
-           console.log("Loaded Meals:", response.data)
+           console.log("Loaded Meals from DB:", response.data)
            dispatch(setAllMeals(response.data))
         })
         .catch(console.error)
@@ -135,8 +135,6 @@ export const getNutrientsValue = (tags, photoUrl) => {
         });
 
        // Create the object to be saved in the Database
-
-
         let mealToSave = {
           photoUrl: photoUrl,
           tags: foodTagArray,
@@ -145,11 +143,11 @@ export const getNutrientsValue = (tags, photoUrl) => {
 
         //SAVE to database this current meal:
         //The DB will receive as a body: a Meal object and an Ingredients array
-        //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
-        //Ingredients contains: Array of food objects (received from nutrition API)
+            //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
+            //Ingredients contains: Array of food objects (received from nutrition API)
         axios.post('http://192.168.4.165:1337/api/meals/2', {meal: mealToSave, ingredients: ingredients})
         .then(savedMeal => {
-           console.log("Saved Meal:", savedMeal.data[0])
+           console.log("Saved Meal in DB:", savedMeal.data[0])
 
            //Add meal to the all meals state saved in the store
            dispatch(addMeal(savedMeal.data[0]))
