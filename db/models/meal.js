@@ -5,7 +5,10 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Meal = db.define('meals', {
-  photoUrl: Sequelize.STRING,
+  photoUrl: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   tags: Sequelize.ARRAY(Sequelize.STRING),
   nutritionalTable: Sequelize.JSON
   }

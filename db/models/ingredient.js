@@ -5,7 +5,9 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Ingredient = db.define('ingredients', {
-  food_name: Sequelize.STRING,
+  food_name: {
+    type: Sequelize.STRING,
+    allowNull: false},
   serving_qty: Sequelize.FLOAT,
   serving_unit: Sequelize.FLOAT,
   serving_weight_grams: Sequelize.FLOAT,
