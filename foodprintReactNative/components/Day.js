@@ -10,11 +10,16 @@ import {
 import {Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Text as RNText} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import store from '../store';
-import { setMeal } from '../reducers/meal'
-
-
+import { setMeal, setMealsByTag } from '../reducers/meal'
 
 export default function Meal (props) {
+
+     const setTag = (foodTag) => {
+     //Set the selected meals to be all those that contain the clicked food tag
+     store.dispatch(setMealsByTag(foodTag))
+     Actions.day({date: foodTag})
+   }
+
 
     //console.log('DAY', props)
 
@@ -41,9 +46,13 @@ export default function Meal (props) {
                   <Thumbnail style={{width: 120, height: 120}} square source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
                   <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-                    {meal.tags.map((food, i) =>
-                    <Badge key={i} style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{food}</RNText></Badge>
-                    )}
+                    {meal.tags.map((food, i) => {
+                    return (
+                      <TouchableOpacity key={i} onPress={()=>setTag(food)}>
+                      <Badge key={i} style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{food}</RNText></Badge>
+                      </TouchableOpacity>
+                    )
+                    })}
                   </View>
               </ListItem>)
              })}
