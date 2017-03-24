@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 
 import LoginContainer from './containers/LoginContainer'
 import Signup from './components/Signup'
-import CalendarPage from './components/Calendar'
+import CalendarPage from './containers/CalendarContainer'
 import CameraContainer from './containers/CameraContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'
@@ -29,7 +29,6 @@ import {
 import store from './store';
 import { welcomeScreen } from './reducers/default';
 import { getAllMealsFromDB } from './reducers/meal'
-
 
 export default class foodprintReactNative extends Component {
 

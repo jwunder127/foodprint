@@ -9,13 +9,21 @@ import {
 import Calendar from 'react-native-calendar-datepicker';
 import Moment from 'moment';
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
+import store from '../store';
+import { setMealsByDate } from '../reducers/meal'
 
 export default class FooterComponent extends Component {
 
 
 render() {
 
-    const goToToday = () => Actions.day({date: Moment().format()})
+    const goToToday = () => {
+      //Select current meals by date
+      let formattedDate = Moment().format().slice(0,10)
+      store.dispatch(setMealsByDate(formattedDate))
+      // Send user to day page for selcted date
+      Actions.day({label: Moment().format('MMMM DD YYYY')})
+    }
     const backColor = '#006b76'
     const iconColor =  '#c4def6'
 

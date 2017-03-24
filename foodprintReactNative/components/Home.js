@@ -26,7 +26,7 @@ export default function Meal (props) {
       <Content>
       <List>
         {
-          meals && meals.map((meal, i) => {
+         meals && meals.map((meal, i) => {
             return (
               <ListItem key={i}>
                <TouchableOpacity onPress={()=> goToDay(meal)}>
