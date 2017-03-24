@@ -8,7 +8,7 @@ import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
 
-import { getNutrientsValue } from '../reducers/camera'
+import { getNutrientsValue } from '../reducers/meal'
 
 import { AWSOptions, clarifaiKeys } from '../secrets';
 import CameraView from '../components/Camera';

@@ -10,7 +10,7 @@ import {
 import {Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Text as RNText} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import store from '../store';
-import { setMeal } from '../reducers/camera'
+import { setMeal } from '../reducers/meal'
 
 
 

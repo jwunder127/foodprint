@@ -4,23 +4,11 @@ import Day from '../components/Day';
 
 
 const mapStateToProps = state => {
-  console.log('Meal state', state)
+
   return {
     meals: state.meal.allMeals
   }
 }
-
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadSelectedMeal(meal) {
-//       let foodTags =  meal.foodTagArray,
-//     nutritionInfo: nutritionalTable,
-//     photoUrl: photoUrl
-//       dispatch(getNutrientsValue(tags, photoUrl))
-//     }
-//   }
-// }
 
 export class MealContainer extends Component {
 
@@ -29,11 +17,10 @@ export class MealContainer extends Component {
 
   }
 
-
-
-
     render() {
-      const date = this.props.date.slice(0,10)
+      let date = 'No Date'
+      if (date) date = this.props.date.slice(0,10)
+
       console.log("Day container props:", date)
     return (
       <Day meals={this.props.meals} date={date} />

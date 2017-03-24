@@ -4,7 +4,7 @@ import Home from '../components/Home';
 
 
 const mapStateToProps = state => {
-  console.log('Meal state', state)
+  console.log('Meal state!!!', state)
   return {
     allMeals: state.meal.allMeals
   }

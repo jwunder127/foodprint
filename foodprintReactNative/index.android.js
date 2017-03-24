@@ -28,7 +28,7 @@ import {
 
 import store from './store';
 import { welcomeScreen } from './reducers/default';
-import { getAllMealsFromDB } from './reducers/camera'
+import { getAllMealsFromDB } from './reducers/meal'
 
 function welcome () {
   store.dispatch(welcomeScreen());

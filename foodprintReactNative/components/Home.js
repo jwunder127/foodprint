@@ -5,13 +5,13 @@ import {
 } from 'react-native';
 import { Container, Content, Thumbnail, List, ListItem } from 'native-base';
 import store from '../store';
-import { setMeal } from '../reducers/camera'
+import { setMeal } from '../reducers/meal'
 
 export default function Meal (props) {
 
 
     //Sort all meals by most recent first
-     const meals = props.meals.sort((a, b) => b.id - a.id)
+     const meals = props.meals
 
 
       const goToDay = (meal) => {

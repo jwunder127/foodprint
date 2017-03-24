@@ -48,11 +48,11 @@ const mealReducer = (state = initialState, action) => {
       return newState
 
     case SET_ALL_MEALS:
-      newState.allMeals = action.allMeals
+      newState.allMeals = action.allMeals.sort((a, b) => b.id - a.id)
       return newState
 
     case ADD_MEAL:
-      newState.allMeals.push(action.newMeal)
+      newState.allMeals.unshift(action.newMeal)
       return newState
 
     default:

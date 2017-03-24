@@ -4,7 +4,7 @@ import Meal from '../components/Meal';
 
 
 const mapStateToProps = state => {
-  console.log('Meal state', state)
+
   return {
     selectedMeal: state.meal.selectedMeal
   }
@@ -16,10 +16,8 @@ export class MealContainer extends Component {
     super(props)
   }
 
-//WHen it mounts, set meal to be the one passed in
 
     render() {
-      console.log("Meal container props:", this.props)
     return (
       <Meal meal={this.props.selectedMeal} />
     )
