@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { login, logout } from '../reducers/auth';
 import {connect} from 'react-redux';
-import Home from '../components/Home';
+import HomeContainer from '../containers/HomeContainer';
 import LoginComponent from '../components/LoginComponent';
 
 export class LoginContainer extends Component {
@@ -42,7 +42,7 @@ export class LoginContainer extends Component {
       );
     } else {
       return (
-        <Home />
+        <HomeContainer />
       );
     }
   }
