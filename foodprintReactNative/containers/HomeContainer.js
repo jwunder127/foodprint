@@ -19,7 +19,7 @@ export class HomeContainer extends Component {
   }
 
   componentWillMount() {
-    Actions.myTabBar()
+    Actions.mainTabBar()
   }
 
     render() {
