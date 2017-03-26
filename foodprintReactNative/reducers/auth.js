@@ -49,6 +49,7 @@ export const signup = (credentials) => {
       .then(() => {
         const username = credentials.email;
         const password = credentials.password;
+        console.log('username password',username, password)
         dispatch(login({username, password}))
       })
       .catch(() => dispatch(whoami()))

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { login, logout } from '../reducers/auth';
 import {connect} from 'react-redux';
-import Home from '../components/Home';
+import HomeContainer from '../containers/HomeContainer';
 import LoginComponent from '../components/LoginComponent';
+import { getAllMealsFromDB } from '../reducers/meal'
+import store from '../store';
 
 export class LoginContainer extends Component {
 
@@ -36,13 +38,15 @@ export class LoginContainer extends Component {
   }
 
   render() {
+
     if (this.props.auth === null){
       return (
         <LoginComponent updateEmail={this.updateEmail} updatePassword={this.updatePassword} doLogin={this.doLogin} doLogout={this.doLogout} />
       );
     } else {
+      store.dispatch(getAllMealsFromDB())
       return (
-        <Home />
+        <HomeContainer />
       );
     }
   }

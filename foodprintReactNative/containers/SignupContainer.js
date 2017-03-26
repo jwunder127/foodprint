@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Content, Button, Form, Item, Input, Label } from 'native-base'
 import {signup} from '../reducers/auth';
+import {Actions} from 'react-native-router-flux';
 
 export class SignupContainer extends Component {
 
@@ -33,6 +34,7 @@ export class SignupContainer extends Component {
 
   signUpSubmit() {
     this.props.createNewAccount(this.state);
+    Actions.home();
   }
 
   render() {

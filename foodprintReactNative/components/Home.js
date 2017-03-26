@@ -3,9 +3,11 @@ import { Actions } from 'react-native-router-flux';
 import {
   TouchableOpacity
 } from 'react-native';
-import { Container, Content, Thumbnail, List, ListItem } from 'native-base';
+import { Container, Content, Thumbnail, List, ListItem, Button } from 'native-base';
 import store from '../store';
 import { setMeal } from '../reducers/meal'
+import { logout } from '../reducers/auth';
+
 
 export default function Meal (props) {
 
@@ -18,6 +20,10 @@ export default function Meal (props) {
       // Update the state to reflect the currently selected meal and send user to the Meal view
         store.dispatch(setMeal(meal));
         Actions.meal();
+    }
+
+    const logoutNow = () => {
+      store.dispatch(logout());
     }
 
 
@@ -35,6 +41,9 @@ export default function Meal (props) {
               </ListItem>)
           })}
       </List>
+          <Button onPress={() => logoutNow()}>
+            <Text>LogOut</Text>
+        </Button>
       </Content>
       </Container>
     )
