@@ -122,32 +122,49 @@ passport.use(new (require('passport-local').Strategy)(
   }
 ))
 
-auth.get('/whoami', (req, res) => res.send(req.user))
+auth.get('/whoami', (req, res) => {
+ res.send(req.user)
+});
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', { successRedirect: '/' }))
+auth.post('/login/local', passport.authenticate('local', {
+  successRedirect: '/api/auth/whoami',
+  failureRedirect: '/api/auth/login/local'
+}));
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) =>
   passport.authenticate(req.params.strategy, {
     scope: 'email',
-    successRedirect: '/',
+    successRedirect: '/api/auth/whoami',
     // Specify other config here, such as "scope"
   })(req, res, next)
 )
 
 auth.post('/logout', (req, res, next) => {
-  req.logout()
-  res.redirect('/api/auth/whoami')
-})
+  req.logout();
+  res.sendStatus(204);
+});
 
 auth.post('/signup/local', (req, res, next) => {
-  User.create(req.body)
-    .then((createdUser) => {
-        res.status(202).json(createdUser);
-      })
-    .catch(next)
+  User.findOrCreate({
+    where: {
+      email: req.body.email
+    },
+    defaults: {
+      password: req.body.password
+    }
+  })
+    .spread((user, created) => {
+    if (created) {
+      req.logIn(user, function(err) {
+        if (err) return next(err);
+      });
+    } else {
+      res.sendStatus(401); //this user already exists, you cannot sign up
+    }
+    });
 });
 
 module.exports = auth

@@ -30,6 +30,7 @@ export class LoginContainer extends Component {
   }
 
   doLogin() {
+    console.log('email: ',this.state.email)
     this.props.login(this.state.email, this.state.password);
   }
 
