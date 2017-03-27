@@ -21,11 +21,10 @@ const style = StyleSheet.create({
             borderTopWidth : 1,
             borderColor    : '#b7b7b7',
             backgroundColor: '#006b76',
-            opacity        : .75
         }
     });
 
-const goToToday = () => Actions.day({date: Moment().format()});
+const goToToday = () => Actions.day({label: Moment().format()});
 
 export default class foodprintReactNative extends Component {
 
