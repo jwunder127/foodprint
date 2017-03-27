@@ -7,6 +7,7 @@ const SET_MEAL = 'SET_MEAL';
 const SET_MEALS = 'SET_MEALS'
 const SET_ALL_MEALS = 'SET_ALL_MEALS';
 const ADD_MEAL = 'ADD_MEAL'
+const REMOVE_MEALS = 'REMOVE_MEAL';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -33,6 +34,12 @@ export const setAllMeals = (allMeals) => {
   }
 };
 
+export const removeAllMeals = () => {
+  return {
+    type: REMOVE_MEALS
+  }
+}
+
 /* ------------       REDUCERS     ------------------ */
 const initialState = {
   selectedMeal: {},
@@ -54,6 +61,9 @@ const mealReducer = (state = initialState, action) => {
     case ADD_MEAL:
       newState.allMeals.unshift(action.newMeal)
       return newState
+
+    case REMOVE_MEALS:
+      return initialState;
 
     default:
       return newState

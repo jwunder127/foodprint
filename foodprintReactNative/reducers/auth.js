@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { removeAllMeals } from './meal';
 
 /* ------------------    ACTIONS    --------------------- */
 
@@ -35,14 +36,13 @@ const reducer = (state = null, action) => {
 export const whoami = () =>
   dispatch =>
     axios.get('http://192.168.1.9:1337/api/auth/whoami')
-      .then(response => {
-        const user = response.data
-        dispatch(authenticated(user))
-        return user;
+      .then(res => res.data)
+      .then(user => {
+          dispatch(authenticated(user))
       })
       .catch(() => {
         dispatch(authenticated(null))
-      })
+      });
 
 export const login = (username, password) =>
   dispatch =>
@@ -53,16 +53,25 @@ export const login = (username, password) =>
 
 export const logout = () =>
   dispatch => {
-    dispatch(remove());
     axios.post('http://192.168.1.9:1337/api/auth/logout')
+      .then(() => dispatch(whoami()))
+      .then(() => {
+        dispatch(removeAllMeals());
+        dispatch(remove());
+      })
       .catch(err => console.error('logout unsuccessful', err))};
 
 export const signup = (credentials) => {
   return dispatch => {
     axios.post('http://192.168.1.9:1337/api/auth/signup/local', credentials)
-      .then(res => res.data)
-      .then(user => dispatch(authenticated(user)))
-      .catch(() => dispatch(whoami()))
+      .then(res =>{console.log(res.data)})
+      .then(() => {
+        console.log('when are you getting here')
+        const username = credentials.email;
+        const password = credentials.password;
+        dispatch(login(username, password))
+      })
+      .catch(dispatch(whoami()))
   }
 };
 

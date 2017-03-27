@@ -30,7 +30,6 @@ export class LoginContainer extends Component {
   }
 
   doLogin() {
-    console.log('email: ',this.state.email)
     this.props.login(this.state.email, this.state.password);
   }
 
@@ -40,7 +39,7 @@ export class LoginContainer extends Component {
 
   render() {
 
-    if (this.props.auth === null){
+    if (this.props.auth === null || this.props.auth === ""){
       return (
         <LoginComponent updateEmail={this.updateEmail} updatePassword={this.updatePassword} doLogin={this.doLogin} doLogout={this.doLogout} />
       );
