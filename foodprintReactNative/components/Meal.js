@@ -22,7 +22,7 @@ export default function Meal (props) {
 
 
     return (
-      <Container style={{marginTop: 10, marginBottom: 60}}>
+      <Container style={{marginTop: 10, marginBottom: 50}}>
         <Content >
           <Card>
             <CardItem>
