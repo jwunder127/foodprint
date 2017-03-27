@@ -1,8 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, TextInput } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button, Content, Thumbnail, Spinner } from 'native-base';
+import { Card, CardItem, Button, Content, Thumbnail, Spinner } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -74,32 +74,35 @@ class CameraContainer extends Component {
   renderClarifaiResponse(foodTags){
 
     return (
-    <Content>
-      <Content>
+    <View>
         <Text>Select the foods that best match your meal</Text>
         {this.renderMealImage()}
         <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
         <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
+        <Content>
+          <Card>
           {foodTags.map(tag => (
-            <ListItem key={tag.id}>
+            <CardItem key={tag.id}>
+            <Text> Test </Text>
               <CheckBox
                 onClick={() => this.handleCheckedBox(tag.name)}
                 rightText={tag.name}
                 rightTextStyle={{textAlign: 'left'}}
                 style={{flex: 1}}
                 />
-            </ListItem>
+            </CardItem>
               ))}
+          </Card>
         </Content>
-        <Content style={{position: 'relative', bottom: 0}}>
+        <View style={{position: 'relative', bottom: 0}}>
           <TextInput
             placeholder="Don't see your food? Add it here! Separate by commas."
             style={{ backgroundColor: '#ccced1', borderWidth: 1}}
             onChangeText={(text) => this.handleAdditionalTags(text)}
             />
           {this.renderSubmitButton()}
-      </Content>
-    </Content>
+        </View>
+    </View>
     )
   }
     renderMealImage(){
