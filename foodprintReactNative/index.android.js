@@ -3,7 +3,7 @@ import { Router, Scene, Actions } from 'react-native-router-flux';
 import { Provider, connect } from 'react-redux';
 import LoginContainer from './containers/LoginContainer'
 import SignupContainer from './containers/SignupContainer'
-import CalendarPage from './components/Calendar'
+import CalendarPage from './containers/CalendarContainer'
 import CameraContainer from './containers/CameraContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'

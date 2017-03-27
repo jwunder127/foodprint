@@ -121,7 +121,7 @@ export const getAllMealsFromDB = () => {
   return (dispatch, getState) => {
 // Retrieve all meals from user upon login, and keep them in the store
         let userId = getState().auth.id
-        axios.get(`https://foodprintapp.herokuapp.com/api/meals/${userId}`)
+        axios.get(`http://192.168.5.51:1337/api/meals/${userId}`)
         .then(response => {
            console.log("Loaded Meals from DB:", response.data)
            dispatch(setAllMeals(response.data))
@@ -203,7 +203,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
             //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
             //Ingredients contains: Array of food objects (received from nutrition API)
 
-        axios.post(`https://foodprintapp.herokuapp.com/api/meals/${userId}`, {meal: mealToSave, ingredients: ingredients})
+        axios.post(`http://192.168.5.51:1337/api/meals/${userId}`, {meal: mealToSave, ingredients: ingredients})
         .then(savedMeal => {
            console.log("Saved Meal in DB:", savedMeal.data[0])
 
