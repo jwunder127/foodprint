@@ -7,6 +7,7 @@ const SET_MEAL = 'SET_MEAL';
 const SET_MEALS = 'SET_MEALS'
 const SET_ALL_MEALS = 'SET_ALL_MEALS';
 const ADD_MEAL = 'ADD_MEAL'
+const REMOVE_MEALS = 'REMOVE_MEAL';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -17,6 +18,14 @@ export const setMeal = (meal) => {
     type: SET_MEAL,
     selectedMeal: meal
   }
+}
+
+export const setMeals = (meals) => {
+  return {
+    type: SET_MEALS,
+    selectedMeals: meals
+  }
+
 }
 
 export const addMeal = (meal) => {
@@ -33,9 +42,16 @@ export const setAllMeals = (allMeals) => {
   }
 };
 
+export const removeAllMeals = () => {
+  return {
+    type: REMOVE_MEALS
+  }
+}
+
 /* ------------       REDUCERS     ------------------ */
 const initialState = {
   selectedMeal: {},
+  selectedMeals: [],
   allMeals: []
 };
 
@@ -55,6 +71,13 @@ const mealReducer = (state = initialState, action) => {
       newState.allMeals.unshift(action.newMeal)
       return newState
 
+    case REMOVE_MEALS:
+      return initialState;
+
+    case SET_MEALS:
+      newState.selectedMeals = action.selectedMeals
+
+
     default:
       return newState
   }
@@ -62,12 +85,43 @@ const mealReducer = (state = initialState, action) => {
 
 /* ------------       DISPATCHERS     ------------------ */
 
+export const setMealsByDate = (date) => {
+
+  return (dispatch, getState) => {
+
+    let allMeals = getState().meal.allMeals;
+    //Filter allMeals for just the ones created on a given date
+    let selectedMeals = allMeals.filter( (meal) => {
+      return meal.created_at.slice(0,10) === date
+    })
+
+    //Dispatch selected meals to the store
+    dispatch(setMeals(selectedMeals))
+  }
+
+}
+
+export const setMealsByTag = (tag) => {
+
+  return (dispatch, getState) => {
+
+    let allMeals = getState().meal.allMeals;
+    //Filter allMeals for tags
+    let selectedMeals = allMeals.filter( (meal) => {
+      return meal.tags.includes(tag)
+    })
+    //Dispatch selected meals to the store
+    dispatch(setMeals(selectedMeals))
+  }
+
+}
+
 export const getAllMealsFromDB = () => {
 
   return (dispatch, getState) => {
 // Retrieve all meals from user upon login, and keep them in the store
-        let userId = 2 //getState(id)
-        axios.get(`http://192.168.5.50:1337/api/meals/${userId}`)
+        let userId = getState().auth.id
+        axios.get(`https://foodprintapp.herokuapp.com/api/meals/${userId}`)
         .then(response => {
            console.log("Loaded Meals from DB:", response.data)
            dispatch(setAllMeals(response.data))
@@ -78,8 +132,8 @@ export const getAllMealsFromDB = () => {
 
 export const getNutrientsValue = (tags, photoUrl) => {
 
-  return (dispatch) => {
-
+  return (dispatch, getState) => {
+    let userId = getState().auth.id
     let ingredients = [];
     const data = {
       "query": tags.join(" ")
@@ -88,6 +142,9 @@ export const getNutrientsValue = (tags, photoUrl) => {
     axios.post(nutritionixURL, data, nutritionixConfig)
       .then(response => {
         //Take each food result from the Nutritionx API and add it to an array of ingredients
+
+        //console.log("Nutrition response", response.data.food)
+
         response.data.foods.forEach(eachFoodObject => {
           let foodObject = {
             food_name: eachFoodObject.food_name,
@@ -145,7 +202,8 @@ export const getNutrientsValue = (tags, photoUrl) => {
         //The DB will receive as a body: a Meal object and an Ingredients array
             //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
             //Ingredients contains: Array of food objects (received from nutrition API)
-        axios.post('http://192.168.5.50:1337/api/meals/2', {meal: mealToSave, ingredients: ingredients})
+
+        axios.post(`https://foodprintapp.herokuapp.com/api/meals/${userId}`, {meal: mealToSave, ingredients: ingredients})
         .then(savedMeal => {
            console.log("Saved Meal in DB:", savedMeal.data[0])
 
@@ -160,9 +218,13 @@ export const getNutrientsValue = (tags, photoUrl) => {
           () => Actions.meal()
         )
         .catch(console.error)
-    }
+      }
+    )
+  .catch( (error) => {
+    console.log(error, "Tag not found");
+    Actions.camera({reset: true})
+  }
   )
-.catch(console.error)
 }
 };
 

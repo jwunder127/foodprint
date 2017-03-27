@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 import { Provider, connect } from 'react-redux';
 import LoginContainer from './containers/LoginContainer'
-import Signup from './components/Signup'
+import SignupContainer from './containers/SignupContainer'
 import CalendarPage from './components/Calendar'
 import CameraContainer from './containers/CameraContainer';
 import Day from './containers/DayContainer'
@@ -14,6 +14,7 @@ import { Container } from 'native-base';
 import store from './store';
 import { getAllMealsFromDB } from './reducers/meal';
 import { calendarIcon, cameraIcon, nutritionIcon, homeIcon } from './components/Icons';
+
 
 const style = StyleSheet.create({
         tabBarStyle: {
@@ -29,14 +30,13 @@ const goToToday = () => Actions.day({date: Moment().format()});
 export default class foodprintReactNative extends Component {
 
   render() {
-
     return (
       <Container>
         <Provider store={store}>
           <Router>
             <Scene key="root" hideNavBar={true}>
               <Scene key="login" component={LoginContainer} title="Login" initial={true} />
-              <Scene key="signup" component={Signup} title="Sign up"/>
+              <Scene key="signup" component={SignupContainer} title="Sign up" />
               <Scene key="mainTabBar" tabs={true} hideNavBar={true} tabBarStyle={style.tabBarStyle} >
                 <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} onPress={()=> {Actions.calendar()}}>
                   <Scene key="home" component={Home} title="Home" hideNavBar={true} />

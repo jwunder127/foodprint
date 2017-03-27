@@ -3,9 +3,11 @@ import { Actions } from 'react-native-router-flux';
 import {
   TouchableOpacity
 } from 'react-native';
-import { Container, Content, Thumbnail, List, ListItem } from 'native-base';
+import { Container, Content, Thumbnail, List, ListItem, Button, Text } from 'native-base';
 import store from '../store';
-import { setMeal } from '../reducers/meal'
+import { setMeal } from '../reducers/meal';
+import { logout } from '../reducers/auth';
+
 
 export default function Meal (props) {
 
@@ -20,13 +22,22 @@ export default function Meal (props) {
         Actions.meal();
     }
 
+    const doLogOut = () => {
+       store.dispatch(logout());
+       Actions.login();
+    }
 
     return (
      <Container>
       <Content>
+        <ListItem itemDivider>
+          <Button rounded danger onPress={() => doLogOut()}>
+            <Text> Log Out </Text>
+          </Button>
+        </ListItem>
       <List>
         {
-          meals && meals.map((meal, i) => {
+         meals && meals.map((meal, i) => {
             return (
               <ListItem key={i}>
                <TouchableOpacity onPress={()=> goToDay(meal)}>
