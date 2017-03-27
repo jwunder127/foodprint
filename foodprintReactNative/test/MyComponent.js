@@ -3,6 +3,8 @@
 import React, { View, Text, StyleSheet } from 'react-native';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
+
+
 const Test = React.createClass({
   render() {
     return (

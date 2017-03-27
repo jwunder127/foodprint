@@ -38,7 +38,7 @@ describe('/api/auth', () => {
       request(app)
         .post('/api/auth/login/local')
         .send({username: alice.username, password: 'wrong'})
-        .expect(401)
+        .expect('Location', '/api/auth/login/local')
       )
 
   })
@@ -89,13 +89,7 @@ describe('/api/auth', () => {
 
       it('logs you out and redirects to whoami', () => agent
         .post('/api/auth/logout')
-        .expect(302)
-        .expect('Location', '/api/auth/whoami')
-        .then(() =>
-          agent.get('/api/auth/whoami')
-            .expect(200)
-            .then(rsp => expect(rsp.body).eql({}))
-        )
+        .expect(204)
       )
 
     })
