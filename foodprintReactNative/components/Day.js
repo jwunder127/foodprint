@@ -29,7 +29,7 @@ export default function Meal (props) {
                     {meal.tags.map((food, i) => {
                     return (
                       <TouchableOpacity key={i} onPress={() => props.handleTagClick(food)}>
-                      <Badge key={i} style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{food}</RNText></Badge>
+                      <Badge key={i} style={{margin: 5, backgroundColor: '#f6b19c'}}><RNText>{food}</RNText></Badge>
                       </TouchableOpacity>
                     )
                     })}
