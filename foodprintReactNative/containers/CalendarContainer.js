@@ -10,7 +10,8 @@ import Calendar from 'react-native-calendar-datepicker';
 import Moment from 'moment';
 
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
-
+import store from '../store';
+import { setMealsByDate } from '../reducers/meal'
 
 export default class CalendarPage extends Component {
 
@@ -22,7 +23,13 @@ export default class CalendarPage extends Component {
     };
   }
 
-  goToDay = () => Actions.day({date: Moment(this.state.date).format()})
+  goToDay = () => {
+    //Select current meals by date
+    let formattedDate = Moment(this.state.date).format().slice(0,10)
+    store.dispatch(setMealsByDate(formattedDate))
+    // Send user to day page for selcted date
+    Actions.day({label: Moment(this.state.date).format('MMMM DD YYYY')})
+  }
 
   render() {
     const BLUE = '#2196F3';
