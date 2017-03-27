@@ -35,7 +35,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectMeals(tag) {
+    selectMeals: (tag) => {
       dispatch(setMealsByTag(tag))
     }
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Container,
   Content,
@@ -8,33 +8,12 @@ import {
   Badge,
   Button
 } from 'native-base';
-import {Text, ScrollView, TouchableOpacity, StyleSheet, View, Text as RNText} from 'react-native';
-
-
+import {Text, TouchableOpacity, View, Text as RNText} from 'react-native';
 
 
 export default function Meal (props) {
 
-  //    const setTag = (foodTag) => {
-  //    //Set the selected meals to be all those that contain the clicked food tag
-  //    store.dispatch(setMealsByTag(foodTag))
-  //    Actions.day({label: foodTag})
-  //  }
-
-
-    //console.log('DAY', props)
-
     const mealsArray = props.meals
-
-   // console.log("Meals Array", mealsArray)
-
-    //const goToDay = (meal) => {Actions.day({meal: meal})}
-
-    // const goToDay = (meal) => {
-    //   // Update the state to reflect the currently selected meal and send user to the Meal view
-    //   store.dispatch(setMeal(meal));
-    //   Actions.meal();
-    // }
 
     return (
       <Container style={{marginTop: 10, marginBottom: 50}}>

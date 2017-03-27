@@ -32,13 +32,10 @@ export class MealContainer extends Component {
 
     render() {
 
-     let label = this.props.label
-
-    //console.log("Day container props:", label)
     return (
       <Day
       meals={this.props.meals}
-      label={label}
+      label={this.props.label}
       handleMealClick={this.handleMealClick}
       handleTagClick={this.handleTagClick}
       handleTagReset={this.handleTagReset}
@@ -56,10 +53,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectMeal(meal) {
+    selectMeal: (meal) => {
       dispatch(setMeal(meal))
     },
-    selectMeals(tag) {
+    selectMeals: (tag) => {
       dispatch(setMealsByTag(tag))
    }
   }

@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { Image, Text as RNText, View, TouchableOpacity, StyleSheet } from 'react-native';
-import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer} from 'native-base';
+import React from 'react';
+import { Text as RNText, View, TouchableOpacity, StyleSheet } from 'react-native';
+import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer, Left} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import axios from 'axios';
-
 
 
 const styles = StyleSheet.create({
@@ -23,25 +21,27 @@ export default function Meal (props) {
 
     return (
       <Container style={{marginTop: 10, marginBottom: 50}}>
-        <Content >
+        <Content>
           <Card>
-            <CardItem>
-              <Body>
-                <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
-              <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                {props.meal.tags.map((foodTag, i) =>{
-                  return (
-                  <TouchableOpacity key={i} onPress={()=> props.handleTagClick(foodTag)}>
-                    <Badge   style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{foodTag}</RNText></Badge>
-                  </TouchableOpacity>
-                )})
-                }
-              </View>
-              </Body>
+            <CardItem bordered>
+              <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
             </CardItem>
-          </Card>
-          <Card>
-            <CardItem>
+
+            <CardItem bordered>
+              <Left>
+               <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+                   {props.meal.tags.map((foodTag, i) =>{
+                   return (
+                    <TouchableOpacity key={i} onPress={()=> props.handleTagClick(foodTag)}>
+                     <Badge   style={{margin: 3, backgroundColor: '#6dd06f'}}><RNText style={{fontSize: 10, lineHeight: 18}}>{foodTag}</RNText></Badge>
+                     </TouchableOpacity>
+                    )})
+                   }
+                </View>
+              </Left>
+              </CardItem>
+
+            <CardItem bordered>
               <Body>
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
                  <Grid>
