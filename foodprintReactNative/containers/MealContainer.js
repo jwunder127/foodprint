@@ -15,7 +15,6 @@ export class MealContainer extends Component {
   }
 
   handleTagClick(tag){
-    console.log("LAST TEST")
     this.props.selectMeals(tag)
     Actions.day({label: tag})
   }
