@@ -16,6 +16,7 @@
     "react-native-calendar-datepicker": "^1.2.2",
     "react-native-camera": "^0.6.0",
     "react-native-check-box": "^1.0.4",
+    "react-native-easy-grid": "^0.1.8",
     "react-native-image-picker": "^0.26.2",
     "react-native-router-flux": "^3.38.0",
     "react-redux": "^5.0.3",

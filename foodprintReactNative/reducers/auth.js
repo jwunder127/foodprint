@@ -25,7 +25,7 @@ export const whoami = () =>
         const user = response.data
         dispatch(authenticated(user))
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(authenticated(null))
       })
 

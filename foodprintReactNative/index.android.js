@@ -36,18 +36,21 @@ export default class foodprintReactNative extends Component {
 
   render() {
 
+    //store.dispatch(getAllMealsFromDB())
+
+
     return (
 
     <Container>
     <Provider store={store}>
       <Router>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="login" component={LoginContainer} title="Login" initial = {true} />
+          <Scene key="login" component={LoginContainer} title="Login" initial = {false} />
           <Scene key="signup" component={Signup} title="Sign up"/>
-          <Scene key="home" component={Home} title="Home" initial = {false}/>
+          <Scene key="home" component={Home} title="Home" initial = {true}/>
           <Scene key="calendar" component={CalendarPage} title= "Calendar View"  />
           <Scene key="day" component={Day} title= "Day View" />
-          <Scene key="meal" component={Meal} title= "Meal View" />
+          <Scene key="meal" component={Meal} title= "Meal View" initial = {false}/>
           <Scene key="camera" component={CameraContainer} title= "Camera View" />
        </Scene>
       </Router>
