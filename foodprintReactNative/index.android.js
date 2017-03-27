@@ -37,6 +37,9 @@ export default class foodprintReactNative extends Component {
 
   render() {
 
+    
+
+
     return (
 
     <Container>
@@ -48,7 +51,7 @@ export default class foodprintReactNative extends Component {
           <Scene key="home" component={Home} title="Home" initial = {false} />
           <Scene key="calendar" component={CalendarPage} title= "Calendar View" />
           <Scene key="day" component={Day} title= "Day View" />
-          <Scene key="meal" component={Meal} title= "Meal View" />
+          <Scene key="meal" component={Meal} title= "Meal View" initial = {false}/>
           <Scene key="camera" component={CameraContainer} title= "Camera View" />
        </Scene>
       </Router>

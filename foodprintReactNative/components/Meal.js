@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Text as RNText, View, TouchableOpacity } from 'react-native';
 import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail} from 'native-base';
+import { Col, Row, Grid } from "react-native-easy-grid";
 import axios from 'axios';
 import store from '../store';
 import { setMealsByTag } from '../reducers/meal'
@@ -37,23 +38,49 @@ export default function Meal (props) {
           <Card>
             <CardItem>
               <Body>
+
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Calories
-                {" " + props.meal.nutritionalTable.calories.toFixed(2)}</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Total fat
-                {" " + props.meal.nutritionalTable.total_fat.toFixed(2)}g</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Saturated Fat
-                {" " + props.meal.nutritionalTable.saturated_fat.toFixed(2)}g</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Cholesterol
-                 {" " + props.meal.nutritionalTable.cholesterol.toFixed(2)}mg</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Sodium
-                 {" " + props.meal.nutritionalTable.sodium.toFixed(2)}mg</RNText>
-                 <RNText style={{fontSize: 15, color:'#000'}}>Total Carbohydrate
-                 {" " + props.meal.nutritionalTable.total_carbohydrate.toFixed(2)}g</RNText>
-                 <RNText style={{fontSize: 15, color:'#000'}}>Sugars
-                 {" " + props.meal.nutritionalTable.sugars.toFixed(2)}g</RNText>
-                <RNText style={{fontSize: 15, color:'#000'}}>Protein
-                 {" " + props.meal.nutritionalTable.protein.toFixed(2)}g</RNText>
+                 <Grid>
+
+
+
+
+
+                 <Col>
+                    <Row><RNText style={{fontSize: 10, color:'#000' }}>  </RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Calories</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Total fat</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Saturated fat</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Cholesterol</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Sodium</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Carbohydrates</RNText></Row>
+                     <Row><RNText style={{fontSize: 15, color:'#000' }}>Sugars</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>Protein</RNText></Row>
+                 </Col>
+                 <Col>
+                 <Row><RNText style={{fontSize: 10, color:'#000' }}>Amount per Serving</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + props.meal.nutritionalTable.calories.toFixed(0)}</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.total_fat.toFixed(0)}g</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.saturated_fat.toFixed(0)}g</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.cholesterol.toFixed(0)}mg</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.sodium.toFixed(0)}mg</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.total_carbohydrate.toFixed(0)}g</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.sugars.toFixed(0)}g</RNText></Row>
+                    <Row><RNText style={{fontSize: 15, color:'#000'}}>{" " + props.meal.nutritionalTable.protein.toFixed(0)}g</RNText></Row>
+                 </Col>
+                 <Col>
+                   <Row><RNText style={{fontSize: 10, color:'#000' }}>% Daily Value</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + (100 * props.meal.nutritionalTable.calories / 2000).toFixed(0)}%</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + (100 * props.meal.nutritionalTable.total_fat / 65).toFixed(0)}%</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + (100 * props.meal.nutritionalTable.saturated_fat / 20).toFixed(0)}%</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + (100 * props.meal.nutritionalTable.cholesterol / 300).toFixed(0)}%</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + (100 * props.meal.nutritionalTable.sodium / 2400).toFixed(0)}%</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>{" " + (100 * props.meal.nutritionalTable.total_carbohydrate / 300).toFixed(0)}%</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>--</RNText></Row>
+                  <Row><RNText style={{fontSize: 15, color:'#000' }}>--</RNText></Row>
+                 </Col>
+
+                 </Grid>
               </Body>
             </CardItem>
           </Card>
@@ -61,4 +88,3 @@ export default function Meal (props) {
       </Container>
     )
 }
-

@@ -202,6 +202,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
         //The DB will receive as a body: a Meal object and an Ingredients array
             //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
             //Ingredients contains: Array of food objects (received from nutrition API)
+
         axios.post(`https://foodprintapp.herokuapp.com/api/meals/${userId}`, {meal: mealToSave, ingredients: ingredients})
         .then(savedMeal => {
            console.log("Saved Meal in DB:", savedMeal.data[0])
