@@ -24,7 +24,6 @@ export default function Meal (props) {
 
     const doLogOut = () => {
        store.dispatch(logout());
-       Actions.login();
     }
 
     return (
