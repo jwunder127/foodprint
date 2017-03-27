@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Home from '../components/Home';
+import { Actions } from 'react-native-router-flux';
+
 
 
 const mapStateToProps = state => {
@@ -14,6 +16,10 @@ export class HomeContainer extends Component {
 
   constructor(props){
     super(props)
+  }
+
+  componentWillMount() {
+    Actions.mainTabBar()
   }
 
     render() {
