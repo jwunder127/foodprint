@@ -4,7 +4,6 @@ import { Container, Content, Button, Form, Item, Input, Icon, Label, Grid, Col, 
 
 export default function LoginComponent (props) {
 
-
   return (
       <Container>
         <Content>

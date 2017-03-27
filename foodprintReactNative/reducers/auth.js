@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Actions} from 'react-native-router-flux';
 import { removeAllMeals } from './meal';
 
 /* ------------------    ACTIONS    --------------------- */
@@ -53,8 +54,9 @@ export const login = (username, password) =>
 
 export const logout = () =>
   dispatch => {
-    axios.post('https://foodprintapp.herokuapp.com/api/auth/logout')
+    return axios.post('https://foodprintapp.herokuapp.com/api/auth/logout')
       .then(() => dispatch(whoami()))
+      .then(() => Actions.login())
       .then(() => {
         dispatch(removeAllMeals());
         dispatch(remove());
@@ -63,7 +65,7 @@ export const logout = () =>
 
 export const signup = (credentials) => {
   return dispatch => {
-    axios.post('https://foodprintapp.herokuapp.com/api/auth/signup/local', credentials)
+    return axios.post('https://foodprintapp.herokuapp.com/api/auth/signup/local', credentials)
       .then(res =>{console.log(res.data)})
       .then(() => {
         console.log('when are you getting here')

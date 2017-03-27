@@ -24,7 +24,7 @@ export default function Meal (props) {
               <Body>
                 <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
               <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                {props.meals && props.meal.tags.map((foodTag, i) =>{
+                {props.meal.tags.map((foodTag, i) =>{
                   return (
                   <TouchableOpacity key={i} onPress={()=>setTag(foodTag)}>
                     <Badge   style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{foodTag}</RNText></Badge>
