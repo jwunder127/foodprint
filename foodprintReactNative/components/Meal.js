@@ -25,6 +25,7 @@ export default function Meal (props) {
           <Card>
             <CardItem bordered>
               <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
+
             </CardItem>
 
             <CardItem bordered>

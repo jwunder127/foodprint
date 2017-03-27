@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import HomeContainer from '../containers/HomeContainer';
 import LoginComponent from '../components/LoginComponent';
 import { getAllMealsFromDB } from '../reducers/meal'
-import store from '../store';
+import { whoami } from '../reducers/auth'
 
 export class LoginContainer extends Component {
 
@@ -19,6 +19,10 @@ export class LoginContainer extends Component {
     this.updatePassword = this.updatePassword.bind(this);
     this.doLogin = this.doLogin.bind(this);
     this.doLogout = this.doLogout.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.whoami();
   }
 
   updateEmail(text){
@@ -44,7 +48,7 @@ export class LoginContainer extends Component {
         <LoginComponent updateEmail={this.updateEmail} updatePassword={this.updatePassword} doLogin={this.doLogin} doLogout={this.doLogout} />
       );
     } else {
-      store.dispatch(getAllMealsFromDB())
+      this.props.getAllMealsFromDB();
       return (
         <HomeContainer />
       );
@@ -52,7 +56,27 @@ export class LoginContainer extends Component {
   }
 }
 
-export default connect(
-  ({ auth }) => ({ auth }),
-  { login, logout }
-)(LoginContainer)
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login(username, password) {
+      dispatch(login(username, password))
+    },
+    logout() {
+      dispatch(logout())
+    },
+    getAllMealsFromDB() {
+      dispatch(getAllMealsFromDB())
+    },
+    whoami() {
+      dispatch(whoami())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

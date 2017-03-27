@@ -9,6 +9,7 @@ import { Container, Content, Thumbnail, List, ListItem, Button, Text } from 'nat
 
 export default function Meal (props) {
 
+
     return (
      <Container>
       <Content>

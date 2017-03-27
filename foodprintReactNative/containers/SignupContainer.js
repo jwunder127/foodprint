@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Content, Button, Form, Item, Input, Label } from 'native-base'
 import {signup} from '../reducers/auth';
-import {Actions} from 'react-native-router-flux';
+
+const styles = {
+  mainForm: {
+    margin: 40,
+    marginTop: 60
+  },
+  text: {
+    color: 'grey'
+  },
+  mainActionBtn: {
+    margin: 25
+  },
+  secondActionBtn: {
+    margin: 40
+  },
+}
 
 export class SignupContainer extends Component {
 
@@ -34,7 +49,6 @@ export class SignupContainer extends Component {
 
   signUpSubmit() {
     this.props.createNewAccount(this.state);
-    Actions.home();
   }
 
   render() {
@@ -42,19 +56,19 @@ export class SignupContainer extends Component {
       <Container>
         <Content>
           <Form style={styles.mainForm}>
-            <Item floatingLabel >
+            <Item stackedLabel >
               <Label>Name</Label>
               <Input onChangeText={(text) => this.inputName(text)}/>
             </Item>
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label>Email</Label>
               <Input onChangeText={(text) => this.inputEmail(text)}/>
             </Item>
-            <Item floatingLabel>
+            <Item stackedLabel>
               <Label>Password</Label>
               <Input secureTextEntry={true} onChangeText={(text) => this.inputPassword(text)}/>
             </Item>
-            <Button style={styles.mainActionBtn} full light onPress={this.signUpSubmit}><Label>Sign Up</Label></Button>
+            <Button style={styles.mainActionBtn} block info onPress={this.signUpSubmit}><Label>Sign Up</Label></Button>
           </Form>
         </Content>
       </Container>
@@ -71,40 +85,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(null, mapDispatchToProps)(SignupContainer);
-
-const styles = {
-  mainForm: {
-    margin: 40,
-    marginTop: 60
-  },
-  mainGrid: {
-    margin: 15
-  },
-  mainGridCol: {
-    backgroundColor: 'white',
-    height: 100
-  },
-  mainGridLabel: {
-    margin: 10
-  },
-  mainGridrow: {
-    flexWrap:'wrap'
-  },
-  text: {
-    color: "grey"
-  },
-  google: {
-    color: 'red'
-  },
-  mainActionBtn: {
-    margin: 25
-  },
-  secondActionBtn: {
-    margin: 40
-  },
-  socialBtn: {
-    marginTop: 10,
-    marginLeft: 25,
-    borderColor: 'grey'
-  }
-}
