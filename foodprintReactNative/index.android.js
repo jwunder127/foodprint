@@ -10,8 +10,9 @@ import { Provider } from 'react-redux';
 
 
 import LoginContainer from './containers/LoginContainer'
-import Signup from './components/Signup'
-import CalendarPage from './containers/CalendarContainer'
+
+import SignupContainer from './containers/SignupContainer'
+import CalendarPage from './components/Calendar'
 import CameraContainer from './containers/CameraContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'
@@ -27,8 +28,8 @@ import {
 } from 'react-native';
 
 import store from './store';
-import { welcomeScreen } from './reducers/default';
-import { getAllMealsFromDB } from './reducers/meal'
+// import { welcomeScreen } from './reducers/default';
+// import { getAllMealsFromDB } from './reducers/meal'
 
 export default class foodprintReactNative extends Component {
 
@@ -36,7 +37,7 @@ export default class foodprintReactNative extends Component {
 
   render() {
 
-    //store.dispatch(getAllMealsFromDB())
+    
 
 
     return (
@@ -45,10 +46,10 @@ export default class foodprintReactNative extends Component {
     <Provider store={store}>
       <Router>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="login" component={LoginContainer} title="Login" initial = {false} />
-          <Scene key="signup" component={Signup} title="Sign up"/>
-          <Scene key="home" component={Home} title="Home" initial = {true}/>
-          <Scene key="calendar" component={CalendarPage} title= "Calendar View"  />
+          <Scene key="login" component={LoginContainer} title="Login" initial = {true} />
+          <Scene key="signup" component={SignupContainer} title="Sign up" />
+          <Scene key="home" component={Home} title="Home" initial = {false} />
+          <Scene key="calendar" component={CalendarPage} title= "Calendar View" />
           <Scene key="day" component={Day} title= "Day View" />
           <Scene key="meal" component={Meal} title= "Meal View" initial = {false}/>
           <Scene key="camera" component={CameraContainer} title= "Camera View" />

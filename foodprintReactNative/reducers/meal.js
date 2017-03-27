@@ -7,6 +7,7 @@ const SET_MEAL = 'SET_MEAL';
 const SET_MEALS = 'SET_MEALS'
 const SET_ALL_MEALS = 'SET_ALL_MEALS';
 const ADD_MEAL = 'ADD_MEAL'
+const REMOVE_MEALS = 'REMOVE_MEAL';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -41,6 +42,12 @@ export const setAllMeals = (allMeals) => {
   }
 };
 
+export const removeAllMeals = () => {
+  return {
+    type: REMOVE_MEALS
+  }
+}
+
 /* ------------       REDUCERS     ------------------ */
 const initialState = {
   selectedMeal: {},
@@ -64,9 +71,12 @@ const mealReducer = (state = initialState, action) => {
       newState.allMeals.unshift(action.newMeal)
       return newState
 
+    case REMOVE_MEALS:
+      return initialState;
+
     case SET_MEALS:
       newState.selectedMeals = action.selectedMeals
-      return newState
+
 
     default:
       return newState
@@ -110,8 +120,8 @@ export const getAllMealsFromDB = () => {
 
   return (dispatch, getState) => {
 // Retrieve all meals from user upon login, and keep them in the store
-        let userId = 2 //getState(id)
-        axios.get(`http://192.168.4.165:1337/api/meals/${userId}`)
+        let userId = getState().auth.id
+        axios.get(`https://foodprintapp.herokuapp.com/api/meals/${userId}`)
         .then(response => {
            console.log("Loaded Meals from DB:", response.data)
            dispatch(setAllMeals(response.data))
@@ -122,8 +132,8 @@ export const getAllMealsFromDB = () => {
 
 export const getNutrientsValue = (tags, photoUrl) => {
 
-  return (dispatch) => {
-
+  return (dispatch, getState) => {
+    let userId = getState().auth.id
     let ingredients = [];
     const data = {
       "query": tags.join(" ")
@@ -192,7 +202,8 @@ export const getNutrientsValue = (tags, photoUrl) => {
         //The DB will receive as a body: a Meal object and an Ingredients array
             //Meal contains: photoURL, FoodTags strings (received from nutrition API), and nutritionalTable
             //Ingredients contains: Array of food objects (received from nutrition API)
-        axios.post('http://192.168.4.165:1337/api/meals/2', {meal: mealToSave, ingredients: ingredients})
+
+        axios.post(`https://foodprintapp.herokuapp.com/api/meals/${userId}`, {meal: mealToSave, ingredients: ingredients})
         .then(savedMeal => {
            console.log("Saved Meal in DB:", savedMeal.data[0])
 
