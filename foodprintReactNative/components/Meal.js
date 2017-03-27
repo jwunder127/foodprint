@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Text as RNText, View, TouchableOpacity } from 'react-native';
-import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail} from 'native-base';
+import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import axios from 'axios';
 import store from '../store';
@@ -85,6 +85,7 @@ export default function Meal (props) {
             </CardItem>
           </Card>
         </Content>
+        <Footer style={{opacity: 0}} />
       </Container>
     )
 }
