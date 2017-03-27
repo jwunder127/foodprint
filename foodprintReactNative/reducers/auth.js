@@ -35,7 +35,7 @@ const reducer = (state = null, action) => {
 
 export const whoami = () =>
   dispatch =>
-    axios.get('http://192.168.1.9:1337/api/auth/whoami')
+    axios.get('https://foodprintapp.herokuapp.com/api/auth/whoami')
       .then(res => res.data)
       .then(user => {
           dispatch(authenticated(user))
@@ -46,14 +46,14 @@ export const whoami = () =>
 
 export const login = (username, password) =>
   dispatch =>
-    axios.post('http://192.168.1.9:1337/api/auth/login/local',
+    axios.post('https://foodprintapp.herokuapp.com/api/auth/login/local',
       {username, password})
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 
 export const logout = () =>
   dispatch => {
-    axios.post('http://192.168.1.9:1337/api/auth/logout')
+    axios.post('https://foodprintapp.herokuapp.com/api/auth/logout')
       .then(() => dispatch(whoami()))
       .then(() => {
         dispatch(removeAllMeals());
@@ -63,7 +63,7 @@ export const logout = () =>
 
 export const signup = (credentials) => {
   return dispatch => {
-    axios.post('http://192.168.1.9:1337/api/auth/signup/local', credentials)
+    axios.post('https://foodprintapp.herokuapp.com/api/auth/signup/local', credentials)
       .then(res =>{console.log(res.data)})
       .then(() => {
         console.log('when are you getting here')
