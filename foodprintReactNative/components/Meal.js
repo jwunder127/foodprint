@@ -3,18 +3,13 @@ import { Image, Text as RNText, View, TouchableOpacity } from 'react-native';
 import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import axios from 'axios';
-import store from '../store';
-import { setMealsByTag } from '../reducers/meal'
-import { Actions } from 'react-native-router-flux'
+
+
 
 export default function Meal (props) {
 
 
-   const setTag = (foodTag) => {
-     //Set the selected meals to be all those that contain the clicked food tag
-     store.dispatch(setMealsByTag(foodTag))
-     Actions.day({label: foodTag})
-   }
+
 
     return (
       <Container style={{marginTop: 10, marginBottom: 10}}>
@@ -24,9 +19,9 @@ export default function Meal (props) {
               <Body>
                 <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
               <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                {props.meals && props.meal.tags.map((foodTag, i) =>{
+                {props.meal.tags.map((foodTag, i) =>{
                   return (
-                  <TouchableOpacity key={i} onPress={()=>setTag(foodTag)}>
+                  <TouchableOpacity key={i} onPress={()=> props.handleTagClick(foodTag)}>
                     <Badge   style={{margin: 5, backgroundColor: '#6dd06f'}}><RNText>{foodTag}</RNText></Badge>
                   </TouchableOpacity>
                 )})
@@ -41,11 +36,6 @@ export default function Meal (props) {
 
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
                  <Grid>
-
-
-
-
-
                  <Col>
                     <Row><RNText style={{fontSize: 10, color:'#000' }}>  </RNText></Row>
                     <Row><RNText style={{fontSize: 15, color:'#000' }}>Calories</RNText></Row>

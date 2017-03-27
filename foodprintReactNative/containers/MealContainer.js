@@ -1,7 +1,31 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Meal from '../components/Meal';
+import { Actions } from 'react-native-router-flux'
+import { setMealsByTag } from '../reducers/meal'
 
+
+
+export class MealContainer extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.handleTagClick = this.handleTagClick.bind(this);
+  }
+
+  handleTagClick(tag){
+    console.log("LAST TEST")
+    this.props.selectMeals(tag)
+    Actions.day({label: tag})
+  }
+
+    render() {
+    return (
+      <Meal meal={this.props.selectedMeal} handleTagClick={this.handleTagClick} />
+    )
+  }
+}
 
 const mapStateToProps = state => {
 
@@ -10,21 +34,14 @@ const mapStateToProps = state => {
   }
 }
 
-export class MealContainer extends Component {
-
-  constructor(props){
-    super(props)
-  }
-
-
-    render() {
-    return (
-      <Meal meal={this.props.selectedMeal} />
-    )
+const mapDispatchToProps = dispatch => {
+  return {
+    selectMeals(tag) {
+      dispatch(setMealsByTag(tag))
+    }
   }
 }
 
-
-export default connect(mapStateToProps)(MealContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(MealContainer)
 
 
