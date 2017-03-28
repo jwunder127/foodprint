@@ -6,12 +6,38 @@ import {
 import {
   StyleSheet,
 } from 'react-native';
-import Calendar from 'react-native-calendar-datepicker';
+import Calendar from 'react-native-calendar';
 import Moment from 'moment';
 
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
 import store from '../store';
 import { setMealsByDate } from '../reducers/meal'
+
+
+const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
+  'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20,
+    paddingRight: 20,
+    backgroundColor: '#f7f7f7',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
+
+
 
 export default class CalendarPage extends Component {
 
@@ -32,90 +58,28 @@ export default class CalendarPage extends Component {
   }
 
   render() {
-    const BLUE = '#2196F3';
-    const WHITE = '#FFFFFF';
-    const GREY = '#BDBDBD';
-    const BLACK = '#424242';
-    const LIGHT_GREY = '#F5F5F5';
-
-
 
     return (
-      <Container style={{marginTop: 80}}>
-        <Content padder>
+      <Container style={{marginTop: 40}}>
+        <Content>
 
-          <Calendar
-            onChange={(date) => this.setState({date})}
-            selected={this.state.date}
+          <Calendar style={styles.container}
+            onDateSelect={(date) => this.setState({date})}
 
-            //finalStage="month"
-            minDate={Moment().subtract(10, 'years').startOf('day')}
-            maxDate={Moment().add(10, 'years').startOf('day')}
-            //General Styling}
+            customStyle={
+              {calendarControls: {backgroundColor: '#f6b19c'}}}
+            showControls={true}
 
-            barView={{
-              backgroundColor: '#f6b19c',
-              padding: 10,
-            }}
-            barText={{
-              fontWeight: 'bold',
-              color: WHITE,
-            }}
-            stageView={{
-              padding: 0,
-            }}
-            // Day selector styling
-            dayHeaderView={{
-              backgroundColor: LIGHT_GREY,
-              borderBottomColor: GREY,
-            }}
-            dayHeaderText={{
-              fontWeight: 'bold',
-              color: BLACK,
-            }}
-            dayRowView={{
-              borderColor: LIGHT_GREY,
-              height: 40,
-            }}
-            dayText={{
-              color: BLACK,
-            }}
-            dayDisabledText={{
-              color: GREY,
-            }}
-            dayTodayText={{
-              fontWeight: 'bold',
-              color: '#f7f1a6',
-            }}
-            daySelectedText={{
-              fontWeight: 'bold',
-              backgroundColor: '#f7f1a6',
-              color: WHITE,
-              borderRadius: 15,
-              borderColor: "transparent",
-              overflow: 'hidden',
-            }}
-            // Styling month selector.
-            monthText={{
-              color: BLACK,
-              borderColor: BLACK,
-            }}
-            monthDisabledText={{
-              color: GREY,
-              borderColor: GREY,
-            }}
-            monthSelectedText={{
-              fontWeight: 'bold',
-              backgroundColor: BLUE,
-              color: WHITE,
-              overflow: 'hidden',
-            }}
-            // Styling year selector.
-            yearMinTintColor={BLUE}
-            yearMaxTintColor={GREY}
-            yearText={{
-              color: BLACK,
-            }}
+          eventDates={['2017-03-29', '2016-07-05', '2016-07-28', '2016-07-30']}
+          events={[{date: '2017-03-29', hasEventCircle: {backgroundColor: 'powderblue'}}]}
+          scrollEnabled
+          showControls
+          dayHeadings={customDayHeadings}
+          monthNames={customMonthNames}
+          titleFormat={'MMMM YYYY'}
+          prevButtonText={'Prev'}
+          nextButtonText={'Next'}
+
             />
         <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#f6b19c'}}>
             <Icon name='pizza' />
@@ -131,21 +95,5 @@ export default class CalendarPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    paddingTop: 40,
-    backgroundColor: '#F5FCFF',
-  },
-  dateText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginLeft: 20,
-  },
-  buttonStyle: {
-    margin: 60
-  }
-});
 
 

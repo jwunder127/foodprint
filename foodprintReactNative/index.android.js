@@ -12,7 +12,7 @@ import Moment from 'moment';
 import { AppRegistry, StyleSheet } from 'react-native';
 import { Container } from 'native-base';
 import store from './store';
-import { getAllMealsFromDB } from './reducers/meal';
+import { getAllMealsFromDB, setMealsByDate } from './reducers/meal';
 import { calendarIcon, cameraIcon, nutritionIcon, homeIcon } from './components/Icons';
 
 
@@ -24,7 +24,12 @@ const style = StyleSheet.create({
         }
     });
 
-const goToToday = () => Actions.day({label: Moment().format()});
+const goToToday = () => {
+    let formattedDate = Moment().format().slice(0,10)
+    store.dispatch(setMealsByDate(formattedDate))
+    Actions.day({label: Moment().format('MMMM DD YYYY')});
+}
+
 
 export default class foodprintReactNative extends Component {
 
