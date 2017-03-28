@@ -1,8 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, TextInput } from 'react-native';
+import { Text, TextInput, View, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button, Content, Thumbnail, Spinner } from 'native-base';
+import { Card, CardItem, Button, Grid, Col, Content, Container, Thumbnail, Spinner } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -17,6 +17,38 @@ import CameraView from '../components/Camera';
 const CLIENT_ID = clarifaiKeys.CLIENT_ID;
 const CLIENT_SECRET = clarifaiKeys.CLIENT_SECRET;
 const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
+
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#00A229';
+const periwinkle = '#686CA6'
+const styles = {
+  card: {
+    backgroundColor: citrusPink,
+  },
+  cardItemText: {
+    color: 'white',
+    textAlign: 'left'
+  },
+  container: {
+    backgroundColor: citrusYellow,
+    flex: 1,
+    justifyContent: 'center',
+
+  },
+  selectImageButton: {
+    marginLeft: 125,
+    backgroundColor: citrusOrange
+  },
+  selectImageText: {
+    color: 'white'
+  },
+  welcomeText: {
+    color: 'white',
+    backgroundColor: citrusPink
+  },
+}
 
 
 class CameraContainer extends Component {
@@ -58,54 +90,72 @@ class CameraContainer extends Component {
   }
 
   handleAdditionalTags(text){
-    if (text === ''){
-      this.setState({additionalTags: []})
+    const additionalTags = (text === '') ?
+          [] : text.split(',')
 
-    } else {
-      const additionalTags = text.split(',');
-      this.setState({
-        additionalTags: additionalTags,
-        tagsToSend: this.state.checkBoxTags.concat(additionalTags)
-      });
-    }
+    this.setState({
+      additionalTags: additionalTags,
+      tagsToSend: this.state.checkBoxTags.concat(additionalTags)
+    });
 
   }
 
   renderClarifaiResponse(foodTags){
 
     return (
-    <Content>
-      <Content>
-        <Text>Select the foods that best match your meal</Text>
-        {this.renderMealImage()}
-        <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
-        <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
-          {foodTags.map(tag => (
-            <ListItem key={tag.id}>
-              <CheckBox
-                onClick={() => this.handleCheckedBox(tag.name)}
-                rightText={tag.name}
-                rightTextStyle={{textAlign: 'left'}}
-                style={{flex: 1}}
+        <Container>
+          <Button
+            onPress={this.selectImage}
+          >
+            <Text>
+              Select new image
+            </Text>
+          </Button>
+
+          <View >
+            {this.renderMealImage()}
+          </View>
+          <Text
+            style={{backgroundColor: 'white'}}
+          >
+            Select the foods that best match your meal
+          </Text>
+          <Text
+            style={{backgroundColor: 'white'}}
+          >
+            Currently selected: {this.state.tagsToSend.join(' ')}
+          </Text>
+        <Content>
+          <Card>
+            {foodTags.map(tag => (
+              <CardItem key={tag.id} style={styles.card}>
+                <CheckBox
+                  onClick={() => this.handleCheckedBox(tag.name)}
+                  rightText={tag.name}
+                  rightTextStyle={styles.cardItemText}
+                  style={{borderColor: 'white', flex: 1}}
                 />
-            </ListItem>
-              ))}
+              </CardItem>
+            ))}
+          </Card>
         </Content>
-        <Content style={{position: 'relative', bottom: 0}}>
+        <View style={{position: 'relative', bottom: 0}}>
           <TextInput
             placeholder="Don't see your food? Add it here! Separate by commas."
             style={{ backgroundColor: '#ccced1', borderWidth: 1}}
             onChangeText={(text) => this.handleAdditionalTags(text)}
             />
           {this.renderSubmitButton()}
-      </Content>
-    </Content>
+        </View>
+      </Container>
     )
+
+
   }
     renderMealImage(){
     if (this.state.mealPhotoUrl) {
       return (
-       <Thumbnail style={{width: 300, height: 300, margin: 10}} source={{uri: this.state.mealPhotoUrl}} />)
+       <Image resizeMode='contain' style={{borderWidth: 5, borderColor: 'brown', height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
     } else {
        return <Spinner />
     }
@@ -114,7 +164,10 @@ class CameraContainer extends Component {
   renderSubmitButton(){
     if (this.state.mealPhotoUrl !== '' && (this.state.tagsToSend.length || this.state.additionalTags.length)){
       return (
-        <Button block success onPress={this.handleSubmitFood}><Text>Submit for nutrition info</Text></Button>)
+        <Button
+          block
+          style= {{backgroundColor: citrusGreen}}
+         onPress={this.handleSubmitFood}><Text style={{color: 'white'}}>Submit for nutrition info</Text></Button>)
     } else {
       return (
         <Button block disabled><Text>Select foods to submit</Text></Button>)
@@ -125,6 +178,8 @@ class CameraContainer extends Component {
     this.setState({
       foodTags: [],
       mealPhotoUrl: '',
+      checkBoxTags: [],
+      additionalTags: [],
       tagsToSend: []
     })
 
@@ -210,3 +265,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraContainer)
+

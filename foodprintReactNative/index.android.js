@@ -9,6 +9,7 @@ import SummaryContainer from './containers/SummaryContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'
 import Home from './containers/HomeContainer'
+import Splashpage from './components/Splashpage';
 import Moment from 'moment';
 import { AppRegistry, StyleSheet } from 'react-native';
 import { Container } from 'native-base';
@@ -21,7 +22,7 @@ const style = StyleSheet.create({
         tabBarStyle: {
             borderTopWidth : 1,
             borderColor    : '#b7b7b7',
-            backgroundColor: '#006b76',
+            backgroundColor: '#FC8A67',
         }
     });
 
@@ -40,15 +41,16 @@ export default class foodprintReactNative extends Component {
         <Provider store={store}>
           <Router>
             <Scene key="root" hideNavBar={true}>
-              <Scene key="login" component={LoginContainer} title="Login" initial={true} hideNavBar={true}/>
-              <Scene key="signup" component={SignupContainer} title="Sign up" hideNavBar={true}/>
-              <Scene key="mainTabBar" tabs={true}  tabBarStyle={style.tabBarStyle} hideNavBar={true}>
-                <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} hideNavBar={true} onPress={() => {Actions.calendar()}}>
-                  <Scene key="home" component={Home} title="Home" hideNavBar={true}/>
-                  <Scene key="calendar" component={CalendarPage} title="Calendar View"  hideNavBar={true}/>
-                  <Scene key="day" component={Day} title="Day View" hideNavBar={true}/>
-                  <Scene key="meal" component={Meal} title="Meal View"  hideNavBar={true}/>
-                  <Scene key="camera" component={CameraContainer} title="Camera View"  hideNavBar={true}/>
+              <Scene key="splash" component={Splashpage} title="Splash" initial="{true}" />
+              <Scene key="login" component={LoginContainer} title="Login" initial={false} />
+              <Scene key="signup" component={SignupContainer} title="Sign up" />
+              <Scene key="mainTabBar" tabs={true} hideNavBar={true} tabBarStyle={style.tabBarStyle} >
+                <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} onPress={() => {Actions.calendar()}}>
+                  <Scene key="home" component={Home} title="Home" hideNavBar={true} />
+                  <Scene key="calendar" component={CalendarPage} title="Calendar View" hideNavBar={true} />
+                  <Scene key="day" component={Day} title="Day View" hideNavBar={true} />
+                  <Scene key="meal" component={Meal} title="Meal View" hideNavBar={true} />
+                  <Scene key="camera" component={CameraContainer} title="Camera View" hideNavBar={true} />
                   <Scene key='summary' component={SummaryContainer} title='Summary view' hideNavBar={true}/>
                 </Scene>
                 <Scene key="cameraTab" title="Camera Tab" icon={cameraIcon} onPress={ () => Actions.camera() }/>
