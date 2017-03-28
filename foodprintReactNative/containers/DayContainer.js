@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Day from '../components/Day';
-import { setMeal, setMealsByTag, summarizeMeals } from '../reducers/mealThunks'
+import { setMealsByTag, summarizeMeals } from '../reducers/mealThunks'
+import { setMeal } from '../reducers/meal'
 import { Actions } from 'react-native-router-flux';
 
 
