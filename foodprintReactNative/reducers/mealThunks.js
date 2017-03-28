@@ -105,8 +105,9 @@ export const getAllMealsFromDB = () => {
         let userId = getState().auth.id
         axios.get(`https://foodprintapp.herokuapp.com/api/meals/${userId}`)
         .then(response => {
-           console.log("Loaded Meals from DB:", response.data)
+          // load all meals to local store and create an array containing all the days which have meals stored
            dispatch(setAllMeals(response.data))
+           dispatch(buildDatesArray(response.data))
         })
         .catch(console.error)
     }

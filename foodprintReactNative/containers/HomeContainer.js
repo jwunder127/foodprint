@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Home from '../components/Home';
 import { Actions } from 'react-native-router-flux';
-import { setMeal } from '../reducers/mealThunks';
+import { setMeal } from '../reducers/meal';
 import { logout } from '../reducers/authThunks';
 
 

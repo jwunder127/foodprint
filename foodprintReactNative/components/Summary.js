@@ -41,7 +41,7 @@ export default function Summary (props) {
                    {props.meal.tags.map((foodTag, i) =>{
                    return (
                     <TouchableOpacity key={i} onPress={()=> props.handleTagClick(foodTag)}>
-                      <Badge   style={{margin: 3, backgroundColor: '#f6b19c'}}><RNText style={{fontSize: 10, lineHeight: 18}}>{foodTag}</RNText></Badge>
+                      <Badge   style={{margin: 3, backgroundColor: '#f6b19c'}}><RNText style={{fontSize: 10, lineHeight: 20}}>{foodTag}</RNText></Badge>
                     </TouchableOpacity>
                     )})
                    }
