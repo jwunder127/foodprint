@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "mocha --require react-native-mock/mock.js --compilers js:babel-core/register --recursive test/MyComponent.js",
-    "nativeTest": "mocha --require test/setup.js --compilers js:babel-core/register --recursive test/MyComponent.js"
+    "test": "mocha --require react-native-mock/mock.js --compilers js:babel-core/register --recursive test/*.js"
   },
   "dependencies": {
     "axios": "^0.15.3",

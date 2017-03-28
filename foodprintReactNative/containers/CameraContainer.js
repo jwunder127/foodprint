@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardItem, Button, Grid, Col, Content, Container, Thumbnail, Spinner } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
 
-import { getNutrientsValue } from '../reducers/meal'
+import { getNutrientsValue } from '../reducers/mealThunks'
 
 import { AWSOptions, clarifaiKeys } from '../secrets';
 import CameraView from '../components/Camera';
@@ -265,4 +266,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraContainer)
-
