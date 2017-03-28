@@ -1,14 +1,12 @@
 'use strict';
 import React from 'react';
-import { Text, Image, View } from 'react-native';
-import {Container, Button, Footer, Content} from 'native-base';
+import { Text, View } from 'react-native';
+import { Container, Button, Footer } from 'native-base';
 
-const saladImg = 'http://www.saladbarmn.com/assets/img/slider/2.jpg'
 
 const CameraView = (props) => {
-    console.log('props are:', props )
     return (
-      <Image source={{uri: saladImg}} style={{flex: 1, justifyContent: 'center'}} >
+      <Container style={{flex: 1, justifyContent: 'center'}} >
         {
         props.foodTags.length ?
         props.renderClarifaiResponse(props.foodTags) :
@@ -27,7 +25,7 @@ const CameraView = (props) => {
         </View>
        }
       <Footer style={{opacity: 0}} />
-    </Image>)
+    </Container>)
 }
 
 export default CameraView;

@@ -1,8 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardItem, Button, Content, Thumbnail, Spinner } from 'native-base';
+import { Card, CardItem, Button, Grid, Col, Content, Container, Thumbnail, Spinner } from 'native-base';
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
@@ -74,24 +74,40 @@ class CameraContainer extends Component {
   renderClarifaiResponse(foodTags){
 
     return (
-    <View>
-        <Text>Select the foods that best match your meal</Text>
-        {this.renderMealImage()}
-        <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
-        <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
+        <Container>
+              <Text
+                style={{backgroundColor: 'white'}}
+              >
+                Select the foods that best match your meal
+              </Text>
+              <View>
+                {this.renderMealImage()}
+              </View>
+          <Button
+            block
+            onPress={this.selectImage}
+          >
+            <Text>
+              Select new image
+            </Text>
+          </Button>
+          <Text
+            style={{backgroundColor:'white'}}
+          >
+            Currently selected: {this.state.tagsToSend.join(' ')}
+          </Text>
         <Content>
           <Card>
-          {foodTags.map(tag => (
-            <CardItem key={tag.id}>
-            <Text> Test </Text>
-              <CheckBox
-                onClick={() => this.handleCheckedBox(tag.name)}
-                rightText={tag.name}
-                rightTextStyle={{textAlign: 'left'}}
-                style={{flex: 1}}
+            {foodTags.map(tag => (
+              <CardItem key={tag.id}>
+                <CheckBox
+                  onClick={() => this.handleCheckedBox(tag.name)}
+                  rightText={tag.name}
+                  rightTextStyle={{textAlign: 'left'}}
+                  style={{flex: 1}}
                 />
-            </CardItem>
-              ))}
+              </CardItem>
+            ))}
           </Card>
         </Content>
         <View style={{position: 'relative', bottom: 0}}>
@@ -102,13 +118,15 @@ class CameraContainer extends Component {
             />
           {this.renderSubmitButton()}
         </View>
-    </View>
+      </Container>
     )
+
+
   }
     renderMealImage(){
     if (this.state.mealPhotoUrl) {
       return (
-       <Thumbnail style={{width: 300, height: 300, margin: 10}} source={{uri: this.state.mealPhotoUrl}} />)
+       <Image resizeMode='contain' style={{height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
     } else {
        return <Spinner />
     }
@@ -128,6 +146,8 @@ class CameraContainer extends Component {
     this.setState({
       foodTags: [],
       mealPhotoUrl: '',
+      checkBoxTags: [],
+      additionalTags: [],
       tagsToSend: []
     })
 
@@ -213,3 +233,38 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraContainer)
+
+
+/*
+
+<View>
+        <Text>Select the foods that best match your meal</Text>
+        {this.renderMealImage()}
+        <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
+        <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
+        <Content>
+          <Card>
+          {foodTags.map(tag => (
+            <CardItem key={tag.id}>
+            <Text> Test </Text>
+              <CheckBox
+                onClick={() => this.handleCheckedBox(tag.name)}
+                rightText={tag.name}
+                rightTextStyle={{textAlign: 'left'}}
+                style={{flex: 1}}
+                />
+            </CardItem>
+              ))}
+          </Card>
+        </Content>
+        <View style={{position: 'relative', bottom: 0}}>
+          <TextInput
+            placeholder="Don't see your food? Add it here! Separate by commas."
+            style={{ backgroundColor: '#ccced1', borderWidth: 1}}
+            onChangeText={(text) => this.handleAdditionalTags(text)}
+            />
+          {this.renderSubmitButton()}
+        </View>
+    </View>
+    )
+    */
