@@ -1,34 +1,7 @@
-
-/* ------------------    ACTIONS    --------------------- */
-
-const AUTHENTICATED = 'AUTHENTICATED';
-const REMOVE = 'REMOVE_CURRENT_USER';
-
-/* --------------    ACTION CREATORS    ----------------- */
-
-export const authenticated = user => ({
-  type: AUTHENTICATED, user
-});
-
-export const remove = () => ({
-  type: REMOVE
-});
-
-/* ------------------    REDUCER    --------------------- */
-
-const reducer = (state = null, action) => {
-  switch (action.type) {
-    case AUTHENTICATED:
-      return action.user;
-
-    case REMOVE:
-      return null;
-
-    default:
-      return state
-  }
-};
-
+import axios from 'axios';
+import {Actions} from 'react-native-router-flux';
+import { removeAllMeals } from './mealThunks';
+import { authenticated, remove } from './auth';
 
 /* ------------       DISPATCHERS     ------------------ */
 
@@ -54,7 +27,7 @@ export const logout = () =>
   dispatch => {
     return axios.post('https://foodprintapp.herokuapp.com/api/auth/logout')
       .then(() => dispatch(whoami()))
-      .then(() => Actions.splash())
+      .then(() => Actions.login())
       .then(() => {
         dispatch(removeAllMeals());
         dispatch(remove());
@@ -74,7 +47,3 @@ export const signup = (credentials) => {
       .catch(dispatch(whoami()))
   }
 };
-
-
-export default reducer;
-

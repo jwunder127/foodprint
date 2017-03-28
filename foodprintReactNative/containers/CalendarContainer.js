@@ -12,7 +12,7 @@ import Moment from 'moment';
 
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
 import store from '../store';
-import { setMealsByDate } from '../reducers/meal'
+import { setMealsByDate } from '../reducers/mealThunks'
 
 
 const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -21,8 +21,8 @@ const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
 
 
 const textColor = 'black'
-const headerColor = '#f6b19c'
-const containerColor = '#f6d540'
+const headerColor = '#FC8A67'
+const containerColor = '#F6E49C'//'#f6d540'
 const eventColor = '#F2AA2C'
 const selectedDay = '#E34052'
 const buttonTextColor = '#E34052'
@@ -76,18 +76,17 @@ export class CalendarContainer extends Component {
     };
   }
 
-
-
-
   goToDay = () => {
     //Select current meals by date
     let formattedDate = Moment(this.state.date).format().slice(0,10)
-    store.dispatch(setMealsByDate(formattedDate))
+    this.props.selectMeals(formattedDate)
     // Send user to day page for selcted date
     Actions.day({label: Moment(this.state.date).format('MMMM DD YYYY')})
   }
 
   render() {
+
+    console.log('Calendar', this.props)
 
     return (
       <Container style={{marginTop: 40}}>
@@ -95,7 +94,6 @@ export class CalendarContainer extends Component {
           <Calendar
             onDateSelect={(date) => this.setState({date})}
             customStyle={customStyle}
-
             showControls={true}
             showEventIndicators={false}
             eventDates={this.props.datesArray}
@@ -124,5 +122,13 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(CalendarContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    selectMeals: (date) => {
+      dispatch(setMealsByDate(date))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer)
 

@@ -3,8 +3,8 @@ import { login, logout } from '../reducers/auth';
 import {connect} from 'react-redux';
 import HomeContainer from '../containers/HomeContainer';
 import LoginComponent from '../components/LoginComponent';
-import { getAllMealsFromDB } from '../reducers/meal'
-import { whoami } from '../reducers/auth'
+import { getAllMealsFromDB } from '../reducers/mealThunks'
+import { whoami } from '../reducers/authThunks'
 
 export class LoginContainer extends Component {
 
