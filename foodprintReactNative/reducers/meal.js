@@ -8,10 +8,18 @@ const SET_MEALS = 'SET_MEALS'
 const SET_ALL_MEALS = 'SET_ALL_MEALS';
 const ADD_MEAL = 'ADD_MEAL'
 const REMOVE_MEALS = 'REMOVE_MEAL';
+const SET_DATES = 'SET_DATES';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 
+
+export const setDates = (dates) => {
+  return {
+    type: SET_DATES,
+    datesArray: dates
+  }
+}
 
 export const setMeal = (meal) => {
   return {
@@ -31,7 +39,8 @@ export const setMeals = (meals) => {
 export const addMeal = (meal) => {
   return {
     type: ADD_MEAL,
-    newMeal: meal
+    newMeal: meal,
+    newDate: meal.created_at.slice(0,10)
   }
 }
 
@@ -52,7 +61,8 @@ export const removeAllMeals = () => {
 const initialState = {
   selectedMeal: {},
   selectedMeals: [],
-  allMeals: []
+  allMeals: [],
+  datesArray: []
 };
 
 const mealReducer = (state = initialState, action) => {
@@ -69,6 +79,9 @@ const mealReducer = (state = initialState, action) => {
 
     case ADD_MEAL:
       newState.allMeals.unshift(action.newMeal)
+      if (!newState.datesArray.includes(action.newDate)) {
+        newState.datesArray.push(action.newDate)
+        }
       return newState
 
     case REMOVE_MEALS:
@@ -76,7 +89,11 @@ const mealReducer = (state = initialState, action) => {
 
     case SET_MEALS:
       newState.selectedMeals = action.selectedMeals
+      return newState
 
+    case SET_DATES:
+      newState.datesArray = action.datesArray
+      return newState;
 
     default:
       return newState
@@ -116,6 +133,25 @@ export const setMealsByTag = (tag) => {
 
 }
 
+export const buildDatesArray = (meals) => {
+
+  return (dispatch) => {
+    let datesArray = [];
+    console.log("meals", meals)
+    meals.forEach(meal => {
+      let date = meal.created_at.slice(0, 10);
+      if (!datesArray.includes(date)) datesArray.push(date)
+    })
+    console.log("dates Array", datesArray)
+
+
+    dispatch(setDates(datesArray))
+
+  }
+
+}
+
+
 export const getAllMealsFromDB = () => {
 
   return (dispatch, getState) => {
@@ -125,6 +161,7 @@ export const getAllMealsFromDB = () => {
         .then(response => {
            console.log("Loaded Meals from DB:", response.data)
            dispatch(setAllMeals(response.data))
+           dispatch(buildDatesArray(response.data))
         })
         .catch(console.error)
     }
@@ -209,6 +246,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
 
            //Add meal to the all meals state saved in the store
            dispatch(addMeal(savedMeal.data[0]))
+
 
            // Add this meal to the store as the currently selected meal
            return dispatch(setMeal(savedMeal.data[0]))

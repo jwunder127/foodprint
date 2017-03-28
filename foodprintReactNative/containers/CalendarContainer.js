@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
 
@@ -35,19 +36,37 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  hasEventCircle: {
+      backgroundColor: 'powderblue',
+    },
 });
 
+const customStyle = {
+    hasEventCircle: {
+      backgroundColor: 'powderblue',
+    },
+    hasEventDaySelectedCircle: {
+      backgroundColor: 'red',
+    },
+    calendarControls: {
+      backgroundColor: '#f6b19c'
+    }
+}
 
 
-export default class CalendarPage extends Component {
+export class CalendarContainer extends Component {
 
 
   constructor(props) {
     super(props);
     this.state = {
       date: Moment().format(),
+      events: []
     };
   }
+
+
+
 
   goToDay = () => {
     //Select current meals by date
@@ -62,24 +81,20 @@ export default class CalendarPage extends Component {
     return (
       <Container style={{marginTop: 40}}>
         <Content>
-
           <Calendar style={styles.container}
             onDateSelect={(date) => this.setState({date})}
+            customStyle={customStyle}
 
-            customStyle={
-              {calendarControls: {backgroundColor: '#f6b19c'}}}
             showControls={true}
-
-          eventDates={['2017-03-29', '2016-07-05', '2016-07-28', '2016-07-30']}
-          events={[{date: '2017-03-29', hasEventCircle: {backgroundColor: 'powderblue'}}]}
-          scrollEnabled
-          showControls
-          dayHeadings={customDayHeadings}
-          monthNames={customMonthNames}
-          titleFormat={'MMMM YYYY'}
-          prevButtonText={'Prev'}
-          nextButtonText={'Next'}
-
+            showEventIndicators
+            eventDates={this.props.datesArray}
+            scrollEnabled
+            showControls
+            dayHeadings={customDayHeadings}
+            monthNames={customMonthNames}
+            titleFormat={'MMMM YYYY'}
+            prevButtonText={'Prev'}
+            nextButtonText={'Next'}
             />
         <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#f6b19c'}}>
             <Icon name='pizza' />
@@ -88,12 +103,28 @@ export default class CalendarPage extends Component {
             <Text>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
         </Content>
-
-
-
       </Container>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    datesArray: state.meal.datesArray
+  }
+}
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     selectMeal: (meal) => {
+//       dispatch(setMeal(meal))
+//     },
+//     logout: () => {
+//       dispatch(logout())
+//     }
+//   }
+// }
+
+
+export default connect(mapStateToProps)(CalendarContainer)
 

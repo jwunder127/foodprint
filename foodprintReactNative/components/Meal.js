@@ -47,7 +47,7 @@ export default function Meal (props) {
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
                  <Grid>
                  <Col>
-                    <Row><RNText>  </RNText></Row>
+                    <Row><RNText style={styles.heading}>  </RNText></Row>
                     <Row><RNText style={styles.tableText}>Calories</RNText></Row>
                     <Row><RNText style={styles.tableText}>Total fat</RNText></Row>
                     <Row><RNText style={styles.tableText}>Saturated fat</RNText></Row>
