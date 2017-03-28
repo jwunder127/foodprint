@@ -34,7 +34,7 @@ export class DayContainer extends Component {
   }
 
   handleTagReset(){
-    Actions.home()
+    Actions.calendar()
   }
 
     render() {
