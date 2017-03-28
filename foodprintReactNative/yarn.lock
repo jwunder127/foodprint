@@ -2974,7 +2974,7 @@ mocha@^3.2.0:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-moment@2.x.x, moment@^2.14.1:
+moment@2.x.x, moment@>=2.10.3, moment@^2.14.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
@@ -3473,6 +3473,12 @@ react-native-calendar-datepicker@^1.2.2:
   dependencies:
     lodash "^4.15.0"
     moment "^2.14.1"
+
+react-native-calendar@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendar/-/react-native-calendar-0.11.0.tgz#a94b836047359b7a8bd2d4a53b7bb0eb316218e8"
+  dependencies:
+    moment ">=2.10.3"
 
 react-native-camera@^0.6.0:
   version "0.6.0"
