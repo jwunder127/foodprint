@@ -81,7 +81,7 @@ export default class CalendarPage extends Component {
           nextButtonText={'Next'}
 
             />
-        <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#f6b19c'}}>
+        <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#194D33'}}>
             <Icon name='pizza' />
             <Icon name='nutrition'  />
             <Icon name='restaurant' />

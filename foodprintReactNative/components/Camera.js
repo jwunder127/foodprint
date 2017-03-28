@@ -3,22 +3,48 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { Container, Button, Footer } from 'native-base';
 
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#84FF6F';
+
+const styles = {
+  container: {
+    backgroundColor: citrusYellow,
+    flex: 1,
+    justifyContent: 'center',
+
+  },
+  welcomeText: {
+    color: 'white',
+    backgroundColor: citrusPink
+  },
+  selectImageButton: {
+    marginLeft: 125,
+    backgroundColor: citrusOrange
+  },
+  selectImageText: {
+    color: 'white'
+  }
+}
 
 const CameraView = (props) => {
     return (
-      <Container style={{flex: 1, justifyContent: 'center'}} >
+      <Container style={styles.container} >
         {
         props.foodTags.length ?
         props.renderClarifaiResponse(props.foodTags) :
         <View>
-          <Text style={{backgroundColor: 'orange'}}>
+          <Text style={styles.welcomeText}>
           Welcome to Foodprint! Click 'Select and Image' to get started!
           </Text>
           <Button
-              block
-              info
-              onPress={props.selectImage}>
-            <Text>
+              onPress={props.selectImage}
+              style={styles.selectImageButton}
+              >
+            <Text
+              style={styles.selectImageText}
+            >
               Select an image
             </Text>
           </Button>
@@ -29,4 +55,3 @@ const CameraView = (props) => {
 }
 
 export default CameraView;
-
