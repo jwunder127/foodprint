@@ -18,6 +18,38 @@ const CLIENT_ID = clarifaiKeys.CLIENT_ID;
 const CLIENT_SECRET = clarifaiKeys.CLIENT_SECRET;
 const app = new Clarifai.App(CLIENT_ID, CLIENT_SECRET)
 
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#00A229';
+const periwinkle = '#686CA6'
+const styles = {
+  card: {
+    backgroundColor: citrusPink,
+  },
+  cardItemText: {
+    color: 'white',
+    textAlign: 'left'
+  },
+  container: {
+    backgroundColor: citrusYellow,
+    flex: 1,
+    justifyContent: 'center',
+
+  },
+  selectImageButton: {
+    marginLeft: 125,
+    backgroundColor: citrusOrange
+  },
+  selectImageText: {
+    color: 'white'
+  },
+  welcomeText: {
+    color: 'white',
+    backgroundColor: citrusPink
+  },
+}
+
 
 class CameraContainer extends Component {
   constructor(props){
@@ -58,16 +90,13 @@ class CameraContainer extends Component {
   }
 
   handleAdditionalTags(text){
-    if (text === ''){
-      this.setState({additionalTags: []})
+    const additionalTags = (text === '') ?
+          [] : text.split(',')
 
-    } else {
-      const additionalTags = text.split(',');
-      this.setState({
-        additionalTags: additionalTags,
-        tagsToSend: this.state.checkBoxTags.concat(additionalTags)
-      });
-    }
+    this.setState({
+      additionalTags: additionalTags,
+      tagsToSend: this.state.checkBoxTags.concat(additionalTags)
+    });
 
   }
 
@@ -75,36 +104,36 @@ class CameraContainer extends Component {
 
     return (
         <Container>
-              <Text
-                style={{backgroundColor: 'white'}}
-              >
-                Select the foods that best match your meal
-              </Text>
-              <View>
-                {this.renderMealImage()}
-              </View>
           <Button
-            block
             onPress={this.selectImage}
           >
             <Text>
               Select new image
             </Text>
           </Button>
+
+          <View >
+            {this.renderMealImage()}
+          </View>
           <Text
-            style={{backgroundColor:'white'}}
+            style={{backgroundColor: 'white'}}
+          >
+            Select the foods that best match your meal
+          </Text>
+          <Text
+            style={{backgroundColor: 'white'}}
           >
             Currently selected: {this.state.tagsToSend.join(' ')}
           </Text>
         <Content>
           <Card>
             {foodTags.map(tag => (
-              <CardItem key={tag.id}>
+              <CardItem key={tag.id} style={styles.card}>
                 <CheckBox
                   onClick={() => this.handleCheckedBox(tag.name)}
                   rightText={tag.name}
-                  rightTextStyle={{textAlign: 'left'}}
-                  style={{flex: 1}}
+                  rightTextStyle={styles.cardItemText}
+                  style={{borderColor: 'white', flex: 1}}
                 />
               </CardItem>
             ))}
@@ -126,7 +155,7 @@ class CameraContainer extends Component {
     renderMealImage(){
     if (this.state.mealPhotoUrl) {
       return (
-       <Image resizeMode='contain' style={{height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
+       <Image resizeMode='contain' style={{borderWidth: 5, borderColor: 'brown', height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
     } else {
        return <Spinner />
     }
@@ -135,7 +164,10 @@ class CameraContainer extends Component {
   renderSubmitButton(){
     if (this.state.mealPhotoUrl !== '' && (this.state.tagsToSend.length || this.state.additionalTags.length)){
       return (
-        <Button block success onPress={this.handleSubmitFood}><Text>Submit for nutrition info</Text></Button>)
+        <Button
+          block
+          style= {{backgroundColor: citrusGreen}}
+         onPress={this.handleSubmitFood}><Text style={{color: 'white'}}>Submit for nutrition info</Text></Button>)
     } else {
       return (
         <Button block disabled><Text>Select foods to submit</Text></Button>)
@@ -234,37 +266,3 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraContainer)
 
-
-/*
-
-<View>
-        <Text>Select the foods that best match your meal</Text>
-        {this.renderMealImage()}
-        <Button block info onPress={this.selectImage}><Text>Select new image</Text></Button>
-        <Text>Currently selected: {this.state.tagsToSend.join(' ')}</Text>
-        <Content>
-          <Card>
-          {foodTags.map(tag => (
-            <CardItem key={tag.id}>
-            <Text> Test </Text>
-              <CheckBox
-                onClick={() => this.handleCheckedBox(tag.name)}
-                rightText={tag.name}
-                rightTextStyle={{textAlign: 'left'}}
-                style={{flex: 1}}
-                />
-            </CardItem>
-              ))}
-          </Card>
-        </Content>
-        <View style={{position: 'relative', bottom: 0}}>
-          <TextInput
-            placeholder="Don't see your food? Add it here! Separate by commas."
-            style={{ backgroundColor: '#ccced1', borderWidth: 1}}
-            onChangeText={(text) => this.handleAdditionalTags(text)}
-            />
-          {this.renderSubmitButton()}
-        </View>
-    </View>
-    )
-    */

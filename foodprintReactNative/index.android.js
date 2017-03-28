@@ -20,7 +20,7 @@ const style = StyleSheet.create({
         tabBarStyle: {
             borderTopWidth : 1,
             borderColor    : '#b7b7b7',
-            backgroundColor: '#006b76',
+            backgroundColor: '#FC8A67',
         }
     });
 
