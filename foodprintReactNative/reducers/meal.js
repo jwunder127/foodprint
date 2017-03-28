@@ -150,15 +150,14 @@ export const buildDatesArray = (meals) => {
 
   return (dispatch) => {
     let datesArray = [];
-    console.log("meals", meals)
-   // Filters the array for just those dates which contain an meal
+
+   // Filters all meals for just those dates which contain a meal
     meals.forEach(meal => {
       let date = meal.created_at.slice(0, 10);
       if (!datesArray.includes(date)) datesArray.push(date)
     })
-    console.log("dates Array", datesArray)
 
-
+    //dispatch to the store all dates which contain a meal
     dispatch(setDates(datesArray))
 
   }
@@ -169,7 +168,7 @@ export const summarizeMeals = (meals) => {
 
   return (dispatch) => {
 
-    // Set up a nutrional table that will contain the combined nutritional values of all of the ingredients
+    // Set up a nutritional table that will contain the combined nutritional values of all of the meals to summarize
         let nutritionalTable = {
           calories: 0.0,
           total_fat: 0.0,
@@ -197,13 +196,13 @@ export const summarizeMeals = (meals) => {
 
 
        // Create the summarized meal to dispatch
-        let meal = {
-          photoUrl: '',
+        let mealSummary = {
+          totalMeals: meals,          // add all the meals so the photoUrls can be displayed
           tags: _.uniq(foodTagArray), //remove any dupliate tags
           nutritionalTable: nutritionalTable
         }
-    console.log("Summarized Meal", meal)
-    dispatch(setSummary(meal))
+
+    dispatch(setSummary(mealSummary))
   }
 }
 
@@ -257,7 +256,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
           ingredients.push(foodObject);
         });
 
-        // Set up a nutrional table that will contain the combined nutritional values of all of the ingredients
+        // Set up a nutritional table that will contain the combined nutritional values of all of the ingredients
         let nutritionalTable = {
           calories: 0.0,
           total_fat: 0.0,

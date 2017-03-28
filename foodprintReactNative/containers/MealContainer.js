@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import Meal from '../components/Meal';
 import { Actions } from 'react-native-router-flux'
 import { setMealsByTag } from '../reducers/meal'
-
-
+import moment from 'moment';
 
 export class MealContainer extends Component {
 
@@ -19,9 +18,22 @@ export class MealContainer extends Component {
     Actions.day({label: tag})
   }
 
+
+
     render() {
+
+
+    //convert date to user friendly format to send as a display prop
+    let date = this.props.selectedMeal.created_at.slice(0, 10)
+    date = moment(date).format('MMMM DD YYYY')
+
+
     return (
-      <Meal meal={this.props.selectedMeal} handleTagClick={this.handleTagClick} />
+      <Meal
+      meal={this.props.selectedMeal}
+      handleTagClick={this.handleTagClick}
+      date={date}
+       />
     )
   }
 }

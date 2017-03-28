@@ -40,16 +40,16 @@ export default class foodprintReactNative extends Component {
         <Provider store={store}>
           <Router>
             <Scene key="root" hideNavBar={true}>
-              <Scene key="login" component={LoginContainer} title="Login" initial={true} />
-              <Scene key="signup" component={SignupContainer} title="Sign up" />
-              <Scene key="mainTabBar" tabs={true} hideNavBar={true} tabBarStyle={style.tabBarStyle} >
-                <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} onPress={() => {Actions.calendar()}}>
-                  <Scene key="home" component={Home} title="Home" hideNavBar={true} />
-                  <Scene key="calendar" component={CalendarPage} title="Calendar View" hideNavBar={true} />
-                  <Scene key="day" component={Day} title="Day View" hideNavBar={true} />
-                  <Scene key="meal" component={Meal} title="Meal View" hideNavBar={true} />
-                  <Scene key="camera" component={CameraContainer} title="Camera View" hideNavBar={true} />
-                  <Scene key='summary' component={SummaryContainer} title='Summary view' />
+              <Scene key="login" component={LoginContainer} title="Login" initial={true} hideNavBar={true}/>
+              <Scene key="signup" component={SignupContainer} title="Sign up" hideNavBar={true}/>
+              <Scene key="mainTabBar" tabs={true}  tabBarStyle={style.tabBarStyle} hideNavBar={true}>
+                <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} hideNavBar={true} onPress={() => {Actions.calendar()}}>
+                  <Scene key="home" component={Home} title="Home" hideNavBar={true}/>
+                  <Scene key="calendar" component={CalendarPage} title="Calendar View"  hideNavBar={true}/>
+                  <Scene key="day" component={Day} title="Day View" hideNavBar={true}/>
+                  <Scene key="meal" component={Meal} title="Meal View"  hideNavBar={true}/>
+                  <Scene key="camera" component={CameraContainer} title="Camera View"  hideNavBar={true}/>
+                  <Scene key='summary' component={SummaryContainer} title='Summary view' hideNavBar={true}/>
                 </Scene>
                 <Scene key="cameraTab" title="Camera Tab" icon={cameraIcon} onPress={ () => Actions.camera() }/>
                 <Scene key="nutritionTab" title="Nutrition Tab" icon={nutritionIcon} onPress={ () => goToToday() }/>
