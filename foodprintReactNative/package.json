@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "mocha --require react-native-mock/mock.js --compilers js:babel-core/register --recursive test/*.js"
+    "test": "mocha --require react-native-mock/mock.js --compilers js:babel-core/register --recursive test/MyComponent.js",
+    "nativeTest": "mocha --require test/setup.js --compilers js:babel-core/register --recursive test/MyComponent.js"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -26,7 +27,8 @@
     "redux-logger": "^2.8.2",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.0"
+    "request-promise": "^4.2.0",
+    "sinon": "^2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

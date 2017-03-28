@@ -1,10 +1,5 @@
-import React, { View, Text, StyleSheet } from 'react-native';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
-import * as fromMeal from '../reducers/meal';
-import sinon from 'sinon';
-
-
+import React, { View, Text, StyleSheet } from "react-native";
+import { shallow } from "enzyme";
 
 const Test = React.createClass({
   render() {
@@ -17,11 +12,6 @@ const Test = React.createClass({
   }
 });
 describe('<Test />', () => {
-  beforeEach(function () {
-    sinon.stub(fromMeal.prototype, 'navigate', function() {
-      console.log("Navigating")
-    });
-  });
   it('it should render 1 view component', () => {
     const wrapper = shallow(<Test/>);
     expect(wrapper.find(View)).to.have.length(1);
