@@ -12,7 +12,7 @@ import Moment from 'moment';
 
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
 import store from '../store';
-import { setMealsByDate } from '../reducers/meal'
+import { setMealsByDate } from '../reducers/mealThunks'
 
 
 const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

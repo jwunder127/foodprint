@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Content, Button, Form, Item, Input, Label } from 'native-base'
-import {signup} from '../reducers/auth';
+import {signup} from '../reducers/authThunks';
 import {Image} from 'react-native';
 
 const styles = {
