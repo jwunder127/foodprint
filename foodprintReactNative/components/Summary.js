@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
 
 export default function Summary (props) {
 
-  console.log("Summary:", props.meal)
-
     return (
       <Container style={{marginTop: 10, marginBottom: 50}}>
         <Content>
