@@ -37,10 +37,14 @@ export default function Meal (props) {
               </ListItem>)
              })}
           </List>
-          {props.label.includes('20') ? null :
-              <Button block style={{}} onPress={() => props.handleTagReset()}>
-                 <Text>Reset</Text>
-              </Button>}
+          {props.label.includes('20') ?
+           <Button block style={{backgroundColor: '#f6b19c'}} onPress={() => props.goToDailySummary(mealsArray)}>
+            <Text>See Daily Nutritional Summary</Text>
+          </Button>
+           :
+          <Button block style={{backgroundColor: '#f6b19c'}} onPress={() => props.handleTagReset()}>
+            <Text>Reset</Text>
+          </Button>}
         </Content>
       </Container>
     );

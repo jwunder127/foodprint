@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
 
@@ -18,36 +19,65 @@ const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
   'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingRight: 20,
-    backgroundColor: '#f7f7f7',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
+const textColor = 'black'
+const headerColor = '#f6b19c'
+const containerColor = '#f6d540'
+const eventColor = '#F2AA2C'
+const selectedDay = '#E34052'
+const buttonTextColor = '#E34052'
+
+const customStyle = {
+    hasEventCircle: {
+      backgroundColor: eventColor,
+    },
+    hasEventDaySelectedCircle: {
+      backgroundColor: selectedDay,
+    },
+    calendarControls: {
+      backgroundColor: headerColor
+    },
+    weekendHeading: {
+      color: textColor
+    },
+    weekendDayText: {
+      color: textColor,
+    },
+     day: {
+      color: textColor
+    },
+     dayHeading: {
+       color: textColor
+     },
+     controlButtonText: {
+       color: buttonTextColor
+     },
+     calendarHeadingText: {
+       color: 'black'
+     },
+     controlButton: {
+       backgroundColor: headerColor
+     },
+    monthContainer: {
+      backgroundColor: containerColor
+    }
+
+}
 
 
-
-export default class CalendarPage extends Component {
+export class CalendarContainer extends Component {
 
 
   constructor(props) {
     super(props);
     this.state = {
       date: Moment().format(),
+      events: []
     };
   }
+
+
+
 
   goToDay = () => {
     //Select current meals by date
@@ -62,38 +92,37 @@ export default class CalendarPage extends Component {
     return (
       <Container style={{marginTop: 40}}>
         <Content>
-
-          <Calendar style={styles.container}
+          <Calendar
             onDateSelect={(date) => this.setState({date})}
+            customStyle={customStyle}
 
-            customStyle={
-              {calendarControls: {backgroundColor: '#f6b19c'}}}
             showControls={true}
-
-          eventDates={['2017-03-29', '2016-07-05', '2016-07-28', '2016-07-30']}
-          events={[{date: '2017-03-29', hasEventCircle: {backgroundColor: 'powderblue'}}]}
-          scrollEnabled
-          showControls
-          dayHeadings={customDayHeadings}
-          monthNames={customMonthNames}
-          titleFormat={'MMMM YYYY'}
-          prevButtonText={'Prev'}
-          nextButtonText={'Next'}
-
+            showEventIndicators={false}
+            eventDates={this.props.datesArray}
+            scrollEnabled
+            dayHeadings={customDayHeadings}
+            monthNames={customMonthNames}
+            titleFormat={'MMMM YYYY'}
+            prevButtonText={'Prev'}
+            nextButtonText={'Next'}
             />
-        <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#194D33'}}>
-            <Icon name='pizza' />
-            <Icon name='nutrition'  />
-            <Icon name='restaurant' />
-            <Text>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
+        <Button onPress={this.goToDay} style={{marginTop: 10, marginLeft: 55, backgroundColor: headerColor}}>
+            <Icon style={{color: buttonTextColor}} name='pizza' />
+            <Icon style={{color: buttonTextColor}} name='nutrition'  />
+            <Icon style={{color: buttonTextColor}} name='restaurant' />
+            <Text style={{color: buttonTextColor}}>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
         </Content>
-
-
-
       </Container>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    datesArray: state.meal.datesArray
+  }
+}
+
+export default connect(mapStateToProps)(CalendarContainer)
 

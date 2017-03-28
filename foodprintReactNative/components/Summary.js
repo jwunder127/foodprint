@@ -16,17 +16,23 @@ const styles = StyleSheet.create({
 });
 
 
-export default function Meal (props) {
-
+export default function Summary (props) {
 
     return (
       <Container style={{marginTop: 10, marginBottom: 50}}>
         <Content>
-        <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
+        <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>Daily Summary - {props.date}</RNText>
           <Card>
             <CardItem bordered>
-              <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
-
+                <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginLeft: 10}}>
+                   {props.meal.totalMeals.map((meal, i) =>{
+                   return (
+                    <TouchableOpacity key={i} onPress={()=> props.handleMealClick(meal)}>
+                      <Thumbnail style={{width: 75, height: 75, margin: 0}} square source={{uri: meal.photoUrl}} />
+                    </TouchableOpacity>
+                    )})
+                   }
+                </View>
             </CardItem>
 
             <CardItem bordered>
@@ -35,8 +41,8 @@ export default function Meal (props) {
                    {props.meal.tags.map((foodTag, i) =>{
                    return (
                     <TouchableOpacity key={i} onPress={()=> props.handleTagClick(foodTag)}>
-                     <Badge   style={{margin: 3, backgroundColor: '#f6b19c'}}><RNText style={{fontSize: 10, lineHeight: 18}}>{foodTag}</RNText></Badge>
-                     </TouchableOpacity>
+                      <Badge   style={{margin: 3, backgroundColor: '#f6b19c'}}><RNText style={{fontSize: 10, lineHeight: 18}}>{foodTag}</RNText></Badge>
+                    </TouchableOpacity>
                     )})
                    }
                 </View>
@@ -88,3 +94,5 @@ export default function Meal (props) {
       </Container>
     )
 }
+
+//

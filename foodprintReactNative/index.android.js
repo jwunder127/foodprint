@@ -5,6 +5,7 @@ import LoginContainer from './containers/LoginContainer'
 import SignupContainer from './containers/SignupContainer'
 import CalendarPage from './containers/CalendarContainer'
 import CameraContainer from './containers/CameraContainer';
+import SummaryContainer from './containers/SummaryContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'
 import Home from './containers/HomeContainer'
@@ -50,6 +51,7 @@ export default class foodprintReactNative extends Component {
                   <Scene key="day" component={Day} title="Day View" hideNavBar={true} />
                   <Scene key="meal" component={Meal} title="Meal View" hideNavBar={true} />
                   <Scene key="camera" component={CameraContainer} title="Camera View" hideNavBar={true} />
+                  <Scene key='summary' component={SummaryContainer} title='Summary view' hideNavBar={true}/>
                 </Scene>
                 <Scene key="cameraTab" title="Camera Tab" icon={cameraIcon} onPress={ () => Actions.camera() }/>
                 <Scene key="nutritionTab" title="Nutrition Tab" icon={nutritionIcon} onPress={ () => goToToday() }/>
