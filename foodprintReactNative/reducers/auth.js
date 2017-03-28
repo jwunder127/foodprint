@@ -56,7 +56,7 @@ export const logout = () =>
   dispatch => {
     return axios.post('https://foodprintapp.herokuapp.com/api/auth/logout')
       .then(() => dispatch(whoami()))
-      .then(() => Actions.login())
+      .then(() => Actions.splash())
       .then(() => {
         dispatch(removeAllMeals());
         dispatch(remove());

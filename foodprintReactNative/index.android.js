@@ -50,7 +50,7 @@ export default class foodprintReactNative extends Component {
                   <Scene key="calendar" component={CalendarPage} title="Calendar View" hideNavBar={true} />
                   <Scene key="day" component={Day} title="Day View" hideNavBar={true} />
                   <Scene key="meal" component={Meal} title="Meal View" hideNavBar={true} />
-                  <Scene key="camera" component={CameraContainer} title="Camera View" hideNavBar={true} />
+                  <Scene key="camera" component={CameraContainer} title="Camera View" hideNavBar={true} hideTabBar={true}/>
                   <Scene key='summary' component={SummaryContainer} title='Summary view' hideNavBar={true}/>
                 </Scene>
                 <Scene key="cameraTab" title="Camera Tab" icon={cameraIcon} onPress={ () => Actions.camera() }/>
