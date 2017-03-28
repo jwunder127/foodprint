@@ -19,38 +19,48 @@ const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
   'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingRight: 20,
-    backgroundColor: '#f7f7f7',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  hasEventCircle: {
-      backgroundColor: 'powderblue',
-    },
-});
+
+const textColor = 'black'
+const headerColor = '#f6b19c'
+const containerColor = '#f6d540'
+const eventColor = '#F2AA2C'
+const selectedDay = '#E34052'
 
 const customStyle = {
     hasEventCircle: {
-      backgroundColor: 'powderblue',
+      backgroundColor: eventColor,
     },
     hasEventDaySelectedCircle: {
-      backgroundColor: 'red',
+      backgroundColor: selectedDay,
     },
     calendarControls: {
-      backgroundColor: '#f6b19c'
+      backgroundColor: headerColor
+    },
+    weekendHeading: {
+      color: textColor
+    },
+    weekendDayText: {
+      color: textColor,
+    },
+     day: {
+      color: textColor
+    },
+     dayHeading: {
+       color: textColor
+     },
+     controlButtonText: {
+       color: textColor
+     },
+     calendarHeadingText: {
+       color: 'black'
+     },
+     controlButton: {
+       backgroundColor: headerColor
+     },
+    monthContainer: {
+      backgroundColor: containerColor
     }
+
 }
 
 
@@ -81,15 +91,14 @@ export class CalendarContainer extends Component {
     return (
       <Container style={{marginTop: 40}}>
         <Content>
-          <Calendar style={styles.container}
+          <Calendar
             onDateSelect={(date) => this.setState({date})}
             customStyle={customStyle}
 
             showControls={true}
-            showEventIndicators
+            showEventIndicators={false}
             eventDates={this.props.datesArray}
             scrollEnabled
-            showControls
             dayHeadings={customDayHeadings}
             monthNames={customMonthNames}
             titleFormat={'MMMM YYYY'}
@@ -113,18 +122,6 @@ const mapStateToProps = state => {
     datesArray: state.meal.datesArray
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     selectMeal: (meal) => {
-//       dispatch(setMeal(meal))
-//     },
-//     logout: () => {
-//       dispatch(logout())
-//     }
-//   }
-// }
-
 
 export default connect(mapStateToProps)(CalendarContainer)
 
