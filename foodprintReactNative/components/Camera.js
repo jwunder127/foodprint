@@ -1,27 +1,29 @@
 'use strict';
 import React from 'react';
-import { Text, Image } from 'react-native';
-import {Container, Button, Footer, Content} from 'native-base';
-
+import { Text, View } from 'react-native';
+import { Container, Button, Footer } from 'native-base';
 
 
 const CameraView = (props) => {
     return (
-    <Container >
-      <Content>
-      {
+      <Container style={{flex: 1, justifyContent: 'center'}} >
+        {
         props.foodTags.length ?
         props.renderClarifaiResponse(props.foodTags) :
-        <Button
-            block
-            info
-            onPress={props.selectImage}>
-          <Text>
-            Select an image
+        <View>
+          <Text style={{backgroundColor: 'orange'}}>
+          Welcome to Foodprint! Click 'Select and Image' to get started!
           </Text>
-        </Button>
+          <Button
+              block
+              info
+              onPress={props.selectImage}>
+            <Text>
+              Select an image
+            </Text>
+          </Button>
+        </View>
        }
-      </Content>
       <Footer style={{opacity: 0}} />
     </Container>)
 }
