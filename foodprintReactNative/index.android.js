@@ -8,6 +8,7 @@ import CameraContainer from './containers/CameraContainer';
 import Day from './containers/DayContainer'
 import Meal from './containers/MealContainer'
 import Home from './containers/HomeContainer'
+import Splashpage from './components/Splashpage';
 import Moment from 'moment';
 import { AppRegistry, StyleSheet } from 'react-native';
 import { Container } from 'native-base';
@@ -39,7 +40,8 @@ export default class foodprintReactNative extends Component {
         <Provider store={store}>
           <Router>
             <Scene key="root" hideNavBar={true}>
-              <Scene key="login" component={LoginContainer} title="Login" initial={true} />
+              <Scene key="splash" component={Splashpage} title="Splash" initial="{true}" />
+              <Scene key="login" component={LoginContainer} title="Login" initial={false} />
               <Scene key="signup" component={SignupContainer} title="Sign up" />
               <Scene key="mainTabBar" tabs={true} hideNavBar={true} tabBarStyle={style.tabBarStyle} >
                 <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} onPress={() => {Actions.calendar()}}>
