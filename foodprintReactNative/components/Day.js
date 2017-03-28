@@ -8,10 +8,33 @@ import {
   Badge,
   Button
 } from 'native-base';
-import {Text, TouchableOpacity, View, Text as RNText} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View, Text as RNText} from 'react-native';
 
 
-const themeColor = '#FC8A67' //#f6b19c
+
+const themeColor = '#FC8A67'
+const textColor = 'black'
+
+const styles = StyleSheet.create({
+  label: {
+    fontSize: 10,
+    color:'#000'
+  },
+  buttonText: {
+    color: textColor
+  },
+  labelText: {
+    color: textColor,
+    lineHeight: 22
+  },
+  button:
+    {backgroundColor: themeColor}
+});
+
+
+
+
+
 
 export default function Meal (props) {
 
@@ -19,7 +42,7 @@ export default function Meal (props) {
 
     return (
       <Container style={{marginTop: 10, marginBottom: 50}}>
-        <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
+        <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
         <Content>
           <List>
              { (mealsArray.length > 0) && mealsArray.map((meal, i) => { return (
@@ -31,7 +54,8 @@ export default function Meal (props) {
                     {meal.tags.map((food, i) => {
                     return (
                       <TouchableOpacity key={i} onPress={() => props.handleTagClick(food)}>
-                      <Badge key={i} style={{margin: 5, backgroundColor: themeColor}}><RNText>{food}</RNText></Badge>
+                      <Badge key={i} style={{margin: 5, backgroundColor: themeColor}}>
+                      <RNText style={styles.labelText}>{food}</RNText></Badge>
                       </TouchableOpacity>
                     )
                     })}
@@ -42,11 +66,11 @@ export default function Meal (props) {
 
           {props.meals.length && props.label.includes('20') ?
            <Button block style={{backgroundColor: themeColor, marginBottom: 10}} onPress={() => props.goToDailySummary(mealsArray)}>
-            <Text>See Daily Nutritional Summary</Text>
+            <Text style={styles.buttonText}>See Daily Nutritional Summary</Text>
           </Button>
            :
           <Button block style={{backgroundColor: themeColor, marginBottom: 10}} onPress={() => props.handleTagReset()}>
-            <Text>Back to Calendar</Text>
+            <Text style={styles.buttonText}>Back to Calendar</Text>
           </Button>}
         </Content>
       </Container>
