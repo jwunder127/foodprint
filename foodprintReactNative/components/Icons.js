@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Container, Content } from 'native-base';
+import { Icon, Container, Content, Button, Text } from 'native-base';
 
 const iconColor =  '#c4def6'
 
@@ -20,7 +20,9 @@ export function cameraIcon (props) {
 export function nutritionIcon (props) {
 
   return (
-          <Icon name="nutrition" style={{color: iconColor}}/>
+
+      <Icon name="nutrition" style={{color: iconColor}}/>
+
   )
 }
 

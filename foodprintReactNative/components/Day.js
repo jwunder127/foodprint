@@ -11,6 +11,8 @@ import {
 import {Text, TouchableOpacity, View, Text as RNText} from 'react-native';
 
 
+const themeColor = '#FC8A67' //#f6b19c
+
 export default function Meal (props) {
 
     const mealsArray = props.meals
@@ -29,7 +31,7 @@ export default function Meal (props) {
                     {meal.tags.map((food, i) => {
                     return (
                       <TouchableOpacity key={i} onPress={() => props.handleTagClick(food)}>
-                      <Badge key={i} style={{margin: 5, backgroundColor: '#f6b19c'}}><RNText>{food}</RNText></Badge>
+                      <Badge key={i} style={{margin: 5, backgroundColor: themeColor}}><RNText>{food}</RNText></Badge>
                       </TouchableOpacity>
                     )
                     })}
@@ -37,10 +39,15 @@ export default function Meal (props) {
               </ListItem>)
              })}
           </List>
-          {props.label.includes('20') ? null :
-              <Button block style={{}} onPress={() => props.handleTagReset()}>
-                 <Text>Reset</Text>
-              </Button>}
+
+          {props.meals.length && props.label.includes('20') ?
+           <Button block style={{backgroundColor: themeColor, marginBottom: 10}} onPress={() => props.goToDailySummary(mealsArray)}>
+            <Text>See Daily Nutritional Summary</Text>
+          </Button>
+           :
+          <Button block style={{backgroundColor: themeColor, marginBottom: 10}} onPress={() => props.handleTagReset()}>
+            <Text>Back to Calendar</Text>
+          </Button>}
         </Content>
       </Container>
     );
