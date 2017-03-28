@@ -21,8 +21,8 @@ const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
 
 
 const textColor = 'black'
-const headerColor = '#f6b19c'
-const containerColor = '#f6d540'
+const headerColor = '#FC8A67'
+const containerColor = '#F6E49C'//'#f6d540'
 const eventColor = '#F2AA2C'
 const selectedDay = '#E34052'
 const buttonTextColor = '#E34052'

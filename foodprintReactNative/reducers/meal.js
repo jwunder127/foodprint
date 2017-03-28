@@ -87,9 +87,9 @@ const mealReducer = (state = initialState, action) => {
       return newState
 
     case ADD_MEAL:
-      newState.allMeals.unshift(action.newMeal)
+      newState.allMeals = [action.newMeal, ...state.allMeals]
       if (!newState.datesArray.includes(action.newDate)) {
-        newState.datesArray.push(action.newDate)
+        newState.datesArray = [...state.datesArray, action.newDate]
         }
       return newState
 
