@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { nutritionixConfig, nutritionixURL} from '../secrets';
 import { Actions } from 'react-native-router-flux';
-import { setMeal, setMeals, addMeal, setAllMeals, removeAllMeals } from './meal'
+import { setMeal, setMeals, addMeal, setAllMeals, removeAllMeals, setDates, setSummary } from './meal';
+import _ from 'lodash';
 
 /* ------------       DISPATCHERS     ------------------ */
 
@@ -35,6 +36,67 @@ export const setMealsByTag = (tag) => {
   }
 
 }
+
+export const buildDatesArray = (meals) => {
+
+  return (dispatch) => {
+    let datesArray = [];
+
+   // Filters all meals for just those dates which contain a meal
+    meals.forEach(meal => {
+      let date = meal.created_at.slice(0, 10);
+      if (!datesArray.includes(date)) datesArray.push(date)
+    })
+
+    //dispatch to the store all dates which contain a meal
+    dispatch(setDates(datesArray))
+
+  }
+
+}
+
+export const summarizeMeals = (meals) => {
+
+  return (dispatch) => {
+
+    // Set up a nutritional table that will contain the combined nutritional values of all of the meals to summarize
+        let nutritionalTable = {
+          calories: 0.0,
+          total_fat: 0.0,
+          saturated_fat: 0.0,
+          cholesterol: 0.0,
+          sodium: 0.0,
+          total_carbohydrate: 0.0,
+          sugars: 0.0,
+          protein: 0.0,
+        };
+        // This variable will contain just the string name of all ingredients
+        let foodTagArray = [];
+        //combine the nutrition value for all of the ingredients
+        meals.forEach(meal => {
+          foodTagArray = foodTagArray.concat(meal.tags)
+          nutritionalTable.calories += meal.nutritionalTable.calories;
+          nutritionalTable.total_fat += meal.nutritionalTable.total_fat;
+          nutritionalTable.saturated_fat += meal.nutritionalTable.saturated_fat;
+          nutritionalTable.cholesterol += meal.nutritionalTable.cholesterol;
+          nutritionalTable.sodium += meal.nutritionalTable.sodium;
+          nutritionalTable.total_carbohydrate += meal.nutritionalTable.total_carbohydrate;
+          nutritionalTable.sugars += meal.nutritionalTable.sugars;
+          nutritionalTable.protein += meal.nutritionalTable.protein;
+        });
+
+
+       // Create the summarized meal to dispatch
+        let mealSummary = {
+          totalMeals: meals,          // add all the meals so the photoUrls can be displayed
+          tags: _.uniq(foodTagArray), //remove any dupliate tags
+          nutritionalTable: nutritionalTable
+        }
+
+    dispatch(setSummary(mealSummary))
+  }
+}
+
 
 export const getAllMealsFromDB = () => {
 

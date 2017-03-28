@@ -6,10 +6,25 @@ const SET_MEALS = 'SET_MEALS'
 const SET_ALL_MEALS = 'SET_ALL_MEALS';
 const ADD_MEAL = 'ADD_MEAL'
 const REMOVE_MEALS = 'REMOVE_MEAL';
+const SET_DATES = 'SET_DATES';
+const SET_SUMMARY = 'SET_SUMMARY';
+
 
 /* ------------   ACTION CREATORS     ------------------ */
 
+export const setSummary = (meal) => {
+  return {
+    type: SET_SUMMARY,
+    summarizedMeal: meal
+  }
+}
 
+export const setDates = (dates) => {
+  return {
+    type: SET_DATES,
+    datesArray: dates
+  }
+}
 
 export const setMeal = (meal) => {
   return {
@@ -50,8 +65,11 @@ export const removeAllMeals = () => {
 const initialState = {
   selectedMeal: {},
   selectedMeals: [],
-  allMeals: []
+  allMeals: [],
+  datesArray: [],
+  summarizedMeal: {}
 };
+
 
 const mealReducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
@@ -67,6 +85,9 @@ const mealReducer = (state = initialState, action) => {
 
     case ADD_MEAL:
       newState.allMeals = [action.newMeal, ...state.allMeals]
+      if (!newState.datesArray.includes(action.newDate)) {
+        newState.datesArray = [...state.datesArray, action.newDate]
+        }
       return newState
 
     case REMOVE_MEALS:
@@ -74,11 +95,19 @@ const mealReducer = (state = initialState, action) => {
 
     case SET_MEALS:
       newState.selectedMeals = action.selectedMeals
+      return newState
 
+    case SET_DATES:
+      newState.datesArray = action.datesArray
+      return newState;
+
+    case SET_SUMMARY:
+      newState.summarizedMeal = action.summarizedMeal
+      return newState
 
     default:
       return newState
   }
-};
+}
 
 export default mealReducer
