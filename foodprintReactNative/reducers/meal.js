@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { nutritionixConfig, nutritionixURL} from '../secrets';
 import { Actions } from 'react-native-router-flux'
+import _ from 'lodash'
 /* -----------------    ACTIONS     ------------------ */
 
 const SET_MEAL = 'SET_MEAL';
@@ -9,10 +10,17 @@ const SET_ALL_MEALS = 'SET_ALL_MEALS';
 const ADD_MEAL = 'ADD_MEAL'
 const REMOVE_MEALS = 'REMOVE_MEAL';
 const SET_DATES = 'SET_DATES';
+const SET_SUMMARY = 'SET_SUMMARY'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
+export const setSummary = (meal) => {
+  return {
+    type: SET_SUMMARY,
+    summarizedMeal: meal
+  }
 
+}
 
 export const setDates = (dates) => {
   return {
@@ -62,7 +70,8 @@ const initialState = {
   selectedMeal: {},
   selectedMeals: [],
   allMeals: [],
-  datesArray: []
+  datesArray: [],
+  summarizedMeal: {}
 };
 
 const mealReducer = (state = initialState, action) => {
@@ -94,6 +103,10 @@ const mealReducer = (state = initialState, action) => {
     case SET_DATES:
       newState.datesArray = action.datesArray
       return newState;
+
+    case SET_SUMMARY:
+      newState.summarizedMeal = action.summarizedMeal
+      return newState
 
     default:
       return newState
@@ -138,6 +151,7 @@ export const buildDatesArray = (meals) => {
   return (dispatch) => {
     let datesArray = [];
     console.log("meals", meals)
+   // Filters the array for just those dates which contain an meal
     meals.forEach(meal => {
       let date = meal.created_at.slice(0, 10);
       if (!datesArray.includes(date)) datesArray.push(date)
@@ -151,6 +165,47 @@ export const buildDatesArray = (meals) => {
 
 }
 
+export const summarizeMeals = (meals) => {
+
+  return (dispatch) => {
+
+    // Set up a nutrional table that will contain the combined nutritional values of all of the ingredients
+        let nutritionalTable = {
+          calories: 0.0,
+          total_fat: 0.0,
+          saturated_fat: 0.0,
+          cholesterol: 0.0,
+          sodium: 0.0,
+          total_carbohydrate: 0.0,
+          sugars: 0.0,
+          protein: 0.0,
+        };
+        // This variable will contain just the string name of all ingredients
+        let foodTagArray = [];
+        //combine the nutrition value for all of the ingredients
+        meals.forEach(meal => {
+          foodTagArray = foodTagArray.concat(meal.tags)
+          nutritionalTable.calories += meal.nutritionalTable.calories;
+          nutritionalTable.total_fat += meal.nutritionalTable.total_fat;
+          nutritionalTable.saturated_fat += meal.nutritionalTable.saturated_fat;
+          nutritionalTable.cholesterol += meal.nutritionalTable.cholesterol;
+          nutritionalTable.sodium += meal.nutritionalTable.sodium;
+          nutritionalTable.total_carbohydrate += meal.nutritionalTable.total_carbohydrate;
+          nutritionalTable.sugars += meal.nutritionalTable.sugars;
+          nutritionalTable.protein += meal.nutritionalTable.protein;
+        });
+
+
+       // Create the summarized meal to dispatch
+        let meal = {
+          photoUrl: '',
+          tags: _.uniq(foodTagArray), //remove any dupliate tags
+          nutritionalTable: nutritionalTable
+        }
+    console.log("Summarized Meal", meal)
+    dispatch(setSummary(meal))
+  }
+}
 
 export const getAllMealsFromDB = () => {
 

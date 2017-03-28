@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Day from '../components/Day';
-import { setMeal, setMealsByTag } from '../reducers/meal'
+import { setMeal, setMealsByTag, summarizeMeals } from '../reducers/meal'
 import { Actions } from 'react-native-router-flux';
 
 
 
-export class MealContainer extends Component {
+export class DayContainer extends Component {
 
   constructor(props){
     super(props)
@@ -14,6 +14,7 @@ export class MealContainer extends Component {
     this.handleMealClick = this.handleMealClick.bind(this)
     this.handleTagClick = this.handleTagClick.bind(this)
     this.handleTagReset = this.handleTagReset.bind(this)
+    this.goToDailySummary = this.goToDailySummary.bind(this)
   }
 
   handleMealClick(meal){
@@ -24,6 +25,12 @@ export class MealContainer extends Component {
   handleTagClick(tag){
     this.props.selectMeals(tag)
     Actions.day({label: tag})
+  }
+
+  goToDailySummary(meals){
+
+    this.props.setMealsToSummarize(meals)
+    Actions.summary()
   }
 
   handleTagReset(){
@@ -39,6 +46,7 @@ export class MealContainer extends Component {
       handleMealClick={this.handleMealClick}
       handleTagClick={this.handleTagClick}
       handleTagReset={this.handleTagReset}
+      goToDailySummary={this.goToDailySummary}
       />
     )
   }
@@ -58,10 +66,13 @@ const mapDispatchToProps = dispatch => {
     },
     selectMeals: (tag) => {
       dispatch(setMealsByTag(tag))
+   },
+   setMealsToSummarize: (meals) => {
+     dispatch(summarizeMeals(meals))
    }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MealContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DayContainer)
 
 

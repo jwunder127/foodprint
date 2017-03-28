@@ -25,6 +25,7 @@ const headerColor = '#f6b19c'
 const containerColor = '#f6d540'
 const eventColor = '#F2AA2C'
 const selectedDay = '#E34052'
+const buttonTextColor = '#E34052'
 
 const customStyle = {
     hasEventCircle: {
@@ -49,7 +50,7 @@ const customStyle = {
        color: textColor
      },
      controlButtonText: {
-       color: textColor
+       color: buttonTextColor
      },
      calendarHeadingText: {
        color: 'black'
@@ -105,11 +106,11 @@ export class CalendarContainer extends Component {
             prevButtonText={'Prev'}
             nextButtonText={'Next'}
             />
-        <Button block onPress={this.goToDay} style={{marginTop: 10, backgroundColor: '#f6b19c'}}>
-            <Icon name='pizza' />
-            <Icon name='nutrition'  />
-            <Icon name='restaurant' />
-            <Text>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
+        <Button onPress={this.goToDay} style={{marginTop: 10, marginLeft: 55, backgroundColor: headerColor}}>
+            <Icon style={{color: buttonTextColor}} name='pizza' />
+            <Icon style={{color: buttonTextColor}} name='nutrition'  />
+            <Icon style={{color: buttonTextColor}} name='restaurant' />
+            <Text style={{color: buttonTextColor}}>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
         </Content>
       </Container>
