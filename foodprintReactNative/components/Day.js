@@ -16,7 +16,6 @@ const themeColor = '#FC8A67' //#f6b19c
 export default function Meal (props) {
 
     const mealsArray = props.meals
-    console.log("Day component props", props)
 
     return (
       <Container style={{marginTop: 10, marginBottom: 50}}>
