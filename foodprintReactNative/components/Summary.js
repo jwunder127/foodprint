@@ -38,7 +38,7 @@ export default function Summary (props) {
                    {props.meal.totalMeals.map((meal, i) =>{
                    return (
                     <TouchableOpacity key={i} onPress={()=> props.handleMealClick(meal)}>
-                      <Thumbnail style={{width: 75, height: 75, margin: 0}} square source={{uri: meal.photoUrl}} />
+                      <Thumbnail style={{width: 95, height: 95, margin: 1}} square source={{uri: meal.photoUrl}} />
                     </TouchableOpacity>
                     )})
                    }
