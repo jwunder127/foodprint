@@ -3,9 +3,15 @@ import { Text as RNText, View, TouchableOpacity, StyleSheet } from 'react-native
 import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer, Left} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#00A229';
+const periwinkle = '#686CA6';
+const lightYellow = '#fbf4d7'
 
-const themeColor = '#FC8A67'
-const textColor = 'black'
+const themeColor = citrusPink
+const textColor = '#505050'
 
 const styles = StyleSheet.create({
 labelText: {
@@ -28,16 +34,16 @@ export default function Meal (props) {
 
 
     return (
-      <Container style={{marginTop: 10, marginBottom: 50}}>
+      <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
         <Content>
-        <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
-          <Card>
-            <CardItem bordered>
+        <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
+          <Card style={{margin: 10}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
 
             </CardItem>
 
-            <CardItem bordered>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Left>
                <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
                    {props.meal.tags.map((foodTag, i) =>{
@@ -51,7 +57,7 @@ export default function Meal (props) {
               </Left>
               </CardItem>
 
-            <CardItem bordered>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Body>
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
                  <Grid>

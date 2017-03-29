@@ -7,7 +7,7 @@ import {
 import Calendar from 'react-native-calendar';
 import Moment from 'moment';
 
-import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
+import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right, Card, CardItem } from 'native-base';
 import store from '../store';
 import { setMealsByDate } from '../reducers/mealThunks'
 
@@ -17,9 +17,15 @@ const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
   'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#00A229';
+const periwinkle = '#686CA6'
+
 const textColor = 'black'
 const headerColor = '#FC8A67'
-const containerColor = '#F6E49C'//'#f6d540'
+const containerColor = '#fbf4d7'//'#F6E49C'//'#f6d540'
 const eventColor = '#F2AA2C'
 const selectedDay = '#E34052'
 const buttonTextColor = '#E34052'
@@ -86,8 +92,9 @@ export class CalendarContainer extends Component {
     console.log('Calendar', this.props)
 
     return (
-      <Container style={{marginTop: 40}}>
-        <Content>
+      <Container style={{marginTop: 0, backgroundColor: citrusYellow}}>
+        <Content style={{marginTop: 30}}>
+
           <Calendar
             onDateSelect={(date) => this.setState({date})}
             customStyle={customStyle}
@@ -101,12 +108,14 @@ export class CalendarContainer extends Component {
             prevButtonText={'Prev'}
             nextButtonText={'Next'}
             />
+
         <Button onPress={this.goToDay} style={{marginTop: 10, marginLeft: 55, backgroundColor: headerColor}}>
             <Icon style={{color: buttonTextColor}} name='pizza' />
             <Icon style={{color: buttonTextColor}} name='nutrition'  />
             <Icon style={{color: buttonTextColor}} name='restaurant' />
             <Text style={{color: buttonTextColor}}>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
+
         </Content>
       </Container>
     );
