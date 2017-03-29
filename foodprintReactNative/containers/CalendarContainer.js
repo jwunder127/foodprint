@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
-
-} from 'react-native';
-import {
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
 import Calendar from 'react-native-calendar';
 import Moment from 'moment';
