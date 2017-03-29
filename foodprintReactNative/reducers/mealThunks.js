@@ -121,6 +121,12 @@ export const getNutrientsValue = (tags, photoUrl) => {
     const data = {
       "query": tags.join(" ")
     };
+
+    //Set Current Meal to empty and
+    //Make initial move to Actions.meal where page will indicate loading until nutritional info is uploaded
+    dispatch(setMeal({}))
+    Actions.meal()
+
     //Make call to Nutritionix API
     axios.post(nutritionixURL, data, nutritionixConfig)
       .then(response => {
@@ -198,7 +204,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
         })
         .then(
             //Send the user to the Meal view displaying this uploaded meal
-          () => Actions.meal()
+          // () => Actions.meal()
         )
         .catch(console.error)
       }

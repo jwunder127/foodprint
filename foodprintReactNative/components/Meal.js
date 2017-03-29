@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text as RNText, View, TouchableOpacity, StyleSheet } from 'react-native';
-import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer, Left} from 'native-base';
+import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer, Left, Spinner} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 const citrusYellow = '#F6E49C';
@@ -34,6 +34,8 @@ export default function Meal (props) {
 
 
     return (
+
+
       <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
         <Content>
         <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
