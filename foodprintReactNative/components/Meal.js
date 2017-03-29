@@ -4,7 +4,15 @@ import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 
+const themeColor = '#FC8A67'
+const textColor = 'black'
+
 const styles = StyleSheet.create({
+labelText: {
+    fontSize: 12,
+    color: textColor,
+    lineHeight: 20
+  },
   heading: {
     fontSize: 10,
     color:'#000'
@@ -35,7 +43,7 @@ export default function Meal (props) {
                    {props.meal.tags.map((foodTag, i) =>{
                    return (
                     <TouchableOpacity key={i} onPress={()=> props.handleTagClick(foodTag)}>
-                     <Badge   style={{margin: 3, backgroundColor: '#f6b19c'}}><RNText style={{fontSize: 10, lineHeight: 18}}>{foodTag}</RNText></Badge>
+                     <Badge   style={{margin: 3, backgroundColor: themeColor}}><RNText style={styles.labelText}>{foodTag}</RNText></Badge>
                      </TouchableOpacity>
                     )})
                    }

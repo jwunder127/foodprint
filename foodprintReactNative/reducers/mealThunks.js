@@ -105,8 +105,9 @@ export const getAllMealsFromDB = () => {
         let userId = getState().auth.id
         axios.get(`https://foodprintapp.herokuapp.com/api/meals/${userId}`)
         .then(response => {
-           console.log("Loaded Meals from DB:", response.data)
+          // load all meals to local store and create an array containing all the days which have meals stored
            dispatch(setAllMeals(response.data))
+           dispatch(buildDatesArray(response.data))
         })
         .catch(console.error)
     }
@@ -126,7 +127,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
         //Take each food result from the Nutritionx API and add it to an array of ingredients
 
         //console.log("Nutrition response", response.data.food)
-
+        console.log("NUTRITION", response.data)
         response.data.foods.forEach(eachFoodObject => {
           let foodObject = {
             food_name: eachFoodObject.food_name,

@@ -73,18 +73,17 @@ export class CalendarContainer extends Component {
     };
   }
 
-
-
-
   goToDay = () => {
     //Select current meals by date
     let formattedDate = Moment(this.state.date).format().slice(0,10)
-    store.dispatch(setMealsByDate(formattedDate))
+    this.props.selectMeals(formattedDate)
     // Send user to day page for selcted date
     Actions.day({label: Moment(this.state.date).format('MMMM DD YYYY')})
   }
 
   render() {
+
+    console.log('Calendar', this.props)
 
     return (
       <Container style={{marginTop: 40}}>
@@ -92,7 +91,6 @@ export class CalendarContainer extends Component {
           <Calendar
             onDateSelect={(date) => this.setState({date})}
             customStyle={customStyle}
-
             showControls={true}
             showEventIndicators={false}
             eventDates={this.props.datesArray}
@@ -121,5 +119,13 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(CalendarContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    selectMeals: (date) => {
+      dispatch(setMealsByDate(date))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer)
 

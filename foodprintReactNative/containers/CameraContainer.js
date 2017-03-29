@@ -1,13 +1,18 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, TextInput, View, Image } from 'react-native';
+import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardItem, Button, Grid, Col, Content, Container, Thumbnail, Spinner } from 'native-base';
-import { Actions } from 'react-native-router-flux';
+
+import { Card, CardItem, Button, Grid, Col, Content, Container, Thumbnail, Spinner, Icon } from 'native-base';
+
+
+
+
 import { RNS3 } from 'react-native-aws3';
 import CheckBox from 'react-native-check-box';
 import ImagePicker from 'react-native-image-picker';
 import Clarifai from 'clarifai';
+import Actions from 'react-native-router-flux';
 
 import { getNutrientsValue } from '../reducers/mealThunks'
 
@@ -26,10 +31,9 @@ const citrusGreen = '#00A229';
 const periwinkle = '#686CA6'
 const styles = {
   card: {
-    backgroundColor: citrusPink,
+    backgroundColor: citrusYellow,
   },
   cardItemText: {
-    color: 'white',
     textAlign: 'left'
   },
   container: {
@@ -104,28 +108,15 @@ class CameraContainer extends Component {
   renderClarifaiResponse(foodTags){
 
     return (
-        <Container>
-          <Button
-            onPress={this.selectImage}
-          >
-            <Text>
-              Select new image
-            </Text>
-          </Button>
-
-          <View >
+      <Container>
+        <TouchableOpacity onPress={() => this.resetState()} style={{backgroundColor:citrusPink, height: 40}}>
+            <Icon style={{color: '#505050', marginTop: 7, marginLeft: 10}} android="md-arrow-back" ios="ios-arrow-back">
+              <Text style={{fontFamily: 'SpaceMono-Regular', textAlign: 'right', fontSize: 16, color: 'white'}}>          Select your tags!</Text>
+            </Icon>
+        </TouchableOpacity>
+        <View >
             {this.renderMealImage()}
-          </View>
-          <Text
-            style={{backgroundColor: 'white'}}
-          >
-            Select the foods that best match your meal
-          </Text>
-          <Text
-            style={{backgroundColor: 'white'}}
-          >
-            Currently selected: {this.state.tagsToSend.join(' ')}
-          </Text>
+        </View>
         <Content>
           <Card>
             {foodTags.map(tag => (
@@ -140,23 +131,31 @@ class CameraContainer extends Component {
             ))}
           </Card>
         </Content>
-        <View style={{position: 'relative', bottom: 0}}>
+        <View>
           <TextInput
-            placeholder="Don't see your food? Add it here! Separate by commas."
-            style={{ backgroundColor: '#ccced1', borderWidth: 1}}
+            placeholder="Don't see your food? Add it here!"
+            style={{ backgroundColor: citrusYellow, borderColor: '#505050', borderWidth: 1, fontFamily: 'SpaceMono-Regular', height: 35, textAlign: 'center'}}
+            underlineColorAndroid='transparent'
             onChangeText={(text) => this.handleAdditionalTags(text)}
             />
-          {this.renderSubmitButton()}
+          <Text
+            style={{backgroundColor: citrusYellow,
+                    fontFamily: 'SpaceMono-Regular',
+                    color: citrusPink,
+                    minHeight: 35, marginLeft: 15, flexWrap: 'wrap'}}
+          >
+            Currently selected: {this.state.tagsToSend.join(' ')}
+          </Text>
         </View>
+          {this.renderSubmitButton()}
       </Container>
     )
-
-
   }
+
     renderMealImage(){
     if (this.state.mealPhotoUrl) {
       return (
-       <Image resizeMode='contain' style={{borderWidth: 5, borderColor: 'brown', height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
+       <Image style={{resizeMode: 'contain', marginTop: 0.5, height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
     } else {
        return <Spinner />
     }
@@ -175,7 +174,7 @@ class CameraContainer extends Component {
     }
   }
 
-  selectImage() {
+  resetState(){
     this.setState({
       foodTags: [],
       mealPhotoUrl: '',
@@ -183,13 +182,17 @@ class CameraContainer extends Component {
       additionalTags: [],
       tagsToSend: []
     })
+  }
+
+  selectImage() {
+    this.resetState()
 
     const options = {
         title: 'Select an Image',
         storageOptions: {
           skipBackup: true
         },
-        maxWidth: 480
+        maxWidth: 480,
       }
 
     ImagePicker.showImagePicker(options, (response) => {
