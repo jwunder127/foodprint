@@ -1,6 +1,7 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Container, Content, Thumbnail, Card, CardItem, Spinner } from 'native-base';
+import { TouchableOpacity, Text, View } from 'react-native';
+import { Container, Content, Thumbnail, Card, CardItem, Spinner, Separator } from 'native-base';
+import moment from 'moment';
 
 const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
@@ -28,20 +29,40 @@ const styles = {
 }
 
 export default function Meal (props) {
+
+    let oldDate = ''
+
+    const renderSeparator = (date) => {
+      if (date !== oldDate){
+        oldDate = date;
+        return ( <View style={{backgroundColor: citrusPink}}>
+                  <Text style={{textAlign: 'center', color: 'white'}}>{date}</Text>
+                </View>)
+      }
+    }
+
     return (
      <Container style={styles.container}>
       <Content>
         {
+
         props.meals && props.meals.length ?
         props.meals.map((meal, i) => {
+          let date = meal.created_at.slice(0,10)
+          date = moment(date).format('MMM DD YYYY')
+
             return (
-              <Card style={styles.card} key={i}>
+              <View key={i}>
+              {renderSeparator(date)
+              }
+              <Card style={styles.card} >
                 <CardItem bordered style={styles.cardItem}>
                   <TouchableOpacity onPress={() => props.handleMealClick(meal)}>
                     <Thumbnail style={styles.thumbnail}  source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
                  </CardItem>
                </Card>
+                </View>
               )
           }) :
         <Spinner color={citrusPink} />
