@@ -14,7 +14,7 @@ import Moment from 'moment';
 import { AppRegistry, StyleSheet } from 'react-native';
 import { Container } from 'native-base';
 import store from './store';
-import { getAllMealsFromDB, setMealsByDate } from './reducers/meal';
+import { getAllMealsFromDB, setMealsByDate } from './reducers/mealThunks';
 import { calendarIcon, cameraIcon, nutritionIcon, homeIcon } from './components/Icons';
 
 
