@@ -4,8 +4,7 @@ import {connect} from 'react-redux';
 import { whoami } from '../reducers/authThunks'
 import { Container, Content, Button } from 'native-base';
 import {Text, Image} from 'react-native';
-import {HomeContainer} from "../containers/HomeContainer";
-import {LoginContainer} from "../containers/LoginContainer";
+import { getAllMealsFromDB } from '../reducers/mealThunks';
 
 
 const styles = {
@@ -60,7 +59,7 @@ export class Splashpage extends Component {
           Actions.login();
         } else {
           console.log('in the else statement! Where are you going?')
-            Actions.home()
+            Actions.home({duration})
         }
     }
 
@@ -79,8 +78,9 @@ export class Splashpage extends Component {
                   if (this.props.auth === null || this.props.auth === "") {
                     Actions.login();
                 } else {
-                    console.log('in the else statement!')
-                    Actions.mainTabBar()
+                    console.log('in the else statement!');
+                      this.props.getAllMealsFromDB();
+                    Actions.home()
                 }
                 }}>
                   <Text>Track Now
@@ -102,6 +102,9 @@ const mapDispatchToProps = dispatch => {
     return {
         whoami() {
             dispatch(whoami())
+        },
+        getAllMealsFromDB() {
+            dispatch(getAllMealsFromDB())
         }
     }
 };
