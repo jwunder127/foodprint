@@ -25,11 +25,10 @@ const styles = {
     fontFamily: 'SpaceMono-Bold'
   },
 
-  selectImageButton: {
+  selectLogoutButton: {
     marginTop: 55,
-    marginLeft: 170,
+    marginLeft: 130,
     backgroundColor: '#FC8A67',
-
   },
 };
 
@@ -49,7 +48,7 @@ export default function Meal (props) {
           </Text>
           <Button
               onPress={() => props.handleLogout()}
-              style={styles.selectImageButton}
+              style={styles.selectLogoutButton}
               >
             <Text>
               Log Out
