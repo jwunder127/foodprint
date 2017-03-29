@@ -40,7 +40,7 @@ export default class foodprintReactNative extends Component {
     return (
       <Container>
         <Provider store={store}>
-          <Router>
+          <Router duration={1}>
             <Scene key="root" hideNavBar={true}>
               <Scene key="splash" component={Splashpage} title="Splash" initial="{true}" />
               <Scene key="login" component={LoginContainer} title="Login" initial={false} />
