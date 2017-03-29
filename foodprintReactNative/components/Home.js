@@ -28,11 +28,6 @@ const styles = {
   }
 }
 
-//Moment(this.state.date).format('MMMM DD YYYY')
-
-
-
-
 export default function Meal (props) {
 
     let oldDate = ''
