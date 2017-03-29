@@ -42,12 +42,7 @@ export default function Meal (props) {
     )
   }
 
-//REMOVED SIGNOUT BUTTON
-// <ListItem itemDivider>
-//           <Button rounded danger onPress={() => props.handleLogout()}>
-//             <Text> Log Out </Text>
-//           </Button>
-//         </ListItem>
+
 
 
 
