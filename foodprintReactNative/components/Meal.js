@@ -36,7 +36,7 @@ export default function Meal (props) {
     return (
       <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
         <Content>
-        <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
+        <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
           <Card style={{margin: 10}}>
             <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />

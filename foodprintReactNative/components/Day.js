@@ -9,7 +9,9 @@ import {
   Button,
   Card,
   CardItem,
-  View
+  View,
+  Left,
+  Body
 } from 'native-base';
 import {Text, TouchableOpacity, StyleSheet, Text as RNText} from 'react-native';
 
@@ -35,15 +37,12 @@ const styles = StyleSheet.create({
   },
   labelText: {
     color: textColor,
-    lineHeight: 22
+    lineHeight: 20,
+    fontSize: 10
   },
   button:
     {backgroundColor: themeColor}
 });
-
-
-
-
 
 
 export default function Meal (props) {
@@ -53,14 +52,14 @@ export default function Meal (props) {
       <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
 
         <Content>
-          <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
+          <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
              { (mealsArray.length > 0) && mealsArray.map((meal, i) => { return (
                <Card key={i} style={{margin: 4}}>
                <CardItem bordered style={{backgroundColor: lightYellow}}>
                   <TouchableOpacity onPress={() => props.handleMealClick(meal)}>
-                  <Thumbnail style={{width: 120, height: 120}} square source={{uri: meal.photoUrl}} />
+                  <Thumbnail style={{width: 150, height: 150}} square source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
-                  <CardItem style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', backgroundColor: lightYellow}}>
+                  <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', backgroundColor: lightYellow}}>
                     {meal.tags.map((food, i) => {
                     return (
                       <TouchableOpacity key={i} onPress={() => props.handleTagClick(food)}>
@@ -68,8 +67,9 @@ export default function Meal (props) {
                       <RNText style={styles.labelText}>{food}</RNText></Badge>
                       </TouchableOpacity>
                     )
-                    })}
-                  </CardItem>
+                  })}
+
+                  </View>
               </CardItem>
               </Card>
               )

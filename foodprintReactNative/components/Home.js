@@ -19,7 +19,7 @@ export default function Meal (props) {
 
 
     return (
-     <Container style={{backgroundColor: citrusYellow}}>
+     <Container style={{backgroundColor: citrusYellow, marginBottom: 50}}>
       <Content>
 
 
@@ -42,6 +42,7 @@ export default function Meal (props) {
     )
   }
 
+//REMOVED SIGNOUT BUTTON
 // <ListItem itemDivider>
 //           <Button rounded danger onPress={() => props.handleLogout()}>
 //             <Text> Log Out </Text>

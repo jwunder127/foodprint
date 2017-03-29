@@ -31,7 +31,7 @@ export default function Summary (props) {
     return (
       <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
         <Content>
-        <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>Daily Summary - {props.date}</RNText>
+        <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>Daily Summary - {props.date}</RNText>
           <Card style={{margin: 10}}>
             <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginLeft: 10}}>
