@@ -192,7 +192,7 @@ class CameraContainer extends Component {
         storageOptions: {
           skipBackup: true
         },
-        maxWidth: 480
+        maxWidth: 480,
       }
 
     ImagePicker.showImagePicker(options, (response) => {

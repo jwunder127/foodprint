@@ -1,8 +1,12 @@
+import axios from 'axios';
+import { Actions } from 'react-native-router-flux'
+import { removeAllMeals } from './mealThunks'
 
 /* ------------------    ACTIONS    --------------------- */
 
 const AUTHENTICATED = 'AUTHENTICATED';
 const REMOVE = 'REMOVE_CURRENT_USER';
+
 
 /* --------------    ACTION CREATORS    ----------------- */
 

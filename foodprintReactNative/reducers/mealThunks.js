@@ -127,7 +127,7 @@ export const getNutrientsValue = (tags, photoUrl) => {
         //Take each food result from the Nutritionx API and add it to an array of ingredients
 
         //console.log("Nutrition response", response.data.food)
-
+        console.log("NUTRITION", response.data)
         response.data.foods.forEach(eachFoodObject => {
           let foodObject = {
             food_name: eachFoodObject.food_name,
