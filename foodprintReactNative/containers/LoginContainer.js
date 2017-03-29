@@ -21,9 +21,9 @@ export class LoginContainer extends Component {
     this.doLogout = this.doLogout.bind(this);
   }
 
-  componentDidMount() {
-    this.props.whoami();
-  }
+  // componentDidMount() {
+  //   this.props.whoami();
+  // }
 
   updateEmail(text){
     this.setState({ email: text });
