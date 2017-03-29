@@ -3,8 +3,8 @@ import { login, logout } from '../reducers/authThunks';
 import {connect} from 'react-redux';
 import HomeContainer from '../containers/HomeContainer';
 import LoginComponent from '../components/LoginComponent';
-import { getAllMealsFromDB } from '../reducers/mealThunks'
-import { whoami } from '../reducers/authThunks'
+import { getAllMealsFromDB } from '../reducers/mealThunks';
+import { whoami } from '../reducers/authThunks';
 
 export class LoginContainer extends Component {
 
@@ -21,9 +21,9 @@ export class LoginContainer extends Component {
     this.doLogout = this.doLogout.bind(this);
   }
 
-  componentDidMount() {
-    this.props.whoami();
-  }
+  // componentDidMount() {
+  //   this.props.whoami();
+  // }
 
   updateEmail(text){
     this.setState({ email: text });
