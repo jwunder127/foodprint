@@ -13,11 +13,6 @@ export default function Meal (props) {
     return (
      <Container>
       <Content>
-        <ListItem itemDivider>
-          <Button rounded danger onPress={() => props.handleLogout()}>
-            <Text> Log Out </Text>
-          </Button>
-        </ListItem>
       <List>
         {
          props.meals && props.meals.map((meal, i) => {
