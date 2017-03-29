@@ -6,9 +6,12 @@ import {
   Thumbnail,
   List,
   Badge,
-  Button
+  Button,
+  Card,
+  CardItem,
+  View
 } from 'native-base';
-import {Text, TouchableOpacity, StyleSheet, View, Text as RNText} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, Text as RNText} from 'react-native';
 
 
 const citrusYellow = '#F6E49C';
@@ -16,6 +19,7 @@ const citrusPink = '#FC8A67';
 const citrusOrange = '#E88931';
 const citrusGreen = '#00A229';
 const periwinkle = '#686CA6'
+const lightYellow = '#fbf4d7'
 
 const themeColor = citrusPink
 const textColor = '#505050'
@@ -45,18 +49,18 @@ const styles = StyleSheet.create({
 export default function Meal (props) {
 
     const mealsArray = props.meals
-
     return (
       <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
-        <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
+
         <Content>
-          <List>
+          <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
              { (mealsArray.length > 0) && mealsArray.map((meal, i) => { return (
-               <ListItem key={i}>
+               <Card key={i} style={{margin: 4}}>
+               <CardItem bordered style={{backgroundColor: lightYellow}}>
                   <TouchableOpacity onPress={() => props.handleMealClick(meal)}>
                   <Thumbnail style={{width: 120, height: 120}} square source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
-                  <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+                  <CardItem style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', backgroundColor: lightYellow}}>
                     {meal.tags.map((food, i) => {
                     return (
                       <TouchableOpacity key={i} onPress={() => props.handleTagClick(food)}>
@@ -65,17 +69,19 @@ export default function Meal (props) {
                       </TouchableOpacity>
                     )
                     })}
-                  </View>
-              </ListItem>)
-             })}
-          </List>
+                  </CardItem>
+              </CardItem>
+              </Card>
+              )
+             } ) }
+
 
           {props.meals.length && props.label.includes('20') ?
-           <Button block style={{backgroundColor: themeColor, marginBottom: 10}} onPress={() => props.goToDailySummary(mealsArray)}>
+           <Button block style={{backgroundColor: themeColor, marginTop: 6, marginBottom: 10}} onPress={() => props.goToDailySummary(mealsArray)}>
             <Text style={styles.buttonText}>See Daily Nutritional Summary</Text>
           </Button>
            :
-          <Button block style={{backgroundColor: themeColor, marginBottom: 10}} onPress={() => props.handleTagReset()}>
+          <Button block style={{backgroundColor: themeColor, marginTop: 6, marginBottom: 10}} onPress={() => props.handleTagReset()}>
             <Text style={styles.buttonText}>Back to Calendar</Text>
           </Button>}
         </Content>

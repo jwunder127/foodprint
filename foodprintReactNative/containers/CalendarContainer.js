@@ -10,7 +10,7 @@ import {
 import Calendar from 'react-native-calendar';
 import Moment from 'moment';
 
-import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right } from 'native-base';
+import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right, Card, CardItem } from 'native-base';
 import store from '../store';
 import { setMealsByDate } from '../reducers/mealThunks'
 
@@ -97,6 +97,7 @@ export class CalendarContainer extends Component {
     return (
       <Container style={{marginTop: 0, backgroundColor: citrusYellow}}>
         <Content style={{marginTop: 30}}>
+
           <Calendar
             onDateSelect={(date) => this.setState({date})}
             customStyle={customStyle}
@@ -110,12 +111,14 @@ export class CalendarContainer extends Component {
             prevButtonText={'Prev'}
             nextButtonText={'Next'}
             />
+
         <Button onPress={this.goToDay} style={{marginTop: 10, marginLeft: 55, backgroundColor: headerColor}}>
             <Icon style={{color: buttonTextColor}} name='pizza' />
             <Icon style={{color: buttonTextColor}} name='nutrition'  />
             <Icon style={{color: buttonTextColor}} name='restaurant' />
             <Text style={{color: buttonTextColor}}>{"Go to: " + Moment(this.state.date).format('MMMM DD YYYY')}</Text>
         </Button>
+
         </Content>
       </Container>
     );

@@ -29,7 +29,7 @@ export default function Meal (props) {
               <Card style={{margin: 10}} key={i}>
               <CardItem bordered style={{backgroundColor: lightYellow}}>
                <TouchableOpacity onPress={()=> props.handleMealClick(meal)}>
-                  <Thumbnail style={{width: 300, height: 300, margin: 10}}  source={{uri: meal.photoUrl}} />
+                  <Thumbnail style={{width: 300, height: 300, marginLeft: 2}}  source={{uri: meal.photoUrl}} />
               </TouchableOpacity>
                </CardItem>
                </Card>
@@ -47,9 +47,6 @@ export default function Meal (props) {
 //             <Text> Log Out </Text>
 //           </Button>
 //         </ListItem>
- <Card >
-<CardItem>
- </CardItem>
-</Card>
+
 
 

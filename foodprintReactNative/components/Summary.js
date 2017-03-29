@@ -8,6 +8,7 @@ const citrusPink = '#FC8A67';
 const citrusOrange = '#E88931';
 const citrusGreen = '#00A229';
 const periwinkle = '#686CA6'
+const lightYellow = '#fbf4d7'
 
 const themeColor = citrusPink
 const textColor = '#505050'
@@ -32,7 +33,7 @@ export default function Summary (props) {
         <Content>
         <RNText style={{color: '#000', fontWeight: 'bold', textAlign: 'center'}}>Daily Summary - {props.date}</RNText>
           <Card style={{margin: 10}}>
-            <CardItem bordered style= {{backgroundColor: citrusYellow, elevation: 1}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginLeft: 10}}>
                    {props.meal.totalMeals.map((meal, i) =>{
                    return (
@@ -44,7 +45,7 @@ export default function Summary (props) {
                 </View>
             </CardItem>
 
-            <CardItem bordered  style= {{backgroundColor: citrusYellow, elevation: 1}}>
+            <CardItem bordered  style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Left>
                <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
                    {props.meal.tags.map((foodTag, i) =>{
@@ -58,7 +59,7 @@ export default function Summary (props) {
               </Left>
               </CardItem>
 
-            <CardItem bordered style= {{backgroundColor: citrusYellow, elevation: 1}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Body>
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
                  <Grid>

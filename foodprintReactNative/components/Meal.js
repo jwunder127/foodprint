@@ -7,7 +7,8 @@ const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
 const citrusOrange = '#E88931';
 const citrusGreen = '#00A229';
-const periwinkle = '#686CA6'
+const periwinkle = '#686CA6';
+const lightYellow = '#fbf4d7'
 
 const themeColor = citrusPink
 const textColor = '#505050'
@@ -37,12 +38,12 @@ export default function Meal (props) {
         <Content>
         <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
           <Card style={{margin: 10}}>
-            <CardItem bordered style= {{backgroundColor: citrusYellow, elevation: 1}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
 
             </CardItem>
 
-            <CardItem bordered style= {{backgroundColor: citrusYellow, elevation: 1}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Left>
                <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
                    {props.meal.tags.map((foodTag, i) =>{
@@ -56,7 +57,7 @@ export default function Meal (props) {
               </Left>
               </CardItem>
 
-            <CardItem bordered style= {{backgroundColor: citrusYellow, elevation: 1}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
               <Body>
                 <RNText style={{fontWeight: 'bold', fontSize: 25, color:'#000'}}>Nutrition Facts</RNText>
                  <Grid>
