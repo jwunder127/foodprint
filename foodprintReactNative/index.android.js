@@ -46,14 +46,12 @@ export default class foodprintReactNative extends Component {
               <Scene key="signup" component={SignupContainer} title="Sign up" />
               <Scene key="mainTabBar" tabs={true} hideNavBar={true} tabBarStyle={style.tabBarStyle} >
                 <Scene key="calendarTab" title="Calendar Tab" icon={calendarIcon} onPress={() => {Actions.calendar()}}>
-                  <Scene key="home" component={Home} title="Home" hideNavBar={true} />
-                  <Scene key="calendar" component={CalendarPage} title="Calendar View" hideNavBar={true} />
-                  <Scene key="day" component={Day} title="Day View" hideNavBar={true} />
-                  <Scene key="meal" component={Meal} title="Meal View" hideNavBar={true} />
-
+                  <Scene key="home" component={Home} title="Home" hideNavBar={true}  hideTabBar={false} />
+                  <Scene key="calendar" component={CalendarPage} title="Calendar View" hideNavBar={true}  hideTabBar={false} />
+                  <Scene key="day" component={Day} title="Day View" hideNavBar={true}  hideTabBar={false} />
+                  <Scene key="meal" component={Meal} title="Meal View" hideNavBar={true}  hideTabBar={false} />
                   <Scene key="camera" component={CameraContainer} title="Camera View" hideNavBar={true} hideTabBar={true}/>
-
-                  <Scene key='summary' component={SummaryContainer} title='Summary view' hideNavBar={true}/>
+                  <Scene key='summary' component={SummaryContainer} title='Summary view' hideNavBar={true} hideTabBar={false}/>
                 </Scene>
                 <Scene key="cameraTab" title="Camera Tab" icon={cameraIcon} onPress={ () => Actions.camera() }/>
                 <Scene key="nutritionTab" title="Nutrition Tab" icon={nutritionIcon} onPress={ () => goToToday() }/>
