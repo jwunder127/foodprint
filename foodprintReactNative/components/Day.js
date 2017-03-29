@@ -11,9 +11,15 @@ import {
 import {Text, TouchableOpacity, StyleSheet, View, Text as RNText} from 'react-native';
 
 
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#00A229';
+const periwinkle = '#686CA6'
 
-const themeColor = '#FC8A67'
-const textColor = 'black'
+const themeColor = citrusPink
+const textColor = '#505050'
+
 
 const styles = StyleSheet.create({
   label: {
@@ -41,7 +47,7 @@ export default function Meal (props) {
     const mealsArray = props.meals
 
     return (
-      <Container style={{marginTop: 10, marginBottom: 50}}>
+      <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
         <RNText style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{props.label}</RNText>
         <Content>
           <List>

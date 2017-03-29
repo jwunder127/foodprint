@@ -20,9 +20,15 @@ const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
   'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 
+const citrusYellow = '#F6E49C';
+const citrusPink = '#FC8A67';
+const citrusOrange = '#E88931';
+const citrusGreen = '#00A229';
+const periwinkle = '#686CA6'
+
 const textColor = 'black'
 const headerColor = '#FC8A67'
-const containerColor = '#F6E49C'//'#f6d540'
+const containerColor = '#fbf4d7'//'#F6E49C'//'#f6d540'
 const eventColor = '#F2AA2C'
 const selectedDay = '#E34052'
 const buttonTextColor = '#E34052'
@@ -89,8 +95,8 @@ export class CalendarContainer extends Component {
     console.log('Calendar', this.props)
 
     return (
-      <Container style={{marginTop: 40}}>
-        <Content>
+      <Container style={{marginTop: 0, backgroundColor: citrusYellow}}>
+        <Content style={{marginTop: 30}}>
           <Calendar
             onDateSelect={(date) => this.setState({date})}
             customStyle={customStyle}
