@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { login, logout } from '../reducers/auth';
+import { login, logout } from '../reducers/authThunks';
 import {connect} from 'react-redux';
 import HomeContainer from '../containers/HomeContainer';
 import LoginComponent from '../components/LoginComponent';

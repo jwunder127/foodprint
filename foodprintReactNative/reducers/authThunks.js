@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Actions} from 'react-native-router-flux';
-import { removeAllMeals } from './mealThunks';
+import { removeAllMeals } from './meal';
 import { authenticated, remove } from './auth';
 
 /* ------------       DISPATCHERS     ------------------ */
