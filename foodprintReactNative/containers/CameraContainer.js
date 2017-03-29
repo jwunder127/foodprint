@@ -53,7 +53,7 @@ const styles = {
     color: 'white',
     backgroundColor: citrusPink
   },
-}
+};
 
 
 class CameraContainer extends Component {
@@ -111,7 +111,7 @@ class CameraContainer extends Component {
       <Container>
         <TouchableOpacity onPress={() => this.resetState()} style={{backgroundColor:citrusPink, height: 40}}>
             <Icon style={{color: '#505050', marginTop: 7, marginLeft: 10}} android="md-arrow-back" ios="ios-arrow-back">
-              <Text style={{fontFamily: 'SpaceMono-Regular', textAlign: 'right', fontSize: 16, color: 'white'}}>          Select your tags!</Text>
+              <Text style={{fontFamily: 'SpaceMono-Regular', textAlign: 'right', fontSize: 16, color: 'white'}}>       Select your tags!</Text>
             </Icon>
         </TouchableOpacity>
         <View >
