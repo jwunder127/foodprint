@@ -155,7 +155,7 @@ class CameraContainer extends Component {
     renderMealImage(){
     if (this.state.mealPhotoUrl) {
       return (
-       <Image style={{resizeMode: 'contain', marginTop: 0.5, height: 200}} source={{uri: this.state.mealPhotoUrl}} />)
+       <Image style={{resizeMode: 'contain', marginTop: 0.5, height: 175}} source={{uri: this.state.mealPhotoUrl}} />)
     } else {
        return <Spinner />
     }
