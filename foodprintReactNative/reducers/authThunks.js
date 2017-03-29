@@ -26,12 +26,11 @@ export const login = (username, password) =>
 export const logout = () =>
   dispatch => {
     return axios.post('https://foodprintapp.herokuapp.com/api/auth/logout')
-      .then(() => dispatch(whoami()))
-      .then(() => Actions.login())
       .then(() => {
         dispatch(removeAllMeals());
-        dispatch(remove());
       })
+      .then(() => dispatch(whoami()))
+      .then(() => Actions.login())
       .catch(err => console.error('logout unsuccessful', err))};
 
 export const signup = (credentials) => {

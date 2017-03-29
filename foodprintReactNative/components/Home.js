@@ -21,8 +21,7 @@ export default function Meal (props) {
     return (
      <Container style={{backgroundColor: citrusYellow, marginBottom: 50}}>
       <Content>
-
-
+      <List>
         {
          props.meals && props.meals.map((meal, i) => {
             return (
@@ -35,8 +34,7 @@ export default function Meal (props) {
                </Card>
               )
           })}
-
-
+      </List>
       </Content>
       </Container>
     )

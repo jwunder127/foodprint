@@ -21,7 +21,7 @@ export function nutritionIcon (props) {
 
   return (
 
-      <Icon name="nutrition" style={{color: iconColor}}/>
+      <Icon name="clock" style={{color: iconColor}}/>
 
   )
 }
@@ -33,4 +33,10 @@ export function homeIcon (props) {
   )
 }
 
+export function profileIcon (props) {
+
+  return (
+          <Icon name="person" style={{color: iconColor}}/>
+  )
+}
 
