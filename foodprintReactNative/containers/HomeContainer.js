@@ -16,7 +16,7 @@ export class HomeContainer extends Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Actions.mainTabBar()
   }
 
