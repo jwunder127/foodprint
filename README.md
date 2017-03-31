@@ -71,6 +71,6 @@ export const nutritionixURL = 'https://trackapi.nutritionix.com/v2/natural/nutri
 
 ```
 
-##Thanks for reading!
+## Thanks for reading!
 
 Arnoldo, Brian, John, and Zo
