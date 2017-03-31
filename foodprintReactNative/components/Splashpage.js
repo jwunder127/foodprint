@@ -16,17 +16,19 @@ const styles = {
   },
   headline: {
     marginTop: 50,
-    marginLeft: 90,
+    //marginLeft: 90,
     color: '#505050',
     fontSize: 25,
-    fontFamily: 'SpaceMono-Bold'
+    fontFamily: 'SpaceMono-Bold',
+    textAlign: 'center'
   },
   body: {
     marginTop: 60,
     marginLeft: 65,
     marginRight: 40,
     color: '#505050',
-    fontFamily: 'SpaceMono-Bold'
+    fontFamily: 'SpaceMono-Bold',
+    textAlign: 'center'
   },
   button: {
     marginTop: 85,
@@ -72,7 +74,7 @@ export class Splashpage extends Component {
                   Eat Smarter
                 </Text>
                 <Text style={styles.body}>
-                  A food log to catalog and track all your meals, daily!
+                  A smart food journal to catalog and track all of your meals
                 </Text>
                 <Button light block style={styles.button} onPress={() => {
                   if (this.props.auth === null || this.props.auth === "") {

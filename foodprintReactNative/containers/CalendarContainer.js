@@ -89,7 +89,7 @@ export class CalendarContainer extends Component {
 
   render() {
 
-    console.log('Calendar', this.props)
+
 
     return (
       <Container style={{marginTop: 0, backgroundColor: citrusYellow}}>
@@ -109,7 +109,7 @@ export class CalendarContainer extends Component {
             nextButtonText={'Next'}
             />
 
-        <Button onPress={this.goToDay} style={{marginTop: 10, marginLeft: 55, backgroundColor: headerColor}}>
+        <Button onPress={this.goToDay} style={{marginTop: 0, marginLeft: 55, backgroundColor: headerColor}}>
             <Icon style={{color: buttonTextColor}} name='pizza' />
             <Icon style={{color: buttonTextColor}} name='nutrition'  />
             <Icon style={{color: buttonTextColor}} name='restaurant' />
