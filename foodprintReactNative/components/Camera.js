@@ -1,13 +1,10 @@
 'use strict';
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { Container, Header, Button, Footer, Grid, Col, Icon } from 'native-base';
+import { Container, Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
-const citrusOrange = '#E88931';
-const citrusGreen = '#84FF6F';
 
 const styles = {
   container: {
@@ -42,7 +39,7 @@ const styles = {
       backgroundColor: '#FC8A67',
   },
     header: {
-        backgroundColor:citrusPink,
+        backgroundColor: citrusPink,
         height: 40,
         flexDirection: 'row'
     },
@@ -63,7 +60,7 @@ const CameraView = (props) => {
         <View>
           <View>
             <TouchableOpacity onPress={() => Actions.pop()} style={styles.header}>
-              <Icon style={styles.icon} android="md-arrow-back" ios="ios-arrow-back"/>
+              <Icon style={styles.icon} android="md-arrow-back" ios="ios-arrow-back" />
             </TouchableOpacity>
           </View>
           <View>
