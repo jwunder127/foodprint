@@ -3,66 +3,56 @@ import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import { whoami } from '../reducers/authThunks'
 import { Container, Content, Button } from 'native-base';
-import {Text, Image} from 'react-native';
+import {Text, Image, Dimensions} from 'react-native';
 import { getAllMealsFromDB } from '../reducers/mealThunks';
+import {vw, vh} from '../util';
 
 
 const styles = {
-  container: {
-    backgroundColor: '#f6e49c',
-    flex: 1,
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  headline: {
-    marginTop: 50,
-    //marginLeft: 90,
-    color: '#505050',
-    fontSize: 25,
-    fontFamily: 'SpaceMono-Bold',
-    textAlign: 'center'
-  },
-  body: {
-    marginTop: 60,
-    marginLeft: 65,
-    marginRight: 40,
-    color: '#505050',
-    fontFamily: 'SpaceMono-Bold',
-    textAlign: 'center'
-  },
-  button: {
-    marginTop: 85,
-    marginRight: 40,
-    marginLeft: 40
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginTop: 20,
-    marginLeft: 90
-  }
+    container: {
+        backgroundColor: '#f6e49c',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute'
+
+    },
+    headline: {
+        marginTop: vh(5),
+        color: '#505050',
+        fontSize: 25,
+        fontFamily: 'SpaceMono-Bold',
+        textAlign: 'center'
+    },
+    body: {
+        marginTop: vh(5),
+        marginLeft: vw(15),
+        marginRight: vw(20),
+        color: '#505050',
+        fontFamily: 'SpaceMono-Bold',
+        textAlign: 'center'
+    },
+    button: {
+        marginTop: vh(15),
+        marginRight: vw(7),
+        marginLeft: vw(7)
+    },
+    logo: {
+        width: 150,
+        height: 150,
+        marginTop: vh(5),
+        marginLeft: vw(30)
+    }
 };
 
 
 export class Splashpage extends Component {
   constructor(props){
     super(props);
-    this.determineNextPath = this.determineNextPath.bind(this);
   }
 
     componentDidMount() {
         this.props.whoami();
-    }
-
-    determineNextPath() {
-        console.log('this button was pressed', this.props.auth)
-        if (this.props.auth === null || this.props.auth === "") {
-          console.log('in the if statement! Bro what wrong?');
-          Actions.login();
-        } else {
-          console.log('in the else statement! Where are you going?')
-            Actions.home({duration})
-        }
     }
 
     render() {
@@ -80,7 +70,6 @@ export class Splashpage extends Component {
                   if (this.props.auth === null || this.props.auth === "") {
                     Actions.login();
                 } else {
-                    console.log('in the else statement!');
                       this.props.getAllMealsFromDB();
                     Actions.home()
                 }

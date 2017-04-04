@@ -2,37 +2,38 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Button, Form, Item, Input, Label } from 'native-base';
 import {Image} from 'react-native';
+import {vw, vh} from '../util';
 
 const styles = {
-  container:{
-    backgroundColor: '#f6e49c',
-    flex: 1,
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginTop: 20,
-    marginLeft: 90
-  },
-  mainForm: {
-    margin: 40,
-    marginTop: 50
-  },
-  loginButton: {
-    marginTop: 45,
-    marginBottom: 30,
-    marginRight: 40,
-    marginLeft: 40,
-    backgroundColor: '#FC8A67'
-  },
-  signUpButton: {
-    backgroundColor: '#1BB001',
-    marginRight: 40,
-    marginLeft: 40
-  },
-  input: {
-    color: '#505050',
-  }
+    container: {
+        backgroundColor: '#f6e49c',
+        flex: 1,
+    },
+    logo: {
+        width: 150,
+        height: 150,
+        marginTop: vh(5),
+        marginLeft: vw(30)
+    },
+    mainForm: {
+        margin: 40,
+        marginTop: 50
+    },
+    loginButton: {
+        marginTop: vh(7),
+        marginBottom: vh(5),
+        marginRight: vw(10),
+        marginLeft: vw(10),
+        backgroundColor: '#FC8A67'
+    },
+    signUpButton: {
+        backgroundColor: '#1BB001',
+        marginRight: 40,
+        marginLeft: 40
+    },
+    input: {
+        color: '#505050',
+    }
 };
 
 
