@@ -9,7 +9,8 @@ import Moment from 'moment';
 
 import { Container, Content, Button, Icon, Text, Footer, FooterTab, Body, Left, Right, Card, CardItem } from 'native-base';
 import store from '../store';
-import { setMealsByDate } from '../reducers/mealThunks'
+import { setMealsByDate } from '../reducers/mealThunks';
+import {vw, vh} from '../util';
 
 
 const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -109,7 +110,7 @@ export class CalendarContainer extends Component {
             nextButtonText={'Next'}
             />
 
-        <Button onPress={this.goToDay} style={{marginTop: 0, marginLeft: 55, backgroundColor: headerColor}}>
+        <Button onPress={this.goToDay} style={{marginTop: vh(2), marginLeft: vw(16), backgroundColor: headerColor}}>
             <Icon style={{color: buttonTextColor}} name='pizza' />
             <Icon style={{color: buttonTextColor}} name='nutrition'  />
             <Icon style={{color: buttonTextColor}} name='restaurant' />

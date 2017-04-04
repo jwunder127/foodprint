@@ -2,6 +2,7 @@ import React from 'react';
 import { Text as RNText, View, TouchableOpacity, StyleSheet } from 'react-native';
 import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer, Left, Spinner} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import {vw, vh} from '../util';
 
 const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
@@ -41,7 +42,7 @@ export default function Meal (props) {
         <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>{props.date}</RNText>
           <Card style={{margin: 10}}>
             <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
-              <Thumbnail style={{width: 300, height: 300, margin: 10}} square source={{uri: props.meal.photoUrl}} />
+              <Thumbnail style={{width: vw(85), height: vh(40), margin: vw(1)}} square source={{uri: props.meal.photoUrl}} />
 
             </CardItem>
 

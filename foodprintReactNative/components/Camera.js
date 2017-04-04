@@ -1,48 +1,45 @@
 'use strict';
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { Container, Header, Button, Footer, Grid, Col, Icon } from 'native-base';
+import { Container, Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
-const citrusOrange = '#E88931';
-const citrusGreen = '#84FF6F';
 
 const styles = {
-  container: {
-    backgroundColor: '#f6e49c',
-    flexWrap: 'wrap',
-      flex: 1,
-  },
-  headline: {
-    marginTop: 50,
-    marginLeft: 90,
-    color: '#505050',
-    fontSize: 25,
-    fontFamily: 'SpaceMono-Bold'
-  },
-  headerLeft: {
-    backgroundColor: citrusPink,
-  },
-  headerRight: {
-    backgroundColor: citrusPink,
-  },
-  body: {
-      color: '#505050',
-      textAlign: 'center',
-      fontFamily: 'SpaceMono-Bold',
-      marginTop: 210,
-      marginLeft: 40,
-      marginRight: 40
-  },
-  selectImageButton: {
-      marginLeft: 107,
-      marginTop: 50,
-      backgroundColor: '#FC8A67',
-  },
+    container: {
+        backgroundColor: '#f6e49c',
+        flexWrap: 'wrap',
+        flex: 1,
+    },
+    headline: {
+        marginTop: 50,
+        marginLeft: 90,
+        color: '#505050',
+        fontSize: 25,
+        fontFamily: 'SpaceMono-Bold'
+    },
+    headerLeft: {
+        backgroundColor: citrusPink,
+    },
+    headerRight: {
+        backgroundColor: citrusPink,
+    },
+    body: {
+        color: '#505050',
+        textAlign: 'center',
+        fontFamily: 'SpaceMono-Bold',
+        marginTop: 210,
+        marginLeft: 40,
+        marginRight: 40
+    },
+    selectImageButton: {
+        marginLeft: 107,
+        marginTop: 50,
+        backgroundColor: '#FC8A67',
+    },
     header: {
-        backgroundColor:citrusPink,
+        backgroundColor: citrusPink,
         height: 40,
         flexDirection: 'row'
     },
@@ -87,4 +84,3 @@ const CameraView = (props) => {
 }
 
 export default CameraView;
-
