@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Profile from '../components/Profile';
-import { Actions } from 'react-native-router-flux';
 import { logout } from '../reducers/authThunks';
-
 
 
 export class ProfileContainer extends Component {

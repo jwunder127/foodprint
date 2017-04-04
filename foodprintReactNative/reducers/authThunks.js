@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {Actions} from 'react-native-router-flux';
 import { removeAllMeals } from './meal';
-import { authenticated, remove } from './auth';
+import { authenticated } from './auth';
 
 /* ------------       DISPATCHERS     ------------------ */
 

@@ -23,11 +23,9 @@ export class MealContainer extends Component {
     Actions.day({label: tag})
   }
 
-
-
     render() {
 
-    let date = ""
+    let date = ''
 
     //convert date to user friendly format to send as a display prop
     if (this.props.selectedMeal.id !== undefined) {
@@ -64,5 +62,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MealContainer)
-
-

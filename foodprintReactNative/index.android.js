@@ -43,7 +43,7 @@ export default class foodprintReactNative extends Component {
           <Router duration={1}>
             <Scene key="root" hideNavBar={true}>
               <Scene key="splash" component={Splashpage} title="Splash" initial="{true}" />
-              <Scene key="login" component={LoginContainer} title="Login" initial={false} clone={true} />
+              <Scene key="login" component={LoginContainer} title="Login" initial={false} clone={true} hideTabBar={true} />
               <Scene key="signup" component={SignupContainer} title="Sign up" />
               <Scene key="mainTabBar" tabs={true} hideNavBar={true} tabBarStyle={style.tabBarStyle} >
                 <Scene key="homeTab" title="Home Tab" icon={homeIcon} onPress={ () => Actions.home() }>
