@@ -60,7 +60,7 @@ const CameraView = (props) => {
         <View>
           <View>
             <TouchableOpacity onPress={() => Actions.pop()} style={styles.header}>
-              <Icon style={styles.icon} android="md-arrow-back" ios="ios-arrow-back"/>
+              <Icon style={styles.icon} android="md-arrow-back" ios="ios-arrow-back" />
             </TouchableOpacity>
           </View>
           <View>

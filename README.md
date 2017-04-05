@@ -1,10 +1,10 @@
 # Welcome to Foodprint!
 
 Foodprint is a smart food journal that:
- *allows users take photos of their meals
- *helps users identify food
- *provides nutrition feedback
- *compiles nutrition statistics over time
+ * allows users take photos of their meals
+ * helps users identify food
+ * provides nutrition feedback
+ * compiles nutrition statistics over time
 
 Want to know how many calories you had last November 24? Foodprint knows!
 How much protein did you have last Wednesday? Foodprint has your answer!
