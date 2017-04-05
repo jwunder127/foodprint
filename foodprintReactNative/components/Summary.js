@@ -2,6 +2,7 @@ import React from 'react';
 import { Text as RNText, View, TouchableOpacity, StyleSheet } from 'react-native';
 import {Container, Content, Card, CardItem, Body, Text, Badge, Button, Thumbnail, Footer, Left} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import {vw, vh} from '../util';
 
 const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
   tableText: {
     fontSize: 15,
     color:'#000'
-  }
+  },
 });
 
 
@@ -32,13 +33,13 @@ export default function Summary (props) {
       <Container style={{marginTop: 0, marginBottom: 50, backgroundColor: citrusYellow}}>
         <Content>
         <RNText style={{color: '#505050', fontWeight: 'bold', textAlign: 'center'}}>Daily Summary - {props.date}</RNText>
-          <Card style={{margin: 10}}>
-            <CardItem bordered style= {{backgroundColor: lightYellow, elevation: 1}}>
-                <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginLeft: 10}}>
+          <Card style={{margin: vw(2)}}>
+            <CardItem bordered style= {{backgroundColor: lightYellow}}>
+                <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', marginLeft: vw(1)}}>
                    {props.meal.totalMeals.map((meal, i) =>{
                    return (
                     <TouchableOpacity key={i} onPress={()=> props.handleMealClick(meal)}>
-                      <Thumbnail style={{width: 95, height: 95, margin: 1}} square source={{uri: meal.photoUrl}} />
+                      <Thumbnail style={{flex: 1, width: vw(25), height: vh(15), margin: vw(0.25)}} square source={{uri: meal.photoUrl}} />
                     </TouchableOpacity>
                     )})
                    }

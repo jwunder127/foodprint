@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  TouchableOpacity
-} from 'react-native';
 import { Container, Content, View, Button, Text } from 'native-base';
+import {vw, vh} from '../util';
 
 const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
@@ -26,8 +24,8 @@ const styles = {
   },
 
   selectLogoutButton: {
-    marginTop: 55,
-    marginLeft: 130,
+    marginTop: vh(10),
+    marginLeft: vw(40),
     backgroundColor: '#FC8A67',
   },
 };

@@ -7,37 +7,37 @@ import { Actions } from 'react-native-router-flux';
 const citrusPink = '#FC8A67';
 
 const styles = {
-  container: {
-    backgroundColor: '#f6e49c',
-    flexWrap: 'wrap',
-      flex: 1,
-  },
-  headline: {
-    marginTop: 50,
-    marginLeft: 90,
-    color: '#505050',
-    fontSize: 25,
-    fontFamily: 'SpaceMono-Bold'
-  },
-  headerLeft: {
-    backgroundColor: citrusPink,
-  },
-  headerRight: {
-    backgroundColor: citrusPink,
-  },
-  body: {
-      color: '#505050',
-      textAlign: 'center',
-      fontFamily: 'SpaceMono-Bold',
-      marginTop: 210,
-      marginLeft: 40,
-      marginRight: 40
-  },
-  selectImageButton: {
-      marginLeft: 107,
-      marginTop: 50,
-      backgroundColor: '#FC8A67',
-  },
+    container: {
+        backgroundColor: '#f6e49c',
+        flexWrap: 'wrap',
+        flex: 1,
+    },
+    headline: {
+        marginTop: 50,
+        marginLeft: 90,
+        color: '#505050',
+        fontSize: 25,
+        fontFamily: 'SpaceMono-Bold'
+    },
+    headerLeft: {
+        backgroundColor: citrusPink,
+    },
+    headerRight: {
+        backgroundColor: citrusPink,
+    },
+    body: {
+        color: '#505050',
+        textAlign: 'center',
+        fontFamily: 'SpaceMono-Bold',
+        marginTop: 210,
+        marginLeft: 40,
+        marginRight: 40
+    },
+    selectImageButton: {
+        marginLeft: 107,
+        marginTop: 50,
+        backgroundColor: '#FC8A67',
+    },
     header: {
         backgroundColor: citrusPink,
         height: 40,
@@ -84,4 +84,3 @@ const CameraView = (props) => {
 }
 
 export default CameraView;
-

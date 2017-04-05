@@ -2,25 +2,19 @@ import React from 'react';
 import {
   Container,
   Content,
-  ListItem,
   Thumbnail,
-  List,
   Badge,
   Button,
   Card,
   CardItem,
   View,
-  Left,
-  Body
 } from 'native-base';
 import {Text, TouchableOpacity, StyleSheet, Text as RNText} from 'react-native';
+import {vw, vh} from '../util';
 
 
 const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
-const citrusOrange = '#E88931';
-const citrusGreen = '#00A229';
-const periwinkle = '#686CA6'
 const lightYellow = '#fbf4d7'
 
 const themeColor = citrusPink
@@ -28,20 +22,19 @@ const textColor = '#505050'
 
 
 const styles = StyleSheet.create({
-  label: {
-    fontSize: 10,
-    color:'#000'
-  },
-  buttonText: {
-    color: textColor
-  },
-  labelText: {
-    color: textColor,
-    lineHeight: 20,
-    fontSize: 10
-  },
-  button:
-    {backgroundColor: themeColor}
+    label: {
+        fontSize: 10,
+        color: '#000'
+    },
+    buttonText: {
+        color: textColor
+    },
+    labelText: {
+        color: textColor,
+        lineHeight: 20,
+        fontSize: 10
+    },
+    button: {backgroundColor: themeColor}
 });
 
 
@@ -57,7 +50,7 @@ export default function Meal (props) {
                <Card key={i} style={{margin: 4}}>
                <CardItem bordered style={{backgroundColor: lightYellow}}>
                   <TouchableOpacity onPress={() => props.handleMealClick(meal)}>
-                  <Thumbnail style={{width: 150, height: 150}} square source={{uri: meal.photoUrl}} />
+                  <Thumbnail style={{width: vw(42.5), height: vh(20)}} square source={{uri: meal.photoUrl}} />
                   </TouchableOpacity>
                   <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', backgroundColor: lightYellow}}>
                     {meal.tags.map((food, i) => {

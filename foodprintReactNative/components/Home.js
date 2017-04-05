@@ -1,14 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
-import { Container, Content, Thumbnail, Card, CardItem, Spinner, Separator } from 'native-base';
+import { Container, Content, Thumbnail, Card, CardItem, Spinner } from 'native-base';
 import moment from 'moment';
+import {vw, vh} from '../util';
 
 const citrusYellow = '#F6E49C';
 const citrusPink = '#FC8A67';
-const citrusOrange = '#E88931';
-const citrusGreen = '#00A229';
-const periwinkle = '#686CA6'
-const lightYellow = '#fbf4d7'
+const lightYellow = '#fbf4d7';
 
 const styles = {
   card: {
@@ -22,9 +20,9 @@ const styles = {
     marginBottom: 50
   },
   thumbnail: {
-    width: 300,
-    height: 300,
-    marginLeft: 2
+    width: vw(85),
+    height: vh(40),
+    marginLeft: vw(1)
   }
 }
 

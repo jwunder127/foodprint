@@ -5,7 +5,6 @@ import { Actions } from 'react-native-router-flux';
 import { setMeal } from '../reducers/meal';
 import { logout } from '../reducers/authThunks';
 
-
 export class HomeContainer extends Component {
 
   constructor(props){
