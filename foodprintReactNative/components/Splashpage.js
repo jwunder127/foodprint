@@ -41,7 +41,7 @@ const styles = {
         width: 150,
         height: 150,
         marginTop: vh(5),
-        marginLeft: vw(30)
+        marginLeft: vw(30),
     }
 };
 
