@@ -70,6 +70,10 @@ export const nutritionixURL = 'https://trackapi.nutritionix.com/v2/natural/nutri
 
 
 ```
+## Check out our APK!
+
+https://www.dropbox.com/s/648uh6d71bxk1mg/foodprint.apk?dl=0
+(currently available for Android)
 
 ## Thanks for reading!
 
