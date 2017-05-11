@@ -9,6 +9,12 @@ Foodprint is a smart food journal that:
 Want to know how many calories you had last November 24? Foodprint knows!
 How much protein did you have last Wednesday? Foodprint has your answer!
 
+## Team Members
+1. Arnoldo Mora
+2. Brian Antiochos
+3. John Underwood
+4. Zohaib Rahman
+
 ## How to use
 
 For best results, checkout the [React Native getting started page](https://facebook.github.io/react-native/docs/getting-started.html).
